@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Promotional Events</title>
+    </head>
+    <body>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Status</td>
+                        <td>Admin ID</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="event:${events}">
+                        <td th:text="${event.eventId}"></td>
+                        <td th:text="${event.eventName}"></td>
+                        <td th:text="${event.eventDescription}"></td>
+                        <td th:text="${event.eventStartDate}"></td>
+                        <td th:text="${event.eventEndDate}"></td>
+                        <td th:text="${event.eventStatus}"></td>
+                        <td th:text="${event.adminId}"></td>
+                        <td>
+                            <a href="">Edit</a>
+                            <a href="">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
