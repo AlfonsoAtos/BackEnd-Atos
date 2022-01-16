@@ -6,14 +6,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = "com.backend.webproject")
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class WebprojectApplication extends SpringBootServletInitializer  {
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(WebprojectApplication.class);
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(WebprojectApplication.class, args);
 	}
