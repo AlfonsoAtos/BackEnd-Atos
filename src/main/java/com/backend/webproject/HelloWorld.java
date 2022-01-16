@@ -18,4 +18,14 @@ public class HelloWorld {
 	public String Login() {
 		return "login";
 	}
+	
+	@RequestMapping("/login_admin")
+	public String LoginAdmin() {
+		return "login_admin";
+	}
+	
+	@RequestMapping("/sign_up")
+	public String SignUp() {
+		return "sign_up";
+	}
 }
