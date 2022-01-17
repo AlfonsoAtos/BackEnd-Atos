@@ -36,34 +36,39 @@
     <div class="login-main">
 
       <main class="form-signin">
-        <form>
-          <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
-          <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+        <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
+        <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+        <form id="signup_form">
   
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingName" placeholder="John Smith">
+            <input type="text" class="form-control" id="floatingName" name="name" placeholder="John Smith">
             <label for="floatingName">Name</label>
           </div>
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingPhone" placeholder="81 1071 7952">
+            <input type="text" class="form-control" id="floatingPhone" name="number" placeholder="81 1071 7952">
             <label for="floatingPhone">Phone Number</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="ConfirmPassword">
+            <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="ConfirmPassword">
             <label for="floatingConfirmPassword">Confirm Password</label>
+          </div>
+          <div>
+          	<p class="error-message">Passwords don't match</p>
           </div>
   
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
         </form>
       </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  	<script src="<c:url value="/resources/src/signup.js" />" type="text/javascript"></script>
   </body>
 </html>
