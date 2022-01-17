@@ -1,11 +1,11 @@
 package com.backend.interfaces;
 
-import com.backend.models.EventsModel;
+import com.backend.models.CouponsModel;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IEvents extends CrudRepository<EventsModel, Integer> {
+public interface ICoupons extends CrudRepository<CouponsModel, Integer> {
 
 }

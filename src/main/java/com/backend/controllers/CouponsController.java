@@ -2,8 +2,8 @@ package com.backend.controllers;
 
 import java.util.List;
 
-import com.backend.interfaceService.IEventsService;
-import com.backend.models.EventsModel;
+import com.backend.interfaceService.ICouponsService;
+import com.backend.models.CouponsModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping
-public class EventsController {
+public class CouponsController {
 
     @Autowired
-    private IEventsService serviceEvents;
+    private ICouponsService serviceCoupons;
 
     @GetMapping("/list")
     public String list(Model model) {
-        List<EventsModel> events = serviceEvents.list();
-        model.addAttribute("events", events);
+        List<CouponsModel> coupons = serviceCoupons.list();
+        model.addAttribute("coupons", coupons);
         return "index";
     }
 }
