@@ -38,7 +38,7 @@
     
     <div class="login-main">
       <main class="form-signin">
-        <form action="api/login_admin" method="post">
+        <form action="api/admin/login" method="post">
           <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
           <h1 class="h3 mb-3 fw-normal text-white">Log in - Admin</h1>
   

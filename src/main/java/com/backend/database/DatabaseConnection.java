@@ -1,4 +1,4 @@
-package com.backend.webproject;
+package com.backend.database;
 
 import java.util.List;
 
@@ -32,14 +32,5 @@ public class DatabaseConnection {
 	public void insertNewAdmin() {
 //		temp.update("insert into admin values(3, 'Noelle', 'chio@chio.com', 'pass123')");
 		temp.update("insert into admin values(4, 'Alejandra' , 'ale@ale.ale', 'pass123')");
-	}
-	
-	public int registerUser(String email, String pass, String name, String number) {
-		try {
-			return temp.update("insert into RegisteredUser values(?, ?, ?, ?, '', ?", new Object[] {1, email, pass, name, number});
-		} catch(DataAccessException err) {
-			err.printStackTrace();
-		}
-		return 0;
 	}
 }

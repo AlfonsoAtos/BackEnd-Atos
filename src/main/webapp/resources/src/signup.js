@@ -11,7 +11,7 @@ $('.error-message').hide()
 function registerUser(name, email, number, password) {
   console.log('buenas');
   let settings = {
-    url: '/api/signup',
+    url: '/api/user/signup',
     method: 'POST',
     dataType: 'JSON',
     data: JSON.stringify({name, email, number, password}),
