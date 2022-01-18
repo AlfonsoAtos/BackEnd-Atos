@@ -39,7 +39,7 @@ public class LoginCRUD {
 		String name = req.getParameter("name");
 		String number = req.getParameter("number");
 		System.out.println("signup");
-		if db.registerUser(email, pass, name, number);
+//		if db.registerUser(email, pass, name, number);
 		
 		return new UserData();
 	}
