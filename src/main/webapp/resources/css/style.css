@@ -1,0 +1,67 @@
+.navbar {
+    background-color: #484848;
+}
+
+.navbar a {
+    color: #cfcfcf;
+}
+
+.navbar a:hover {
+    color: #FFFFFF;
+}
+
+.card-body {
+    background-color: #F2F2F2;
+}
+
+.icon {
+    color: #484848;
+}
+
+#cart-icon-bg {
+    color: #C3EFA8;
+}
+
+#user-icon-bg {
+    color: #ADDBFD;
+}
+
+.cart-icon-group:hover #cart-icon-bg{
+    text-shadow: 0px 0px 20px #A1FF67;
+}
+
+.product-card .cart-icon-group {
+    cursor: pointer;
+    visibility: hidden
+}
+
+.user-icon-group:hover #user-icon-bg{
+    text-shadow: 0px 0px 20px #76C5FF;
+}
+
+.carousel-button {
+    background-color: #484848;
+    color: #FFFFFF;
+    border: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none;
+ }
+
+.carousel-button:hover {
+    background-color: #1d1d1d;
+    color: #FFFFFF;
+}
+
+.product-card {
+    cursor: pointer;
+}
+
+.product-carousel {
+    margin-bottom: 70px;
+}
