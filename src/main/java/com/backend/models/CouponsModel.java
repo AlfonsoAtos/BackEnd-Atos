@@ -3,11 +3,11 @@ package com.backend.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "coupons")
+@Table(name = "coupon")
 public class CouponsModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int couponId;
     private String couponName;
     private String couponCode;
