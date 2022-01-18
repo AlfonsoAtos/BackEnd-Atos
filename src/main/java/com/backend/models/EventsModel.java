@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "events")
+@Table(name = "promotionevent")
 public class EventsModel {
 
     @Id

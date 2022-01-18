@@ -18,10 +18,10 @@ public class EventsController {
     @Autowired
     private IEventsService serviceEvents;
 
-    @GetMapping("/list")
+    @GetMapping
     public String list(Model model) {
-        List<EventsModel> events = serviceEvents.list();
-        model.addAttribute("events", events);
+        List<EventsModel> promotionevent = serviceEvents.list();
+        model.addAttribute("promotionevent", promotionevent);
         return "index";
     }
 }
