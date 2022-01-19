@@ -17,4 +17,13 @@ public class WebprojectApplication extends SpringBootServletInitializer {
 		SpringApplication.run(WebprojectApplication.class);
 		System.out.println("Running...");
 	}
+<<<<<<< HEAD
 }
+=======
+
+	// public static void main(String[] args) {
+	// SpringApplication.run(WebprojectApplication.class, args);
+	// }
+
+}
+>>>>>>> d371606c4ec9583c50afa8970f0b1de23a57ed85
