@@ -2,91 +2,70 @@ package com.backend.models;
 
 import java.util.Date;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "promotionevent")
 public class EventsModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int eventId;
-    private String eventName;
-    private String eventDescription;
-    private Date eventStartDate;
-    private Date eventEndDate;
-    private String eventStatus;
-    private int adminId;
+    int promotionEventID;
+    String promotionEventName;
+    String promotionEventDescription;
+    Date promotionEventStartDate;
+    Date promotionEventEndDate;
+    String promotionEventStatus;
+    int adminID;
 
-    public EventsModel() {
-
+    public int getPromotionEventID() {
+        return promotionEventID;
     }
 
-    public EventsModel(int eventId, String eventName, String eventDescription, Date eventStartDate, Date eventEndDate,
-            String eventStatus, int adminId) {
-        this.eventId = eventId;
-        this.eventName = eventName;
-        this.eventDescription = eventDescription;
-        this.eventStartDate = eventStartDate;
-        this.eventEndDate = eventEndDate;
-        this.eventStatus = eventStatus;
-        this.adminId = adminId;
+    public void setPromotionEventID(int promotionEventID) {
+        this.promotionEventID = promotionEventID;
     }
 
-    public int getEventId() {
-        return eventId;
+    public String getPromotionEventName() {
+        return promotionEventName;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setPromotionEventName(String promotionEventName) {
+        this.promotionEventName = promotionEventName;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getPromotionEventDescription() {
+        return promotionEventDescription;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setPromotionEventDescription(String promotionEventDescription) {
+        this.promotionEventDescription = promotionEventDescription;
     }
 
-    public String getEventDescription() {
-        return eventDescription;
+    public Date getPromotionEventStartDate() {
+        return promotionEventStartDate;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
+    public void setPromotionEventStartDate(Date promotionEventStartDate) {
+        this.promotionEventStartDate = promotionEventStartDate;
     }
 
-    public Date getEventStartDate() {
-        return eventStartDate;
+    public Date getPromotionEventEndDate() {
+        return promotionEventEndDate;
     }
 
-    public void setEventStartDate(Date eventStartDate) {
-        this.eventStartDate = eventStartDate;
+    public void setPromotionEventEndDate(Date promotionEventEndDate) {
+        this.promotionEventEndDate = promotionEventEndDate;
     }
 
-    public Date getEventEndDate() {
-        return eventEndDate;
+    public String getPromotionEventStatus() {
+        return promotionEventStatus;
     }
 
-    public void setEventEndDate(Date eventEndDate) {
-        this.eventEndDate = eventEndDate;
+    public void setPromotionEventStatus(String promotionEventStatus) {
+        this.promotionEventStatus = promotionEventStatus;
     }
 
-    public String getEventStatus() {
-        return eventStatus;
+    public int getAdminID() {
+        return adminID;
     }
 
-    public void setEventStatus(String eventStatus) {
-        this.eventStatus = eventStatus;
-    }
-
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
+    public void setAdminID(int adminID) {
+        this.adminID = adminID;
     }
 
 }
