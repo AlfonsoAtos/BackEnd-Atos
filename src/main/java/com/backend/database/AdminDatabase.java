@@ -8,4 +8,8 @@ public class AdminDatabase extends DatabaseConnection {
 		AdminData admin = temp.queryForObject("select * from admin where email = ?", new Object[] {email}, new AdminMapper());
 		return admin;
 	}
+	
+	public void insertNewAdmin() {
+		temp.update("insert into admin values(4, 'Alejandra' , 'ale@ale.ale', 'pass123')");
+	}
 }
