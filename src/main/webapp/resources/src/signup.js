@@ -1,11 +1,3 @@
-// function signup() {
-// 	console.log($('#signup_form'));
-//   let form = $('#signup_form');
-//   console.log(form[0]);
-//   // alert('submit signup');
-//   return false;
-// }
-
 $('.error-message').hide()
 
 function registerUser(name, email, number, password) {
