@@ -11,7 +11,7 @@ import com.backend.webproject.jtemp.JdbcTemplateProducts;
 import com.backend.webproject.jtemp.ProductsModel;
 
 @Controller
-public class AdminSideController {
+public class ProductsController {
     @Autowired
     JdbcTemplateProducts jdbcTemplateProducts;
 
