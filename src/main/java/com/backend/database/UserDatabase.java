@@ -13,9 +13,13 @@ public class UserDatabase extends DatabaseConnection {
 		return user;
 	}
 	
-	public int registerUser(String email, String pass, String name, String number) {
+	public int getUserCount() {
+		return temp.queryForObject("select count(userID) from RegisteredUser", Integer.class);
+	}
+	
+	public int registerUser(int id, String email, String pass, String name, String number) {
 		try {
-			return temp.update("insert into RegisteredUser values(?, ?, ?, ?, '', ?", new Object[] {1, email, pass, name, number});
+			return temp.update("insert into RegisteredUser values(?, ?, ?, ?, ?, ?)", new Object[] {id, email, pass, name, "address", number});
 		} catch(DataAccessException err) {
 			err.printStackTrace();
 		}
