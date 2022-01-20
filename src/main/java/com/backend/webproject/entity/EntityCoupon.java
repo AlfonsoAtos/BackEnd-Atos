@@ -1,14 +1,32 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.entity;
 
-public class CouponModel {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "coupon")
+public class EntityCoupon {
+
+    @Id
+    @Column(name = "couponID")
     int cID;
+
+    @Column(name = "couponName")
     String cName;
-    String cType;
-    int cDiscount;
-    int pEventID;
-    int pCategoryID;
+
+    @Column(name = "couponCode")
     String cCode;
+
+    @Column(name = "couponType")
+    String cType;
+
+    @Column(name = "couponDiscount")
+    int cDiscount;
+
+    @Column(name = "promotionEventID")
+    int pEventID;
+
+    @Column(name = "productCategoryID")
+    int pCategoryID;
 
     public int getcID() {
         return cID;
@@ -24,6 +42,14 @@ public class CouponModel {
 
     public void setcName(String cName) {
         this.cName = cName;
+    }
+
+    public String getcCode() {
+        return cCode;
+    }
+
+    public void setcCode(String cCode) {
+        this.cCode = cCode;
     }
 
     public String getcType() {
@@ -56,14 +82,6 @@ public class CouponModel {
 
     public void setpCategoryID(int pCategoryID) {
         this.pCategoryID = pCategoryID;
-    }
-
-    public String getcCode() {
-        return cCode;
-    }
-
-    public void setcCode(String cCode) {
-        this.cCode = cCode;
     }
 
 }
