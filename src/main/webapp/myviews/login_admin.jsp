@@ -38,16 +38,16 @@
     
     <div class="login-main">
       <main class="form-signin">
-        <form>
+        <form action="api/admin/login" method="post">
           <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
           <h1 class="h3 mb-3 fw-normal text-white">Log in - Admin</h1>
   
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
   

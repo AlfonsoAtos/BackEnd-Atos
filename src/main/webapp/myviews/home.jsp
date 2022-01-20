@@ -9,13 +9,13 @@
 		<h1>Pages</h1>
 		
 		<div>
-			<a href="/login">login</a>
+			<a href="/user/login">login</a>
 		</div>
 		<div>
-			<a href="/login_admin">login admin</a>
+			<a href="/admin/login">login admin</a>
 		</div>
 		<div>
-			<a href="/sign_up">sign up</a>
+			<a href="/user/sign_up">sign up</a>
 		</div>
 	</body>
 </html>
