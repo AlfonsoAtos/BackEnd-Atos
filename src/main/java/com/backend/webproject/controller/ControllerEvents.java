@@ -22,4 +22,9 @@ public class ControllerEvents {
         return iServiceEvents.listAllEntityEvents();
 
     }
+
+    @GetMapping(path = "/")
+    public String showEventsHome() {
+        return "events";
+    }
 }
