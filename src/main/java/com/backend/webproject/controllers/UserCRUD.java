@@ -1,8 +1,5 @@
 package com.backend.webproject.controllers;
 
-import java.util.Enumeration;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.database.UserDatabase;
-import com.backend.models.AdminData;
 import com.backend.models.UserData;
 
 @RestController

@@ -9,7 +9,6 @@ import com.backend.models.UserData;
 public class UserDatabase extends DatabaseConnection {
 	public UserData getUser(String username) {
 		UserData user = temp.queryForObject("select * from RegisteredUser where userLoginID = ?", new Object[] {username}, new UserMapper());
-		user.setPassword(null);
 		return user;
 	}
 	
