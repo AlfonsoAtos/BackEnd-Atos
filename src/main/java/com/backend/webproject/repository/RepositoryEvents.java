@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("eventsRepository")
 public interface RepositoryEvents extends CrudRepository<EntityEvents, Integer> {
-
+    int deleteByEventId(int eventId);
 }

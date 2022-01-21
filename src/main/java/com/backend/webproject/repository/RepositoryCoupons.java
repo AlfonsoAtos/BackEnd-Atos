@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("couponsRepository")
 public interface RepositoryCoupons extends CrudRepository<EntityCoupon, Integer> {
+    // int deleteByCouponId(int cID);
 
 }
