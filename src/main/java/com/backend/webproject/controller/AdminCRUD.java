@@ -1,19 +1,21 @@
-package com.backend.webproject.controllers;
+package com.backend.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.database.AdminDatabase;
-import com.backend.models.AdminData;
+import com.backend.webproject.entity.AdminData;
+import com.backend.webproject.jtemp.JdbcTemplateAdmins;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminCRUD {
-	static AdminDatabase db = new AdminDatabase();
+	@Autowired
+	JdbcTemplateAdmins db;
 	
 	@PostMapping("/login")
 	public AdminData loginAdmin(HttpServletRequest req, Model model) {

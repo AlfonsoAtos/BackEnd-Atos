@@ -1,4 +1,4 @@
-package com.backend.models;
+package com.backend.webproject.entity;
 
 public class UserData {
 	int id;

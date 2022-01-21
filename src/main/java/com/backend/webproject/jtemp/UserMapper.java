@@ -1,10 +1,14 @@
-package com.backend.models;
+package com.backend.webproject.jtemp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
+import com.backend.webproject.entity.UserData;
+
+@Component
 public class UserMapper implements RowMapper<UserData> {
 
 	@Override

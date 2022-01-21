@@ -1,4 +1,4 @@
-package com.backend.webproject.controllers;
+package com.backend.webproject.controller;
 
 import java.util.List;
 

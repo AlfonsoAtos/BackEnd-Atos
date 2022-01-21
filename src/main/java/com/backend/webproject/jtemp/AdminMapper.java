@@ -1,10 +1,14 @@
-package com.backend.models;
+package com.backend.webproject.jtemp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
+import com.backend.webproject.entity.AdminData;
+
+@Component
 public class AdminMapper implements RowMapper<AdminData> {
 
 	@Override
