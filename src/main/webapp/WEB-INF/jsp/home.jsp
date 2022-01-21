@@ -10,12 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <a href="/">Home</a>
+	<a href="/">Home</a>
 	<a href="shooter">Shooter</a>
 	<a href="rpg">RPG</a>
 	<a href="simulation">Simulation</a>
 	<a href="vr">VR</a>
 	<a href="strategy">Strategy</a>
+	<a href="/user/login">Login</a>
+	<a href="/user/sign_up">Sign up</a>
+	<a href="/admin/login">Login Admin</a>
 <form action="search">
     <input name="pname" class="form-control" type="search" placeholder="Enter a prouduct" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
