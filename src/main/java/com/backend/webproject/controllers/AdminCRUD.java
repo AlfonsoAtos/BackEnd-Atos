@@ -21,8 +21,8 @@ public class AdminCRUD {
 		String pass = req.getParameter("password");
 		AdminData admin = db.getAdmin(email);
 		if (admin != null && admin.getPassword().equals(pass)) {
-			admin.setPassword(null);
+			return admin;
 		}
-		return admin;
+		return null;
 	}
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.database.UserDatabase;
-import com.backend.models.AdminData;
 import com.backend.models.UserData;
 
 @RestController
@@ -22,10 +21,13 @@ public class UserCRUD {
 		String pass = req.getParameter("password");
 		String name = req.getParameter("name");
 		String number = req.getParameter("number");
-		System.out.println("signup");
-//		if db.registerUser(email, pass, name, number);
+		int id = db.getUserCount() + 1;
 		
-		return new UserData();
+		if (db.registerUser(id, email, pass, name, number) == 1) {
+			// Create shopping cart
+			return new UserData(id, email, pass, name, number);
+		}
+		return null;
 	}
 	
 	@PostMapping("/login")
@@ -34,8 +36,8 @@ public class UserCRUD {
 		String pass = req.getParameter("password");
 		UserData user = db.getUser(email);
 		if (user != null && user.getPassword().equals(pass)) {
-			user.setPassword(null);
+			return user;
 		}
-		return user;
+		return null;
 	}
 }

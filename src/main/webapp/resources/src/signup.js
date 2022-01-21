@@ -1,16 +1,24 @@
 $('.error-message').hide()
 
 function registerUser(name, email, number, password) {
-  console.log('buenas');
+  let data = {
+    name, email, number, password
+  }
+
   let settings = {
-    url: '/api/user/signup',
+    url: '/api/user/signup/',
     method: 'POST',
     dataType: 'JSON',
-    data: JSON.stringify({name, email, number, password}),
+    data: data,
     async: false,
     cache: false,
     success: (res) => {
-      console.log('success', res);
+      localStorage.setItem('session', JSON.stringify({
+        username: res.username,
+        password: res.password
+      }));
+      // console.log(JSON.parse(localStorage.getItem('session')));
+      window.location.href = '/'
     },
     error: (err) => {
       console.log('error', err);
@@ -21,9 +29,6 @@ function registerUser(name, email, number, password) {
 }
 
 $('#signup_form').on('submit', (e) => {
-  console.log('submit')
-  console.log(e)
-  console.log(e.target)
   let inputs = e.target.children;
   let name = inputs[0].children[0].value;
   let email = inputs[1].children[0].value;

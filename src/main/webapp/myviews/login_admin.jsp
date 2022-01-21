@@ -38,10 +38,9 @@
     
     <div class="login-main">
       <main class="form-signin">
-        <form action="api/admin/login" method="post">
-          <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
-          <h1 class="h3 mb-3 fw-normal text-white">Log in - Admin</h1>
-  
+        <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
+        <h1 class="h3 mb-3 fw-normal text-white">Log in - Admin</h1>
+        <form id="login_admin_form">
           <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
@@ -51,14 +50,16 @@
             <label for="floatingPassword">Password</label>
           </div>
   
-          <div class="checkbox mb-3">
+          <%-- <div class="checkbox mb-3">
             <label class="text-white">
               <input type="checkbox" value="remember-me"> Remember me
             </label>
-          </div>
+          </div> --%>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
         </form>
       </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="<c:url value="/resources/src/login_admin.js" />" type="text/javascript"></script>
   </body>
 </html>
