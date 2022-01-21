@@ -1,16 +1,16 @@
-function login(email, password) {
+function login_admin(email, password) {
   let data = { email, password };
 
   let settings = {
-    url: '/api/user/login/',
+    url: '/api/admin/login/',
     method: 'POST',
     dataType: 'JSON',
     data: data,
     async: false,
     cache: false,
     success: (res) => {
-      localStorage.setItem('session', JSON.stringify({
-        username: res.username,
+      localStorage.setItem('admin_session', JSON.stringify({
+        email: res.email,
         password: res.password
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
@@ -24,12 +24,12 @@ function login(email, password) {
   $.ajax(settings);
 }
 
-$('#login_form').on('submit', (e) => {
+$('#login_admin_form').on('submit', (e) => {
   e.preventDefault();
   let inputs = e.target.children;
   let email = inputs[0].children[0].value;
   let password = inputs[1].children[0].value;
   if(email && password) {
-    login(email, password);
+    login_admin(email, password);
   }
 })
