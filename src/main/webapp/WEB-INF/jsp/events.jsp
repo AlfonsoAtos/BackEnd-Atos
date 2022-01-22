@@ -12,7 +12,7 @@ prefix="c"%>
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
-        <title>Coupon Details</title>
+        <title>Promotion Event Details</title>
     </head>
     <body>
         <div>
@@ -96,34 +96,44 @@ prefix="c"%>
             <div class="content">
                 <div class="new-coupon-btn">
                     <!-- Modal Window Button for adding coupons -->
-                    <a href="#miModal">New Coupon</a>
+                    <a href="#miModal">New Promotion Event</a>
                     <!-- Modal Window -->
                     <div id="miModal" class="modal">
                         <div class="modal-contenido">
                             <a class="close-modal" href="#">X</a>
-                            <h2>New Coupon</h2>
+                            <h2>New Promotion Event</h2>
                             <div class="coupon-form">
                                 <form action="">
                                     <div class="first-half">
                                         <div class="item-form">
-                                            <label for="">Coupon Name: </label>
-                                            <input type="text" />
-                                        </div>
-                                        <div class="item-form">
-                                            <label for="">Coupon Code: </label>
+                                            <label for=""
+                                                >Promotion Event Name:
+                                            </label>
                                             <input type="text" />
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Coupon Discount:
+                                                >Promotion Event Description:
                                             </label>
                                             <input type="text" />
+                                        </div>
+                                        <div class="item-form">
+                                            <label for=""
+                                                >Promotion Event Start Date:
+                                            </label>
+                                            <input type="date" />
+                                        </div>
+                                        <div class="item-form">
+                                            <label for=""
+                                                >Promotion Event End Date:
+                                            </label>
+                                            <input type="date" />
                                         </div>
                                     </div>
                                     <div class="second-half">
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotional Event:
+                                                >Promotional Event Status:
                                             </label>
                                             <select name="" id="">
                                                 <option
@@ -134,62 +144,23 @@ prefix="c"%>
                                                 >
                                                     Select an Option
                                                 </option>
-                                                <option
-                                                    value="Black Friday 2021"
-                                                >
-                                                    Black Friday 2021
+                                                <option value="Valid">
+                                                    Valid
                                                 </option>
-                                                <option value="Halloween">
-                                                    Halloween
+                                                <option value="Expired">
+                                                    Expired
                                                 </option>
-                                                <option value="Christmas">
-                                                    Christmas
+                                                <option value="Cancelled">
+                                                    Cancelled
                                                 </option>
                                             </select>
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Product Category:
+                                                >Promotion Event Administrator
+                                                ID:
                                             </label>
-                                            <select name="" id="">
-                                                <option
-                                                    value="none"
-                                                    selected
-                                                    disabled
-                                                    hidden
-                                                >
-                                                    Select an Option
-                                                </option>
-                                                <option value="Horror">
-                                                    Horror
-                                                </option>
-                                                <option value="Shooters">
-                                                    Shoters
-                                                </option>
-                                                <option value="Sports">
-                                                    Sports
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="radio-form">
-                                        <div class="radio-item">
-                                            <input
-                                                type="radio"
-                                                id="open"
-                                                name="coupon_type"
-                                                value="Open"
-                                            />
-                                            <label for="open">Open</label>
-                                        </div>
-                                        <div class="radio-item">
-                                            <input
-                                                type="radio"
-                                                id="no_open"
-                                                name="coupon_type"
-                                                value="No Open"
-                                            />
-                                            <label for="no_open">No Open</label>
+                                            <input type="text" />
                                         </div>
                                     </div>
                                     <div class="button-form">
@@ -231,24 +202,24 @@ prefix="c"%>
                             <tr>
                                 <td>ID</td>
                                 <td>Name</td>
-                                <td>Code</td>
-                                <td>Type</td>
-                                <td>Discount</td>
-                                <td>Event ID</td>
-                                <td>Category ID</td>
+                                <td>Description</td>
+                                <td>Start Date</td>
+                                <td>End Date</td>
+                                <td>Status</td>
+                                <td>Administrator ID</td>
                                 <td>Actions</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="coupon" items="${newCoupons}">
+                            <c:forEach var="events" items="${newEvents}">
                                 <tr>
-                                    <td>${coupon.getCouponId()}</td>
-                                    <td>${coupon.getCouponName()}</td>
-                                    <td>${coupon.getCouponCode()}</td>
-                                    <td>${coupon.getCouponType()}</td>
-                                    <td>${coupon.getCouponDiscount()}</td>
-                                    <td>${coupon.getPromotionEventId()}</td>
-                                    <td>${coupon.getProductCategoryId()}</td>
+                                    <td>${events.getEventsId()}</td>
+                                    <td>${events.getEventsName()}</td>
+                                    <td>${events.getEventsDescription()}</td>
+                                    <td>${events.getEventsStartDate()}</td>
+                                    <td>${events.getEventsEndDate()}</td>
+                                    <td>${events.getEventsStatus()}</td>
+                                    <td>${events.getEventsAdminId()}</td>
                                     <td>
                                         <svg
                                             fill="blue"
