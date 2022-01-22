@@ -18,9 +18,14 @@ public class AdminSideController {
     JdbcTemplateCoupons jdbcTemplateCoupons;
 
     @RequestMapping("/")
-    public String showAdminPage(Model model) {
+    public String showAdminPage() {
+        return "admin";
+    }
+
+    @RequestMapping("/coupons")
+    public String showCouponsPage(Model model) {
         List<Coupons> newCoupons = jdbcTemplateCoupons.getNewCoupons();
         model.addAttribute("newCoupons", newCoupons);
-        return "admin";
+        return "coupons";
     }
 }

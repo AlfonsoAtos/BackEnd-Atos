@@ -9,7 +9,9 @@ prefix="c"%>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/admin.css" />
+		<link href="
+		<c:url value="/resources/css/main.css" />
+		" rel="stylesheet">
 		<title>Coupon Details</title>
 	</head>
 	<body>
@@ -45,7 +47,7 @@ prefix="c"%>
 			<ul class="sidebar">
 				<div class="items-side">
 					<li>
-						<a href="/products.html">
+						<a href="/admin-side/products">
 							<svg
 								fill="white"
 								viewBox="0 0 20 20"
@@ -61,7 +63,7 @@ prefix="c"%>
 						</a>
 					</li>
 					<li>
-						<a href="/events.html">
+						<a href="/admin-side/events">
 							<svg
 								fill="white"
 								viewBox="0 0 20 20"
@@ -75,7 +77,7 @@ prefix="c"%>
 						</a>
 					</li>
 					<li>
-						<a href="/coupons.html">
+						<a href="/admin-side/coupons">
 							<svg
 								fill="white"
 								viewBox="0 0 20 20"
