@@ -19,7 +19,7 @@
 	<a href="/user/login">Login</a>
 	<a href="/user/sign_up">Sign up</a>
 	<a href="/admin/login">Login Admin</a>
-	<a href="/index.html">Admin Dashboard</a>
+	<a href="/admin-side/">Admin Dashboard</a>
 <form action="search">
     <input name="pname" class="form-control" type="search" placeholder="Enter a prouduct" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
