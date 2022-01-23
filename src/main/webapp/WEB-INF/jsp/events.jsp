@@ -99,7 +99,7 @@ prefix="c"%>
                     <a href="#miModal">New Promotion Event</a>
                     <!-- Modal Window -->
                     <div id="miModal" class="modal">
-                        <div class="modal-contenido">
+                        <div class="modal-contenido-event">
                             <a class="close-modal" href="#">X</a>
                             <h2>New Promotion Event</h2>
                             <div class="coupon-form">
