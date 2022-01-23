@@ -19,7 +19,7 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <span>Logo</span>
+                    <img src="../../resources/img/logo.jpg" />
                 </div>
                 <div class="items-nav">
                     <li>
@@ -103,31 +103,43 @@ prefix="c"%>
                             <a class="close-modal" href="#">X</a>
                             <h2>New Promotion Event</h2>
                             <div class="coupon-form">
-                                <form action="">
+                                <form action="insertEvent">
                                     <div class="first-half">
                                         <div class="item-form">
                                             <label for=""
                                                 >Promotion Event Name:
                                             </label>
-                                            <input type="text" />
+                                            <input
+                                                type="text"
+                                                name="eventsName"
+                                            />
                                         </div>
                                         <div class="item-form">
                                             <label for=""
                                                 >Promotion Event Description:
                                             </label>
-                                            <input type="text" />
+                                            <input
+                                                type="text"
+                                                name="eventsDescription"
+                                            />
                                         </div>
                                         <div class="item-form">
                                             <label for=""
                                                 >Promotion Event Start Date:
                                             </label>
-                                            <input type="date" />
+                                            <input
+                                                type="date"
+                                                name="eventsStartDate"
+                                            />
                                         </div>
                                         <div class="item-form">
                                             <label for=""
                                                 >Promotion Event End Date:
                                             </label>
-                                            <input type="date" />
+                                            <input
+                                                type="date"
+                                                name="eventsEndDate"
+                                            />
                                         </div>
                                     </div>
                                     <div class="second-half">
@@ -135,7 +147,7 @@ prefix="c"%>
                                             <label for=""
                                                 >Promotional Event Status:
                                             </label>
-                                            <select name="" id="">
+                                            <select name="eventsStatus">
                                                 <option
                                                     value="none"
                                                     selected
@@ -160,7 +172,10 @@ prefix="c"%>
                                                 >Promotion Event Administrator
                                                 ID:
                                             </label>
-                                            <input type="text" />
+                                            <input
+                                                type="text"
+                                                name="eventsAdminId"
+                                            />
                                         </div>
                                     </div>
                                     <div class="button-form">
@@ -221,31 +236,37 @@ prefix="c"%>
                                     <td>${events.getEventsStatus()}</td>
                                     <td>${events.getEventsAdminId()}</td>
                                     <td>
-                                        <svg
-                                            fill="blue"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
+                                        <a href=""
+                                            ><svg
+                                                fill="blue"
+                                                viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+                                                ></path>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                    clip-rule="evenodd"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                        <a
+                                            href="events/deleteEvents/${events.getEventsId()}"
                                         >
-                                            <path
-                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                                            ></path>
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                clip-rule="evenodd"
-                                            ></path>
-                                        </svg>
-                                        <svg
-                                            fill="red"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd"
-                                            ></path>
-                                        </svg>
+                                            <svg
+                                                fill="red"
+                                                viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd"
+                                                ></path>
+                                            </svg>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>

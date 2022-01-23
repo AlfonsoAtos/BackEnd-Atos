@@ -13,6 +13,10 @@ public class JdbcTemplateEvents {
 
     JdbcTemplate temp;
 
+    public JdbcTemplateEvents(JdbcTemplate temp) {
+        this.temp = temp;
+    }
+
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -28,10 +32,10 @@ public class JdbcTemplateEvents {
     }
 
     /* POST */
-    public void insertNewEmployee(int eventsId, String eventsName, String eventsDescription, Date eventsStartDate,
+    public void insertNewEvents(int eventsId, String eventsName, String eventsDescription, Date eventsStartDate,
             Date eventsEndDate, String eventsStatus, int eventsAdminId) {
 
-        String sql = "INSERT INTO promotionevent values(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?);";
         temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId });
     }
@@ -50,5 +54,11 @@ public class JdbcTemplateEvents {
 
         String sql = "DELETE FROM promotionevent WHERE promotioneventid = ?";
         temp.update(sql, new Object[] { eventsId });
+    }
+
+    /* AUTO INCREMENT for ID */
+    public int getAutoEventsId() {
+        int newEventsId = temp.queryForObject("SELECT MAX(promotioneventid) + 1 FROM promotionevent", Integer.class);
+        return newEventsId;
     }
 }
