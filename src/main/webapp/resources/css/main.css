@@ -316,7 +316,17 @@ footer .footer-component span {
 	pointer-events: none;
 	transition: all 0.3s;
 }
-#miModal:target {
+#newCouponModal:target {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+#editModal:target {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+#deleteModal:target {
 	opacity: 1;
 	pointer-events: auto;
 }
