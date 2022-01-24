@@ -114,6 +114,7 @@ prefix="c"%>
 								<label>Coupon Code: </label>
 								<input
 									type="text"
+									style="text-transform: uppercase"
 									name="couponCode"
 									value="${couponData.couponCode}"
 									minlength="10"

@@ -119,6 +119,7 @@ prefix="c"%>
 											<label>Coupon Code: </label>
 											<input
 												type="text"
+												style="text-transform: uppercase"
 												name="couponCode"
 												minlength="10"
 												maxlength="10"
