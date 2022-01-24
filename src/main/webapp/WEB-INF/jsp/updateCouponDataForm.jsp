@@ -106,6 +106,7 @@ prefix="c"%>
 									type="text"
 									name="couponName"
 									value="${couponData.couponName}"
+									maxlength="15"
 									required
 								/>
 							</div>
@@ -115,13 +116,15 @@ prefix="c"%>
 									type="text"
 									name="couponCode"
 									value="${couponData.couponCode}"
+									minlength="10"
+									maxlength="10"
 									required
 								/>
 							</div>
 							<div class="item-form">
 								<label>Coupon Discount: </label>
 								<input
-									type="text"
+									type="number"
 									name="couponDiscount"
 									value="${couponData.couponDiscount}"
 									required
@@ -132,23 +135,21 @@ prefix="c"%>
 							<div class="item-form">
 								<label for="">Promotional Event: </label>
 								<select name="promotionEventId" id="" required>
-									<option value="none" selected disabled hidden>
-										Select an Option
-									</option>
-									<option value="1">Black Friday 2021</option>
+									<option value="none" disabled hidden>Select an Option</option>
+									<option value="1" selected>Black Friday</option>
 									<option value="2">Halloween</option>
 									<option value="3">Christmas</option>
 								</select>
 							</div>
 							<div class="item-form">
 								<label>Product Category: </label>
-								<select name="productCategoryId" id="" required>
-									<option value="none" selected disabled hidden>
-										Select an Option
-									</option>
-									<option value="1">Horror</option>
-									<option value="2">Shoters</option>
-									<option value="3">Sports</option>
+								<select name="productCategoryId" required>
+									<option value="none" disabled hidden>Select an Option</option>
+									<option value="1" selected>Shooter</option>
+									<option value="2">VR</option>
+									<option value="3">Strategy</option>
+									<option value="4">Simulation</option>
+									<option value="5">RPG</option>
 								</select>
 							</div>
 						</div>

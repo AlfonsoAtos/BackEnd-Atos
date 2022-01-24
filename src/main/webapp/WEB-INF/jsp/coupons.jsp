@@ -98,12 +98,7 @@ prefix="c"%>
 					<!-- Modal Window Button for adding coupons -->
 					<a href="#miModal">New Coupon</a>
 					<!-- Modal Window -->
-					<div id="deleteModal" class="modal">
-						<div class="modal-contenido">
-							<a class="close-modal" href="#">X</a>
-							<h2>Delete Coupon</h2>
-						</div>
-					</div>
+
 					<div id="miModal" class="modal">
 						<div class="modal-contenido">
 							<a class="close-modal" href="#">X</a>
@@ -113,15 +108,26 @@ prefix="c"%>
 									<div class="first-half">
 										<div class="item-form">
 											<label>Coupon Name: </label>
-											<input type="text" name="couponName" required />
+											<input
+												type="text"
+												name="couponName"
+												maxlength="15"
+												required
+											/>
 										</div>
 										<div class="item-form">
 											<label>Coupon Code: </label>
-											<input type="text" name="couponCode" required />
+											<input
+												type="text"
+												name="couponCode"
+												minlength="10"
+												maxlength="10"
+												required
+											/>
 										</div>
 										<div class="item-form">
 											<label>Coupon Discount: </label>
-											<input type="text" name="couponDiscount" required />
+											<input type="number" name="couponDiscount" required />
 										</div>
 									</div>
 									<div class="second-half">
@@ -131,7 +137,7 @@ prefix="c"%>
 												<option value="none" selected disabled hidden>
 													Select an Option
 												</option>
-												<option value="1">Black Friday 2021</option>
+												<option value="1">Black Friday</option>
 												<option value="2">Halloween</option>
 												<option value="3">Christmas</option>
 											</select>
@@ -142,9 +148,11 @@ prefix="c"%>
 												<option value="none" selected disabled hidden>
 													Select an Option
 												</option>
-												<option value="1">Horror</option>
-												<option value="2">Shoters</option>
-												<option value="3">Sports</option>
+												<option value="1">Shooter</option>
+												<option value="2">VR</option>
+												<option value="3">Strategy</option>
+												<option value="4">Simulation</option>
+												<option value="5">RPG</option>
 											</select>
 										</div>
 									</div>
@@ -180,7 +188,7 @@ prefix="c"%>
 				</div>
 				<!-- Main window for managing coupons -->
 				<div class="coupon-table">
-					<div class="search-table">
+					<!-- <div class="search-table">
 						<svg
 							class="w-6 h-6"
 							fill="currentColor"
@@ -194,7 +202,7 @@ prefix="c"%>
 							></path>
 						</svg>
 						<input type="text" class="search-table" placeholder="Search..." />
-					</div>
+					</div> -->
 					<table class="table" id="couponsTable">
 						<thead>
 							<tr>
@@ -235,8 +243,7 @@ prefix="c"%>
 												></path>
 											</svg>
 										</a>
-										<!-- <a href="#deleteModal"> -->
-										<a href="deleteCoupon/${coupon.couponId}">
+										<a href="#deleteItem">
 											<svg
 												fill="red"
 												viewBox="0 0 20 20"
@@ -248,6 +255,19 @@ prefix="c"%>
 													clip-rule="evenodd"
 												></path>
 											</svg>
+											<div id="deleteItem" class="modal">
+												<div class="modal-contenido-delete">
+													<h2>Are you sure to delete this item?</h2>
+													<div class="button-form">
+														<a href="#" class="cancel-button">No</a>
+														<a
+															href="deleteCoupon/${coupon.couponId}"
+															class="accept-button"
+															>Yes</a
+														>
+													</div>
+												</div>
+											</div>
 										</a>
 									</td>
 								</tr>

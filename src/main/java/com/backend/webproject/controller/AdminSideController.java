@@ -28,48 +28,72 @@ public class AdminSideController {
     // Shows all couponsjose
     @RequestMapping("/coupons")
     public String showCouponsPage(Model model) {
-        List<Coupons> newCoupons = jdbcTemplateCoupons.getNewCoupons();
-        model.addAttribute("newCoupons", newCoupons);
+        try {
+            List<Coupons> newCoupons = jdbcTemplateCoupons.getNewCoupons();
+            model.addAttribute("newCoupons", newCoupons);
+            return "coupons";
+        } catch (Exception e) {
+            System.out.println("Couldn't reach your request");
+        }
         return "coupons";
     }
 
     // Insert new Coupon
     @RequestMapping("insertCoupon")
     public String insertNewCouponForm(HttpServletRequest request) {
-        int couponId = jdbcTemplateCoupons.getAutoCouponId();
-        String couponName = request.getParameter("couponName");
-        String couponCode = request.getParameter("couponCode");
-        String couponType = request.getParameter("couponType");
-        int couponDiscount = Integer.parseInt(request.getParameter("couponDiscount"));
-        int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
-        int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
+        try {
+            int couponId = jdbcTemplateCoupons.getAutoCouponId();
+            String couponName = request.getParameter("couponName");
+            String couponCode = request.getParameter("couponCode");
+            String couponType = request.getParameter("couponType");
+            int couponDiscount = Integer.parseInt(request.getParameter("couponDiscount"));
+            int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
+            int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
 
-        jdbcTemplateCoupons.insertNewCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
-                promotionEventId,
-                productCategoryId);
+            jdbcTemplateCoupons.insertNewCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
+                    promotionEventId,
+                    productCategoryId);
 
+            return "redirect:/admin-side/coupons";
+        } catch (Exception e) {
+            System.out.println("Couldn't reach your request");
+        }
         return "redirect:/admin-side/coupons";
     }
 
     // Edit Coupon
     @RequestMapping("updateCoupon/{couponId}")
     public String updateCoupon(@PathVariable int couponId, Model model) {
-        Coupons couponData = jdbcTemplateCoupons.searchCouponByID(couponId);
-        model.addAttribute("couponData", couponData);
+        try {
+            Coupons couponData = jdbcTemplateCoupons.searchCouponByID(couponId);
+            model.addAttribute("couponData", couponData);
+            return "updateCouponDataForm";
+        } catch (Exception e) {
+            System.out.println("Couldn't reach your request");
+        }
         return "updateCouponDataForm";
     }
 
     @RequestMapping("updateCouponData/{couponId}")
     public String updateCoupon(HttpServletRequest request, @PathVariable int couponId) {
-        String couponName = request.getParameter("couponName");
-        String couponCode = request.getParameter("couponCode");
-        String couponType = request.getParameter("couponType");
-        int couponDiscount = Integer.parseInt(request.getParameter("couponDiscount"));
-        int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
-        int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
 
-        jdbcTemplateCoupons.updateCoupon(couponId, couponName, couponCode, couponType, couponDiscount, promotionEventId,
-                productCategoryId);
+        try {
+            String couponName = request.getParameter("couponName");
+            String couponCode = request.getParameter("couponCode");
+            String couponType = request.getParameter("couponType");
+            int couponDiscount = Integer.parseInt(request.getParameter("couponDiscount"));
+            int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
+            int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
+
+            jdbcTemplateCoupons.updateCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
+                    promotionEventId,
+                    productCategoryId);
+
+            return "redirect:/admin-side/coupons";
+
+        } catch (Exception e) {
+            System.out.println("Couldn't reach your request");
+        }
 
         return "redirect:/admin-side/coupons";
     }
@@ -77,7 +101,13 @@ public class AdminSideController {
     // Delete coupons
     @RequestMapping("/deleteCoupon/{couponId}")
     public String deleteCoupon(@PathVariable(name = "couponId") int couponId) {
-        jdbcTemplateCoupons.deleteCoupon(couponId);
+
+        try {
+            jdbcTemplateCoupons.deleteCoupon(couponId);
+            return "redirect:/admin-side/coupons";
+        } catch (Exception e) {
+            System.out.println("Couldn't delete the item");
+        }
 
         return "redirect:/admin-side/coupons";
     }
