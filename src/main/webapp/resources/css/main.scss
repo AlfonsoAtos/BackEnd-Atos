@@ -31,7 +31,7 @@ a {
 
 .main-content {
     width: 100%;
-    height: 85vh;
+    height: 80vh;
     display: flex;
 
     .sidebar {
@@ -66,6 +66,7 @@ a {
 
 .content {
     padding: 1rem;
+    width: 100%;
 }
 
 .new-coupon-btn {
@@ -157,6 +158,114 @@ a {
         .button-form {
             padding: 0.5rem;
             margin-left: 2%;
+
+            .accept-button,
+            .cancel-button {
+                width: 5rem;
+                padding: 0.7rem;
+                border: 0;
+                border-radius: 5px;
+                color: #eeeeee;
+                font-weight: 600;
+                cursor: pointer;
+                -webkit-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .accept-button {
+                background: #4caf50;
+            }
+
+            .cancel-button {
+                background: #f44336;
+            }
+
+            .accept-button:hover,
+            .cancel-button:hover {
+                background: white;
+            }
+
+            .accept-button:hover {
+                color: #4caf50;
+            }
+
+            .cancel-button:hover {
+                color: #f44336;
+            }
+        }
+    }
+}
+
+.update-form {
+    width: 100%;
+    height: 100%;
+
+    form {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-around;
+
+        .first-half,
+        .second-half {
+            padding: 0.5rem;
+        }
+
+        .first-half .item-form,
+        .second-half .item-form {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .first-half .item-form {
+            label,
+            input,
+            select {
+                width: 10rem;
+                padding: 0.3rem;
+                margin: 0.2rem;
+            }
+        }
+
+        .second-half .item-form {
+            label,
+            input,
+            select {
+                width: 10rem;
+                padding: 0.3rem;
+                margin: 0.2rem;
+            }
+        }
+
+        .radio-form {
+            padding: 0.5rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            .radio-item {
+                padding-top: 0.3rem;
+                padding-bottom: 0.3rem;
+            }
+        }
+
+        .button-form {
+            height: 100%;
+            padding: 0.5rem;
+            margin-left: 2%;
+            display: flex;
+            align-items: flex-end;
 
             .accept-button,
             .cancel-button {

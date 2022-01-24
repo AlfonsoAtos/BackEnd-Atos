@@ -31,7 +31,7 @@ a {
 
 .main-content {
   width: 100%;
-  height: 85vh;
+  height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -73,6 +73,7 @@ a {
 
 .content {
   padding: 1rem;
+  width: 100%;
 }
 
 .new-coupon-btn {
@@ -195,6 +196,115 @@ a {
 }
 
 .coupon-form form .button-form .cancel-button:hover {
+  color: #f44336;
+}
+
+.update-form {
+  width: 100%;
+  height: 100%;
+}
+
+.update-form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.update-form form .first-half,
+.update-form form .second-half {
+  padding: 0.5rem;
+}
+
+.update-form form .first-half .item-form,
+.update-form form .second-half .item-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.update-form form .first-half .item-form label,
+.update-form form .first-half .item-form input,
+.update-form form .first-half .item-form select {
+  width: 10rem;
+  padding: 0.3rem;
+  margin: 0.2rem;
+}
+
+.update-form form .second-half .item-form label,
+.update-form form .second-half .item-form input,
+.update-form form .second-half .item-form select {
+  width: 10rem;
+  padding: 0.3rem;
+  margin: 0.2rem;
+}
+
+.update-form form .radio-form {
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.update-form form .radio-form .radio-item {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.update-form form .button-form {
+  height: 100%;
+  padding: 0.5rem;
+  margin-left: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.update-form form .button-form .accept-button,
+.update-form form .button-form .cancel-button {
+  width: 5rem;
+  padding: 0.7rem;
+  border: 0;
+  border-radius: 5px;
+  color: #eeeeee;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.update-form form .button-form .accept-button {
+  background: #4caf50;
+}
+
+.update-form form .button-form .cancel-button {
+  background: #f44336;
+}
+
+.update-form form .button-form .accept-button:hover,
+.update-form form .button-form .cancel-button:hover {
+  background: white;
+}
+
+.update-form form .button-form .accept-button:hover {
+  color: #4caf50;
+}
+
+.update-form form .button-form .cancel-button:hover {
   color: #f44336;
 }
 

@@ -1,7 +1,6 @@
 package com.backend.webproject.jtemp;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,20 +30,29 @@ public class JdbcTemplateEvents {
         return newEvents;
     }
 
-    /* POST */
-    public void insertNewEvents(int eventsId, String eventsName, String eventsDescription, Date eventsStartDate,
-            Date eventsEndDate, String eventsStatus, int eventsAdminId) {
+    /* GET By ID */
+    public Events searchEventsById(int eventsId) {
+        String sql = "SELECT * FROM promotionevent WHERE promotioneventid = :eventsId";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("eventsId", eventsId);
+        Events eventsData = (Events) jdbcTemplate.query(sql, paramMap, eventsMapper).get(0);
+        return eventsData;
+    }
 
-        String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?);";
+    /* POST */
+    public void insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+            String eventsEndDate, String eventsStatus, int eventsAdminId) {
+
+        String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?)";
         temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId });
     }
 
     /* PUT */
-    public void updateEmployee(int eventsId, String eventsName, String eventsDescription, Date eventsStartDate,
-            Date eventsEndDate, String eventsStatus, int eventsAdminId) {
+    public void updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+            String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
-        String sql = "UPDATE promotionevent SET promotioneventname = ?, promotioneventdescription = ?, promotioneventstardate = ?, promotioneventenddate = ?, promotioneventstatus = ?, adminid = ? WHERE promotioneventid = ?";
+        String sql = "UPDATE promotionevent SET promotioneventname = ?, promotioneventdescription = ?, promotioneventstartdate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventenddate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventstatus = ?, adminid = ? WHERE promotioneventid = ?";
         temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId, eventsId });
     }

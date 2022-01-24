@@ -38,7 +38,7 @@ public class AdminSideController {
         return "coupons";
     }
 
-    /* GET */
+    /* GET Events */
     @RequestMapping("/events")
     public String showEventsPage(Model model) {
         List<Events> newEvents = jdbcTemplateEvents.getNewEvents();
@@ -46,15 +46,15 @@ public class AdminSideController {
         return "events";
     }
 
-    /* POST */
+    /* POST Events */
     @RequestMapping("insertEvent")
     public String insertNewEvents(HttpServletRequest request) {
 
         int eventsId = jdbcTemplateEvents.getAutoEventsId();
         String eventsName = request.getParameter("eventsName");
         String eventsDescription = request.getParameter("eventsDescription");
-        Date eventsStartDate = request.getParameter("eventsStartDate");
-        Date eventsEndDate = request.getParameter("eventsEndDate");
+        String eventsStartDate = request.getParameter("eventsStartDate");
+        String eventsEndDate = request.getParameter("eventsEndDate");
         String eventsStatus = request.getParameter("eventsStatus");
         int eventsAdminId = Integer.parseInt(request.getParameter("eventsAdminId"));
 
@@ -64,7 +64,32 @@ public class AdminSideController {
         return "redirect:/admin-side/events";
     }
 
-    /* DELETE */
+    /* PUT By ID */
+    @RequestMapping("updateEvents/{eventsId}")
+    public String updateEventsService(@PathVariable int eventsId, Model model) {
+        Events eventsData = jdbcTemplateEvents.searchEventsById(eventsId);
+        model.addAttribute("eventsData", eventsData);
+        return "updateEventsData";
+    }
+
+    /* PUT Events */
+    @RequestMapping("updateEventsData/{eventsId}")
+    public String updateEvents(HttpServletRequest request, @PathVariable int eventsId) {
+
+        String eventsName = request.getParameter("eventsName");
+        String eventsDescription = request.getParameter("eventsDescription");
+        String eventsStartDate = request.getParameter("eventsStartDate");
+        String eventsEndDate = request.getParameter("eventsEndDate");
+        String eventsStatus = request.getParameter("eventsStatus");
+        int eventsAdminId = Integer.parseInt(request.getParameter("eventsAdminId"));
+
+        jdbcTemplateEvents.updateEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+                eventsStatus, eventsAdminId);
+
+        return "redirect:/admin-side/events";
+    }
+
+    /* DELETE Events */
     @RequestMapping("/events/deleteEvents/{eventsId}")
     public String deleteEvents(@PathVariable int eventsId) {
         jdbcTemplateEvents.deleteEvents(eventsId);

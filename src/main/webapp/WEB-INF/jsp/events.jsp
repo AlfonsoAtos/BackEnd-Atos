@@ -179,12 +179,14 @@ prefix="c"%>
                                         </div>
                                     </div>
                                     <div class="button-form">
-                                        <button class="cancel-button" href="#">
+                                        <a class="cancel-button" href="#">
                                             Cancel
-                                        </button>
-                                        <button class="accept-button" href="#">
-                                            Add
-                                        </button>
+                                        </a>
+                                        <input
+                                            class="accept-button"
+                                            type="submit"
+                                            value="Add"
+                                        />
                                     </div>
                                 </form>
                             </div>
@@ -236,7 +238,8 @@ prefix="c"%>
                                     <td>${events.getEventsStatus()}</td>
                                     <td>${events.getEventsAdminId()}</td>
                                     <td>
-                                        <a href=""
+                                        <a
+                                            href="updateEvents/${events.getEventsId()}"
                                             ><svg
                                                 fill="blue"
                                                 viewBox="0 0 20 20"
