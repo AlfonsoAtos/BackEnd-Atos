@@ -8,7 +8,7 @@ prefix="c"%>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
@@ -98,26 +98,43 @@ prefix="c"%>
                     <!-- Modal Window Button for adding coupons -->
                     <a href="#miModal">New Coupon</a>
                     <!-- Modal Window -->
+
                     <div id="miModal" class="modal">
                         <div class="modal-contenido">
                             <a class="close-modal" href="#">X</a>
                             <h2>New Coupon</h2>
                             <div class="coupon-form">
-                                <form action="">
+                                <form action="insertCoupon">
                                     <div class="first-half">
                                         <div class="item-form">
-                                            <label for="">Coupon Name: </label>
-                                            <input type="text" />
+                                            <label>Coupon Name: </label>
+                                            <input
+                                                type="text"
+                                                name="couponName"
+                                                maxlength="15"
+                                                required
+                                            />
                                         </div>
                                         <div class="item-form">
-                                            <label for="">Coupon Code: </label>
-                                            <input type="text" />
+                                            <label>Coupon Code: </label>
+                                            <input
+                                                type="text"
+                                                style="
+                                                    text-transform: uppercase;
+                                                "
+                                                name="couponCode"
+                                                minlength="10"
+                                                maxlength="10"
+                                                required
+                                            />
                                         </div>
                                         <div class="item-form">
-                                            <label for=""
-                                                >Coupon Discount:
-                                            </label>
-                                            <input type="text" />
+                                            <label>Coupon Discount: </label>
+                                            <input
+                                                type="number"
+                                                name="couponDiscount"
+                                                required
+                                            />
                                         </div>
                                     </div>
                                     <div class="second-half">
@@ -125,7 +142,11 @@ prefix="c"%>
                                             <label for=""
                                                 >Promotional Event:
                                             </label>
-                                            <select name="" id="">
+                                            <select
+                                                name="promotionEventId"
+                                                id=""
+                                                required
+                                            >
                                                 <option
                                                     value="none"
                                                     selected
@@ -134,24 +155,24 @@ prefix="c"%>
                                                 >
                                                     Select an Option
                                                 </option>
-                                                <option
-                                                    value="Black Friday 2021"
-                                                >
-                                                    Black Friday 2021
+                                                <option value="1">
+                                                    Black Friday
                                                 </option>
-                                                <option value="Halloween">
+                                                <option value="2">
                                                     Halloween
                                                 </option>
-                                                <option value="Christmas">
+                                                <option value="3">
                                                     Christmas
                                                 </option>
                                             </select>
                                         </div>
                                         <div class="item-form">
-                                            <label for=""
-                                                >Product Category:
-                                            </label>
-                                            <select name="" id="">
+                                            <label>Product Category: </label>
+                                            <select
+                                                name="productCategoryId"
+                                                id=""
+                                                required
+                                            >
                                                 <option
                                                     value="none"
                                                     selected
@@ -160,15 +181,17 @@ prefix="c"%>
                                                 >
                                                     Select an Option
                                                 </option>
-                                                <option value="Horror">
-                                                    Horror
+                                                <option value="1">
+                                                    Shooter
                                                 </option>
-                                                <option value="Shooters">
-                                                    Shoters
+                                                <option value="2">VR</option>
+                                                <option value="3">
+                                                    Strategy
                                                 </option>
-                                                <option value="Sports">
-                                                    Sports
+                                                <option value="4">
+                                                    Simulation
                                                 </option>
+                                                <option value="5">RPG</option>
                                             </select>
                                         </div>
                                     </div>
@@ -177,8 +200,9 @@ prefix="c"%>
                                             <input
                                                 type="radio"
                                                 id="open"
-                                                name="coupon_type"
+                                                name="couponType"
                                                 value="Open"
+                                                required
                                             />
                                             <label for="open">Open</label>
                                         </div>
@@ -186,19 +210,21 @@ prefix="c"%>
                                             <input
                                                 type="radio"
                                                 id="no_open"
-                                                name="coupon_type"
-                                                value="No Open"
+                                                name="couponType"
+                                                value="Nopen"
                                             />
                                             <label for="no_open">No Open</label>
                                         </div>
                                     </div>
                                     <div class="button-form">
-                                        <button class="cancel-button" href="#">
-                                            Cancel
-                                        </button>
-                                        <button class="accept-button" href="#">
-                                            Add
-                                        </button>
+                                        <a class="cancel-button" href="#"
+                                            >Cancel</a
+                                        >
+                                        <input
+                                            class="accept-button"
+                                            type="submit"
+                                            value="Add"
+                                        />
                                     </div>
                                 </form>
                             </div>
@@ -207,25 +233,21 @@ prefix="c"%>
                 </div>
                 <!-- Main window for managing coupons -->
                 <div class="coupon-table">
-                    <div class="search-table">
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd"
-                            ></path>
-                        </svg>
-                        <input
-                            type="text"
-                            class="search-table"
-                            placeholder="Search..."
-                        />
-                    </div>
+                    <!-- <div class="search-table">
+						<svg
+							class="w-6 h-6"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+						<input type="text" class="search-table" placeholder="Search..." />
+					</div> -->
                     <table class="table" id="couponsTable">
                         <thead>
                             <tr>
@@ -250,31 +272,59 @@ prefix="c"%>
                                     <td>${coupon.getPromotionEventId()}</td>
                                     <td>${coupon.getProductCategoryId()}</td>
                                     <td>
-                                        <svg
-                                            fill="blue"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
+                                        <a
+                                            href="updateCoupon/${coupon.couponId}"
                                         >
-                                            <path
-                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                                            ></path>
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                clip-rule="evenodd"
-                                            ></path>
-                                        </svg>
-                                        <svg
-                                            fill="red"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd"
-                                            ></path>
-                                        </svg>
+                                            <svg
+                                                fill="blue"
+                                                viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+                                                ></path>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                    clip-rule="evenodd"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                        <a href="#deleteItem">
+                                            <svg
+                                                fill="red"
+                                                viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd"
+                                                ></path>
+                                            </svg>
+                                            <div id="deleteItem" class="modal">
+                                                <div
+                                                    class="modal-contenido-delete"
+                                                >
+                                                    <h2>
+                                                        Are you sure to delete
+                                                        this item?
+                                                    </h2>
+                                                    <div class="button-form">
+                                                        <a
+                                                            href="#"
+                                                            class="cancel-button"
+                                                            >No</a
+                                                        >
+                                                        <a
+                                                            href="deleteCoupon/${coupon.couponId}"
+                                                            class="accept-button"
+                                                            >Yes</a
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
