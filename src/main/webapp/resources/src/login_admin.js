@@ -14,7 +14,7 @@ function login_admin(email, password) {
         password: res.password
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
-      window.location.href = '/'
+      window.location.href = '/index.html'
     },
     error: (err) => {
       console.log('error', err);
