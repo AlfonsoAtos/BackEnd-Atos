@@ -61,8 +61,6 @@ public class AdminSideController {
 
     @RequestMapping("updateCouponData/{couponId}")
     public String updateCoupon(HttpServletRequest request, @PathVariable int couponId) {
-        System.out.println(couponId);
-
         String couponName = request.getParameter("couponName");
         String couponCode = request.getParameter("couponCode");
         String couponType = request.getParameter("couponType");

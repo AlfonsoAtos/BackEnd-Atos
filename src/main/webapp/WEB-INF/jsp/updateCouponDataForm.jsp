@@ -174,7 +174,7 @@ prefix="c"%>
 							</div>
 						</div>
 						<div class="button-form">
-							<input type="submit" value="Update" />
+							<input class="accept-button" type="submit" value="Update" />
 						</div>
 					</form>
 				</div>
