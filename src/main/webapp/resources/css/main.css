@@ -227,13 +227,14 @@ a {
 	display: flex;
 }
 
-.navbar .logo-nav span {
+.navbar .logo-nav img {
 	display: inline-block;
 	color: white;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 	cursor: pointer;
+	height: 3rem;
 }
 
 .navbar li a {

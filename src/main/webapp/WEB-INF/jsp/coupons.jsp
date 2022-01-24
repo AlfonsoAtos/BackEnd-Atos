@@ -19,7 +19,7 @@ prefix="c"%>
 			<!-- Navigation bar -->
 			<ul class="navbar">
 				<div class="logo-nav">
-					<span>Logo</span>
+					<img src="../../resources/img/logo.jpg" />
 				</div>
 				<div class="items-nav">
 					<li>
@@ -98,12 +98,6 @@ prefix="c"%>
 					<!-- Modal Window Button for adding coupons -->
 					<a href="#newCouponModal">New Coupon</a>
 					<!-- Modal Window -->
-					<div id="editModal" class="modal">
-						<div class="modal-contenido">
-							<a class="close-modal" href="#">X</a>
-							<h2>Edit Coupon</h2>
-						</div>
-					</div>
 					<div id="deleteModal" class="modal">
 						<div class="modal-contenido">
 							<a class="close-modal" href="#">X</a>
@@ -115,44 +109,42 @@ prefix="c"%>
 							<a class="close-modal" href="#">X</a>
 							<h2>New Coupon</h2>
 							<div class="coupon-form">
-								<form action="">
+								<form action="insertCoupon">
 									<div class="first-half">
 										<div class="item-form">
-											<label for="">Coupon Name: </label>
-											<input type="text" />
+											<label>Coupon Name: </label>
+											<input type="text" name="couponName" required />
 										</div>
 										<div class="item-form">
-											<label for="">Coupon Code: </label>
-											<input type="text" />
+											<label>Coupon Code: </label>
+											<input type="text" name="couponCode" required />
 										</div>
 										<div class="item-form">
-											<label for="">Coupon Discount: </label>
-											<input type="text" />
+											<label>Coupon Discount: </label>
+											<input type="text" name="couponDiscount" required />
 										</div>
 									</div>
 									<div class="second-half">
 										<div class="item-form">
 											<label for="">Promotional Event: </label>
-											<select name="" id="">
+											<select name="promotionEventId" id="" required>
 												<option value="none" selected disabled hidden>
 													Select an Option
 												</option>
-												<option value="Black Friday 2021">
-													Black Friday 2021
-												</option>
-												<option value="Halloween">Halloween</option>
-												<option value="Christmas">Christmas</option>
+												<option value="1">Black Friday 2021</option>
+												<option value="2">Halloween</option>
+												<option value="3">Christmas</option>
 											</select>
 										</div>
 										<div class="item-form">
-											<label for="">Product Category: </label>
-											<select name="" id="">
+											<label>Product Category: </label>
+											<select name="productCategoryId" id="" required>
 												<option value="none" selected disabled hidden>
 													Select an Option
 												</option>
-												<option value="Horror">Horror</option>
-												<option value="Shooters">Shoters</option>
-												<option value="Sports">Sports</option>
+												<option value="1">Horror</option>
+												<option value="2">Shoters</option>
+												<option value="3">Sports</option>
 											</select>
 										</div>
 									</div>
@@ -161,8 +153,9 @@ prefix="c"%>
 											<input
 												type="radio"
 												id="open"
-												name="coupon_type"
+												name="couponType"
 												value="Open"
+												required
 											/>
 											<label for="open">Open</label>
 										</div>
@@ -170,15 +163,15 @@ prefix="c"%>
 											<input
 												type="radio"
 												id="no_open"
-												name="coupon_type"
-												value="No Open"
+												name="couponType"
+												value="Nopen"
 											/>
 											<label for="no_open">No Open</label>
 										</div>
 									</div>
 									<div class="button-form">
 										<a class="cancel-button" href="#">Cancel</a>
-										<a class="accept-button" href="#">Add</a>
+										<input class="accept-button" type="submit" value="Add" />
 									</div>
 								</form>
 							</div>
@@ -226,7 +219,7 @@ prefix="c"%>
 									<td>${coupon.getPromotionEventId()}</td>
 									<td>${coupon.getProductCategoryId()}</td>
 									<td>
-										<a href="#editModal">
+										<a href="updateCoupon/${coupon.couponId}">
 											<svg
 												fill="blue"
 												viewBox="0 0 20 20"
@@ -242,7 +235,8 @@ prefix="c"%>
 												></path>
 											</svg>
 										</a>
-										<a href="#deleteModal">
+										<!-- <a href="#deleteModal"> -->
+										<a href="deleteCoupon/${coupon.couponId}">
 											<svg
 												fill="red"
 												viewBox="0 0 20 20"

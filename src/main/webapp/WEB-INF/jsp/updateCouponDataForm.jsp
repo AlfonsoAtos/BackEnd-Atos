@@ -93,7 +93,92 @@ prefix="c"%>
 				</div>
 			</ul>
 			<!-- Main Content -->
-			<div class="content"></div>
+			<div class="content">
+				<div class="update-form">
+					<form action="../updateCouponData/${couponData.couponId}">
+						<div class="first-half">
+							<div class="item-form">
+								<label>Coupon ID: </label> ${couponData.couponId}
+							</div>
+							<div class="item-form">
+								<label>Coupon Name: </label>
+								<input
+									type="text"
+									name="couponName"
+									value="${couponData.couponName}"
+									required
+								/>
+							</div>
+							<div class="item-form">
+								<label>Coupon Code: </label>
+								<input
+									type="text"
+									name="couponCode"
+									value="${couponData.couponCode}"
+									required
+								/>
+							</div>
+							<div class="item-form">
+								<label>Coupon Discount: </label>
+								<input
+									type="text"
+									name="couponDiscount"
+									value="${couponData.couponDiscount}"
+									required
+								/>
+							</div>
+						</div>
+						<div class="second-half">
+							<div class="item-form">
+								<label for="">Promotional Event: </label>
+								<select name="promotionEventId" id="" required>
+									<option value="none" selected disabled hidden>
+										Select an Option
+									</option>
+									<option value="1">Black Friday 2021</option>
+									<option value="2">Halloween</option>
+									<option value="3">Christmas</option>
+								</select>
+							</div>
+							<div class="item-form">
+								<label>Product Category: </label>
+								<select name="productCategoryId" id="" required>
+									<option value="none" selected disabled hidden>
+										Select an Option
+									</option>
+									<option value="1">Horror</option>
+									<option value="2">Shoters</option>
+									<option value="3">Sports</option>
+								</select>
+							</div>
+						</div>
+						<div class="radio-form">
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="open"
+									name="couponType"
+									value="Open"
+									required
+								/>
+								<label for="open">Open</label>
+							</div>
+							<div class="radio-item">
+								<input
+									type="radio"
+									id="no_open"
+									name="couponType"
+									value="Nopen"
+								/>
+								<label for="no_open">No Open</label>
+							</div>
+						</div>
+						<div class="button-form">
+							<input type="submit" value="Update" />
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 		<!-- Footer -->
 		<footer>
@@ -103,6 +188,5 @@ prefix="c"%>
 				</div>
 			</div>
 		</footer>
-		<script src="js/coupons.js"></script>
 	</body>
 </html>
