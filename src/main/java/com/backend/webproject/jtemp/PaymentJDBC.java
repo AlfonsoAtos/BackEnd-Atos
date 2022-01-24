@@ -16,16 +16,19 @@ public class PaymentJDBC {
     @Autowired
     private PaymentMapper paymentMapper;
 
-    public void processPayment(int pid, int openCoupon, int shoppingAmount, String paymentStatus, int shoppingCartID)
+    public int processPayment(int openCoupon, int shoppingAmount, String paymentStatus, int shoppingCartID)
 	{
-        String query = "insert into payment values(:pid, :openCoupon, :shoppingAmount, :paymentStatus, :shoppingCartID)";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("pid", pid);
-        paramMap.put("openCoupon", openCoupon);
-        paramMap.put("shoppingAmount", shoppingAmount);
-        paramMap.put("paymentStatus", paymentStatus);
-        paramMap.put("shoppingCartID", shoppingCartID);
-		jdbcTemplate.update(query,paramMap);	
+        try{
+            String query = "insert into payment (paymentID, openCoupon, shoppingFinalAmount, paymentStatus, shoppingCartID) values((select max(paymentID)+1 from payment), :openCoupon, :shoppingAmount, :paymentStatus, :shoppingCartID)";
+            Map<String, Object> paramMap = new HashMap<String, Object>();
+            paramMap.put("openCoupon", openCoupon);
+            paramMap.put("shoppingAmount", shoppingAmount);
+            paramMap.put("paymentStatus", paymentStatus);
+            paramMap.put("shoppingCartID", shoppingCartID);
+		    return jdbcTemplate.update(query,paramMap);	
+        } catch (Exception e){
+            return 0;
+        }
 	}
     
     public Payment searchPaymentByID(int pid)
@@ -33,6 +36,15 @@ public class PaymentJDBC {
         String sql = "select * from payment where paymentID=:pid";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("pid", pid);
+		Payment pay = jdbcTemplate.query(sql, paramMap, paymentMapper).get(0);
+		return pay;
+	}
+
+    public Payment searchPaymentByCartID(int cid)
+	{
+        String sql = "select * from payment whereshoppingCartID=:cid";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("cid", cid);
 		Payment pay = jdbcTemplate.query(sql, paramMap, paymentMapper).get(0);
 		return pay;
 	}
