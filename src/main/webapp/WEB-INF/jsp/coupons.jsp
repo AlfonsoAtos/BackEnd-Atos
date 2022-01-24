@@ -8,7 +8,7 @@ prefix="c"%>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 		<link href="
 		<c:url value="/resources/css/main.css" />
 		" rel="stylesheet">
@@ -96,7 +96,7 @@ prefix="c"%>
 			<div class="content">
 				<div class="new-coupon-btn">
 					<!-- Modal Window Button for adding coupons -->
-					<a href="#newCouponModal">New Coupon</a>
+					<a href="#miModal">New Coupon</a>
 					<!-- Modal Window -->
 					<div id="deleteModal" class="modal">
 						<div class="modal-contenido">
@@ -104,7 +104,7 @@ prefix="c"%>
 							<h2>Delete Coupon</h2>
 						</div>
 					</div>
-					<div id="newCouponModal" class="modal">
+					<div id="miModal" class="modal">
 						<div class="modal-contenido">
 							<a class="close-modal" href="#">X</a>
 							<h2>New Coupon</h2>
