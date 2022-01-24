@@ -220,16 +220,18 @@ a {
                 margin: 0.2rem;
             }
         }
+        .second-half {
+            .radio-form {
+                padding: 0.5rem;
+                margin-left: 0.3rem;
+                margin-top: 0.5rem;
+                display: flex;
+                flex-direction: column;
 
-        .radio-form {
-            padding: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .radio-item {
-                padding-top: 0.3rem;
-                padding-bottom: 0.3rem;
+                .radio-item {
+                    padding-top: 0.3rem;
+                    padding-bottom: 0.3rem;
+                }
             }
         }
 
