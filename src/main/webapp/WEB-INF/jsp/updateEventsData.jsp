@@ -107,6 +107,8 @@ prefix="c"%>
                                     type="text"
                                     name="eventsName"
                                     value="${eventsData.eventsName}"
+                                    minlength="5"
+                                    maxlength="15"
                                     required
                                 />
                             </div>
@@ -116,6 +118,8 @@ prefix="c"%>
                                     type="text"
                                     name="eventsDescription"
                                     value="${eventsData.eventsDescription}"
+                                    minlength="10"
+                                    maxlength="30"
                                     required
                                 />
                             </div>
@@ -142,15 +146,12 @@ prefix="c"%>
                             <div class="item-form">
                                 <label for="">Promotional Event Status: </label>
                                 <select name="eventsStatus" required>
-                                    <option
-                                        value="none"
-                                        selected
-                                        disabled
-                                        hidden
-                                    >
+                                    <option value="none" disabled hidden>
                                         Select an Option
                                     </option>
-                                    <option value="Valid">Valid</option>
+                                    <option value="Valid" selected>
+                                        Valid
+                                    </option>
                                     <option value="Expired">Expired</option>
                                     <option value="Cancelled">Cancelled</option>
                                 </select>
@@ -160,7 +161,7 @@ prefix="c"%>
                                     >Promotion Event Administrator ID:
                                 </label>
                                 <input
-                                    type="text"
+                                    type="numeric"
                                     name="eventsAdminId"
                                     value="${eventsData.eventsAdminId}"
                                     required

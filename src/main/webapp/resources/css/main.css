@@ -1,6 +1,6 @@
 * {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -108,8 +108,8 @@ a {
   display: flex;
   width: 100%;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .coupon-form form .first-half,
@@ -148,11 +148,11 @@ a {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .coupon-form form .radio-form .radio-item {
@@ -250,11 +250,11 @@ a {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .update-form form .radio-form .radio-item {
@@ -309,7 +309,7 @@ a {
 }
 
 .coupon-table {
-  margin-top: 1rem;
+  margin-top: 5rem;
 }
 
 .coupon-table .search-table {
@@ -318,8 +318,8 @@ a {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: end;
+      -ms-flex-pack: end;
+          justify-content: end;
 }
 
 .coupon-table .search-table input {
@@ -409,8 +409,8 @@ footer .footer-component {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 footer .footer-component svg {
@@ -464,13 +464,70 @@ footer .footer-component span {
   margin-top: 20px;
 }
 
-#miModal:target {
+.modal-contenido-delete {
+  background-color: #eee;
+  margin-top: 10px;
+  width: 35rem;
+  height: 10rem;
+  padding: 10px 20px;
+  margin: 20% auto;
+  position: relative;
+}
+
+.modal-contenido-delete h2 {
+  margin-top: 20px;
+  color: #000000;
+  cursor: text;
+}
+
+.modal-contenido-delete .button-form {
+  margin-top: 2rem;
+}
+
+.modal-contenido-delete .button-form .accept-button,
+.modal-contenido-delete .button-form .cancel-button {
+  width: 5rem;
+  padding: 0.7rem;
+  border: 0;
+  border-radius: 5px;
+  color: #eeeeee;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-contenido-delete .button-form .accept-button {
+  background: #4caf50;
+}
+
+.modal-contenido-delete .button-form .cancel-button {
+  background: #f44336;
+}
+
+.modal-contenido-delete .button-form .accept-button:hover,
+.modal-contenido-delete .button-form .cancel-button:hover {
+  background: white;
+}
+
+.modal-contenido-delete .button-form .accept-button:hover {
+  color: #4caf50;
+}
+
+.modal-contenido-delete .button-form .cancel-button:hover {
+  color: #f44336;
+}
+
+#miModal:target,
+#insertEvents:target,
+#deleteItem:target {
   opacity: 1;
   pointer-events: auto;
 }
 
 .modal-contenido a,
-.modal-contenido-event a {
+.modal-contenido-event a,
+.modal-contenido-delete a {
   border-radius: 0;
   left: 0;
   width: 65rem;
@@ -479,7 +536,8 @@ footer .footer-component span {
 }
 
 .modal-contenido a:hover,
-.modal-contenido-event a:hover {
+.modal-contenido-event a:hover,
+.modal-contenido-delete a:hover {
   background: none;
 }
 /*# sourceMappingURL=main.css.map */

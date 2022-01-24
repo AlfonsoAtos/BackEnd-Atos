@@ -96,9 +96,9 @@ prefix="c"%>
             <div class="content">
                 <div class="new-coupon-btn">
                     <!-- Modal Window Button for adding coupons -->
-                    <a href="#miModal">New Promotion Event</a>
+                    <a href="#insertEvents">New Promotion Event</a>
                     <!-- Modal Window -->
-                    <div id="miModal" class="modal">
+                    <div id="insertEvents" class="modal">
                         <div class="modal-contenido-event">
                             <a class="close-modal" href="#">X</a>
                             <h2>New Promotion Event</h2>
@@ -112,6 +112,9 @@ prefix="c"%>
                                             <input
                                                 type="text"
                                                 name="eventsName"
+                                                minlength="5"
+                                                maxlength="15"
+                                                required
                                             />
                                         </div>
                                         <div class="item-form">
@@ -121,6 +124,9 @@ prefix="c"%>
                                             <input
                                                 type="text"
                                                 name="eventsDescription"
+                                                minlength="10"
+                                                maxlength="30"
+                                                required
                                             />
                                         </div>
                                         <div class="item-form">
@@ -130,6 +136,7 @@ prefix="c"%>
                                             <input
                                                 type="date"
                                                 name="eventsStartDate"
+                                                required
                                             />
                                         </div>
                                         <div class="item-form">
@@ -139,6 +146,7 @@ prefix="c"%>
                                             <input
                                                 type="date"
                                                 name="eventsEndDate"
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -147,16 +155,11 @@ prefix="c"%>
                                             <label for=""
                                                 >Promotional Event Status:
                                             </label>
-                                            <select name="eventsStatus">
-                                                <option
-                                                    value="none"
-                                                    selected
-                                                    disabled
-                                                    hidden
-                                                >
-                                                    Select an Option
-                                                </option>
-                                                <option value="Valid">
+                                            <select
+                                                name="eventsStatus"
+                                                required
+                                            >
+                                                <option value="Valid" selected>
                                                     Valid
                                                 </option>
                                                 <option value="Expired">
@@ -173,8 +176,9 @@ prefix="c"%>
                                                 ID:
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="eventsAdminId"
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -195,7 +199,7 @@ prefix="c"%>
                 </div>
                 <!-- Main window for managing coupons -->
                 <div class="coupon-table">
-                    <div class="search-table">
+                    <!-- <div class="search-table">
                         <svg
                             class="w-6 h-6"
                             fill="currentColor"
@@ -213,7 +217,7 @@ prefix="c"%>
                             class="search-table"
                             placeholder="Search..."
                         />
-                    </div>
+                    </div> -->
                     <table class="table" id="couponsTable">
                         <thead>
                             <tr>
@@ -255,9 +259,7 @@ prefix="c"%>
                                                 ></path>
                                             </svg>
                                         </a>
-                                        <a
-                                            href="events/deleteEvents/${events.getEventsId()}"
-                                        >
+                                        <a href="#deleteItem">
                                             <svg
                                                 fill="red"
                                                 viewBox="0 0 20 20"
@@ -269,6 +271,29 @@ prefix="c"%>
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
+
+                                            <div id="deleteItem" class="modal">
+                                                <div
+                                                    class="modal-contenido-delete"
+                                                >
+                                                    <h2>
+                                                        Are you sure to delete
+                                                        this item?
+                                                    </h2>
+                                                    <div class="button-form">
+                                                        <a
+                                                            href="#"
+                                                            class="cancel-button"
+                                                            >No</a
+                                                        >
+                                                        <a
+                                                            href="events/deleteEvents/${events.getEventsId()}"
+                                                            class="accept-button"
+                                                            >Yes</a
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </a>
                                     </td>
                                 </tr>
