@@ -52,9 +52,4 @@ public class PaymentController {
 		}
 		return 0;
 	}
-
-	@RequestMapping("checkout")
-	public String checktest(HttpServletRequest request) {
-		return "checkout";
-	}
 }
