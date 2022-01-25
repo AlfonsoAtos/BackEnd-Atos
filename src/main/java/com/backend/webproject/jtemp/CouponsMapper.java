@@ -3,6 +3,8 @@ package com.backend.webproject.jtemp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.backend.webproject.entity.Coupons;
+
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
