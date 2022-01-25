@@ -1,6 +1,9 @@
 package com.backend.webproject.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "shoppingcart")
@@ -9,7 +12,7 @@ public class ShoppingCart {
     @Id
     @Column(name = "paymentID")
     private int shoppingCartID;
-
+  
     @Column(name = "creationDate")
     private String creationDate;
 
