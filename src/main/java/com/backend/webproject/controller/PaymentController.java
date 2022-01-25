@@ -52,6 +52,4 @@ public class PaymentController {
 		}
 		return 0;
 	}
-
-	
 }
