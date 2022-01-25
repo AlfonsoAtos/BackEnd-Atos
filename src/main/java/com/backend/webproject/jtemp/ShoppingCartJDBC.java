@@ -30,7 +30,7 @@ public class ShoppingCartJDBC {
     }
 
     public ShoppingCart getInSessionCart(int userID) {
-        String sql = "select * from shoppingCart where cartStatus='Insession' and userID=:userID";
+        String sql = "select shoppingCartID, creationDate, cartStatus, userID from shoppingCart where cartStatus='Insession' and userID=:userID";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("userID", userID);
         List<ShoppingCart> carts = jdbcTemplate.query(sql, paramMap, scm);
