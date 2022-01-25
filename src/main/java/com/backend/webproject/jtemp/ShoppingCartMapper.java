@@ -16,10 +16,10 @@ public class ShoppingCartMapper implements RowMapper<ShoppingCart> {
         
         ShoppingCart sc = new ShoppingCart();
         sc.setShoppingCartID(rs.getInt(1));
-        sc.setCreationDate(rs.getString(2));
+        sc.setCreationDate(rs.getDate(2));
         sc.setCartStatus(rs.getString(3));
         sc.setUserID(rs.getInt(4));
-        return null;
+        return sc;
     }
     
 }
