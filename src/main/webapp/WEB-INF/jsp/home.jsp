@@ -28,21 +28,11 @@
                         <li class="nav-item">
                             <a href="/" class="nav-link active" aria-current="page">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="shooter" class="nav-link" aria-current="page">Shooter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rpg" class="nav-link">RPG</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="simulation" class="nav-link">Simulation</a>
-                        </li>
-						<li class="nav-item">
-                            <a href="vr" class="nav-link">VR</a>
-                        </li>
-						<li class="nav-item">
-                            <a href="strategy" class="nav-link">Strategy</a>
-                        </li>
+                        <form action="search" class="d-flex">
+                            <c:forEach var="pCategory" items="${productCategories}">
+                                <button class="nav-btn" type="submit" name="pcatid" value="${pCategory.pcID}">${pCategory.pcName}</button>
+                            </c:forEach>
+                        </form> 
                     </ul>
                     <form action="search" class="d-flex">
                         <input name="pname" class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search">

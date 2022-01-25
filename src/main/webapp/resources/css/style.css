@@ -65,3 +65,13 @@
 .product-carousel {
     margin-bottom: 70px;
 }
+
+.nav-btn {
+    background-color: transparent;
+    border: 0;
+    color: #cfcfcf;
+}
+
+.nav-btn:hover {
+    color: #FFFFFF;
+}

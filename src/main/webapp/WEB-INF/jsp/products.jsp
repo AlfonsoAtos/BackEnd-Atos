@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,21 +29,11 @@
                         <li class="nav-item">
                             <a href="/" class="nav-link active" aria-current="page">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="shooter" class="nav-link" aria-current="page">Shooter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rpg" class="nav-link">RPG</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="simulation" class="nav-link">Simulation</a>
-                        </li>
-						<li class="nav-item">
-                            <a href="vr" class="nav-link">VR</a>
-                        </li>
-						<li class="nav-item">
-                            <a href="strategy" class="nav-link">Strategy</a>
-                        </li>
+                        <form action="search" class="d-flex">
+                            <c:forEach var="pCategory" items="${productCategories}">
+                                <button class="nav-btn" type="submit" name="pcatid" value="${pCategory.pcID}">${pCategory.pcName}</button>
+                            </c:forEach>
+                        </form> 
                     </ul>
                     <a href="#"><i class="fas fa-shopping-cart"></i></a>
                     <a href="#"><i class="fas fa-user"></i></a>
@@ -50,7 +41,13 @@
             </div>
         </nav>
         <div class="container mt-5 mb-5">
-            <form action="shooter" class="d-flex">
+            <form action="search" class="d-flex">
+                <select name="pcatid" id="categories">
+                    <option value="">Select a category</option>
+                    <c:forEach var="pCategory" items="${productCategories}">
+                        <option value="${pCategory.pcID}">${pCategory.pcName}</option>
+                    </c:forEach>
+				</select>
                 <input name="pname" class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
