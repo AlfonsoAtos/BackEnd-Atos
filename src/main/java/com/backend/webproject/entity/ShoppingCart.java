@@ -1,17 +1,22 @@
 package com.backend.webproject.entity;
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "shoppingcart")
 public class ShoppingCart {
 
     @Id
-    @Column(name = "paymentID")
+    @Column(name = "shoppingcartid")
     private int shoppingCartID;
-
+  
     @Column(name = "creationDate")
-    private String creationDate;
+    private Date creationDate;
 
     @Column(name = "cartStatus")
     private String cartStatus;
@@ -27,11 +32,11 @@ public class ShoppingCart {
         this.shoppingCartID = shoppingCartID;
     }
 
-    public String getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 

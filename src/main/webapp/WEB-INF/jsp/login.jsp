@@ -54,6 +54,12 @@
           </div> --%>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
         </form>
+        <div class="mt-4">
+          <p>
+            Do not have an account?
+            <a href="/user/sign_up"> Create one here. </a>
+          </p>
+        </div>
       </main>
     </div>
 
