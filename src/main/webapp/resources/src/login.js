@@ -18,7 +18,7 @@ function login(email, password) {
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
       if (res.role == 10) {
-        window.location.href = '/admin-side'
+        window.location.href = '/admin-side/'
       } else {
         window.location.href = '/'
       }
