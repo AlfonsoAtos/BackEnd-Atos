@@ -2,8 +2,8 @@ package com.backend.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.backend.webproject.dao.PaymentDAO;
 import com.backend.webproject.entity.Payment;
-import com.backend.webproject.jtemp.PaymentDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

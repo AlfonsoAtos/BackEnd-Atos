@@ -1,4 +1,4 @@
-package com.backend.webproject.dao;
+package com.backend.webproject.entity;
 
 public class Product {
     int pID;

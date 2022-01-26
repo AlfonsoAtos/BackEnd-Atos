@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.backend.webproject.dao.JdbcTemplateProductCategory;
 import com.backend.webproject.dao.JdbcTemplateProducts;
 import com.backend.webproject.dao.JdbcTemplateShoppingProductDetails;
-import com.backend.webproject.dao.Product;
-import com.backend.webproject.dao.ProductCategory;
+import com.backend.webproject.entity.Product;
+import com.backend.webproject.entity.ProductCategory;
 
 @Controller
 public class CustomerSideController {
@@ -78,6 +78,6 @@ public class CustomerSideController {
 	}
 
 	public Product getProductByID(int id){
-		return jdbcTemplateProducts.searchProductByID(id);
+		return jdbcTemplateProducts.getProductById(id);
 	}
 }
