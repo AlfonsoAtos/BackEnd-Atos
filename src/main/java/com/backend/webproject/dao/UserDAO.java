@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.backend.webproject.entity.UserEntity;
-import com.backend.webproject.mapper.UserMapper;
+import com.backend.webproject.mappers.UserMapper;
 
 @Component
 public class UserDAO {
