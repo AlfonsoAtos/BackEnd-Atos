@@ -19,7 +19,9 @@
     <div class="container-fluid p-0">
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">Logo</a>
+                <div class="logo-nav">
+                    <img src="../../resources/img/logo-g.jpg" />
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,12 +46,8 @@
                             <a href="strategy" class="nav-link">Strategy</a>
                         </li>
                     </ul>
-                    <form action="search" class="d-flex">
-                        <input name="pname" class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#" class="ms-3"><i class="fas fa-user"></i></a>
                 </div>
                 <!-- <a href="#">
                     <span class="fa-stack cart-icon-group">
@@ -66,12 +64,12 @@
             </div>
         </nav>
         <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
+            <div class="carousel-indicators invisible">
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner carousel-main pb-2">
                 <div class="carousel-item active">
                     <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
                 </div>
@@ -82,11 +80,18 @@
                     <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <div class="bg-text px-5 py-auto">
+                <form action="search">
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <input name="pname" class="form-control mt-3" type="search" placeholder="Search Products" aria-label="Search">
+                    <button class="btn btn-success mt-3" type="submit">Search</button>
+                </form>
+            </div>
+            <button class="carousel-control-prev invisible" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <button class="carousel-control-next invisible" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -116,9 +121,9 @@
 										<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 										<div class="card-body">
 											<h5 class="card-title">${product.getPName()}</h5>
-											<div class="d-flex justify-content-end align-items-center">
-												<a href="addtocart/${product.getPID()}">
-													<span class="fa-stack cart-icon-group">
+											<div class="d-flex align-items-center">
+												<a href="addtocart/${product.getPID()}" class="me-auto visible">
+													<span class="fa-stack cart-icon-group visible">
 														<i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
 														<i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
 													</span>

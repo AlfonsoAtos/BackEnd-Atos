@@ -19,7 +19,9 @@
     <div class="container-fluid p-0">
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">Logo</a>
+                <div class="logo-nav">
+                    <img src="../../resources/img/logo-g.jpg" />
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,8 +46,8 @@
                             <a href="strategy" class="nav-link">Strategy</a>
                         </li>
                     </ul>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#" class="ms-3"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>
@@ -61,17 +63,17 @@
 							<div class="card border-0 product-card">
 								<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 								<div class="card-body">
-									<h5 class="card-title">${product.getPName()}</h5>
-									<div class="d-flex justify-content-end align-items-center">
-										<a href="addtocart/${product.getPID()}">
-											<span class="fa-stack cart-icon-group">
-												<i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
-												<i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
-											</span>
-										</a>
-										<p class="card-text text-end">$${product.getPPrice()}</p>
-									</div>
-								</div>
+                                    <h5 class="card-title">${product.getPName()}</h5>
+                                    <div class="d-flex align-items-center">
+                                        <a href="addtocart/${product.getPID()}" class="me-auto visible">
+                                            <span class="fa-stack cart-icon-group visible">
+                                                <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
+                                            </span>
+                                        </a>
+                                        <p class="card-text text-end">$${product.getPPrice()}</p>
+                                    </div>
+                                </div>
 							</div>
 						</a>
 					</div>
