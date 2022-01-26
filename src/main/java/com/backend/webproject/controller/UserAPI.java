@@ -19,7 +19,7 @@ public class UserAPI {
 	UserDAO db;
 	
 	@PostMapping("/signup")
-	public UserData signupUser(HttpServletRequest req) {
+	public UserEntity signupUser(HttpServletRequest req) {
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
 		String name = req.getParameter("name");
@@ -33,7 +33,7 @@ public class UserAPI {
 	}
 	
 	@PostMapping("/login")
-	public UserData loginUser(HttpServletRequest req) {
+	public UserEntity loginUser(HttpServletRequest req) {
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
 		UserEntity user = db.getUser(email);
