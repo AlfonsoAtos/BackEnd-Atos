@@ -17,7 +17,7 @@ public class JdbcTemplateProducts {
     private ProductMapper ProductMapper;
     
     public List<Product> getNewProducts() {
-        List<Product> newProducts = jdbcTemplate.query("SELECT * FROM (SELECT * FROM Product ORDER BY productID DESC) WHERE ROWNUM <= 5", ProductMapper);
+        List<Product> newProducts = jdbcTemplate.query("SELECT * FROM (SELECT * FROM Product ORDER BY productID DESC) WHERE ROWNUM <= 8", ProductMapper);
         return newProducts;
 	}
 

@@ -1,7 +1,7 @@
 package com.backend.webproject.controller;
 
-import com.backend.webproject.jtemp.Coupons;
-import com.backend.webproject.jtemp.Events;
+import com.backend.webproject.entity.Coupons;
+import com.backend.webproject.entity.Events;
 import com.backend.webproject.jtemp.JdbcTemplateCoupons;
 import com.backend.webproject.jtemp.JdbcTemplateEvents;
 
@@ -37,9 +37,8 @@ public class AdminSideController {
         try {
             List<Coupons> newCoupons = jdbcTemplateCoupons.getNewCoupons();
             model.addAttribute("newCoupons", newCoupons);
-            return "coupons";
         } catch (Exception e) {
-            System.out.println("Couldn't reach your request");
+            System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
         return "coupons";
     }
@@ -59,10 +58,8 @@ public class AdminSideController {
             jdbcTemplateCoupons.insertNewCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
                     promotionEventId,
                     productCategoryId);
-
-            return "redirect:/admin-side/coupons";
         } catch (Exception e) {
-            System.out.println("Couldn't reach your request");
+            System.out.println("Can not insert the coupon, reason: '" + e + "'");
         }
         return "redirect:/admin-side/coupons";
     }
@@ -73,9 +70,8 @@ public class AdminSideController {
         try {
             Coupons couponData = jdbcTemplateCoupons.searchCouponByID(couponId);
             model.addAttribute("couponData", couponData);
-            return "updateCouponDataForm";
         } catch (Exception e) {
-            System.out.println("Couldn't reach your request");
+            System.out.println("Can not get coupon data, reason: '" + e + "'");
         }
         return "updateCouponDataForm";
     }
@@ -95,10 +91,8 @@ public class AdminSideController {
                     promotionEventId,
                     productCategoryId);
 
-            return "redirect:/admin-side/coupons";
-
         } catch (Exception e) {
-            System.out.println("Couldn't reach your request");
+            System.out.println("Can not update the coupon data, reason: '" + e + "'");
         }
 
         return "redirect:/admin-side/coupons";
@@ -110,9 +104,8 @@ public class AdminSideController {
 
         try {
             jdbcTemplateCoupons.deleteCoupon(couponId);
-            return "redirect:/admin-side/coupons";
         } catch (Exception e) {
-            System.out.println("Couldn't delete the item");
+            System.out.println("Can not delete the coupon, reason: '" + e + "'");
         }
 
         return "redirect:/admin-side/coupons";
@@ -127,9 +120,8 @@ public class AdminSideController {
         try {
             List<Events> newEvents = jdbcTemplateEvents.getNewEvents();
             model.addAttribute("newEvents", newEvents);
-            return "events";
         } catch (Exception e) {
-            System.out.println("Can not get the items");
+            System.out.println("Can not get the event list, reason: '" + e + "'");
         }
         return "events";
     }
@@ -149,10 +141,8 @@ public class AdminSideController {
 
             jdbcTemplateEvents.insertNewEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                     eventsStatus, eventsAdminId);
-
-            return "redirect:/admin-side/events";
         } catch (Exception e) {
-            System.out.println("Can not insert the item");
+            System.out.println("Can not insert the event, reason: '" + e + "'");
         }
         return "redirect:/admin-side/events";
     }
@@ -164,9 +154,8 @@ public class AdminSideController {
         try {
             Events eventsData = jdbcTemplateEvents.searchEventsById(eventsId);
             model.addAttribute("eventsData", eventsData);
-            return "updateEventsData";
         } catch (Exception e) {
-            System.out.println("Can not get item data");
+            System.out.println("Can not get event data, reason: '" + e + "'");
         }
         return "updateEventsData";
     }
@@ -185,10 +174,8 @@ public class AdminSideController {
 
             jdbcTemplateEvents.updateEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                     eventsStatus, eventsAdminId);
-
-            return "redirect:/admin-side/events";
         } catch (Exception e) {
-            System.out.println("Can not update the item data");
+            System.out.println("Can not update the event data, reason: '" + e + "'");
         }
         return "redirect:/admin-side/events";
     }
@@ -199,9 +186,8 @@ public class AdminSideController {
 
         try {
             jdbcTemplateEvents.deleteEvents(eventsId);
-            return "redirect:/admin-side/events";
         } catch (Exception e) {
-            System.out.println("Can not delete the item");
+            System.out.println("Can not delete the event, reason: '" + e + "'");
         }
         return "redirect:/admin-side/events";
     }
