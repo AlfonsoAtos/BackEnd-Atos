@@ -31,10 +31,10 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 import static org.mockito.Mockito.*;
 
-import com.backend.webproject.controller.UserCRUD;
+import com.backend.webproject.controller.UserAPI;
 import com.backend.webproject.controller.UserController;
-import com.backend.webproject.entity.UserData;
-import com.backend.webproject.jtemp.JdbcTemplateRegisteredUsers;
+import com.backend.webproject.entity.UserEntity;
+import com.backend.webproject.jtemp.UserDAO;
 import com.google.gson.Gson;
 
 import static org.mockito.Mockito.when;
@@ -65,7 +65,7 @@ class UserTests {
 //	}
 	
 	@MockBean 
-	private JdbcTemplateRegisteredUsers userDB;
+	private UserDAO userDB;
 	
 	@Test
 	public void testingControllerRoutes() throws Exception {
@@ -80,7 +80,7 @@ class UserTests {
 	
 	@Test
 	public void loginUser() throws Exception {
-		UserData user = new UserData(1, "al@gmail.com", "pass123", "Alberto", "8110");
+		UserEntity user = new UserEntity(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		request.addParameter("email", "al@gmail.com");
 		request.addParameter("password", "pass123");
@@ -100,8 +100,9 @@ class UserTests {
 					.contentType(MediaType.APPLICATION_JSON))
 					.andReturn().getResponse().getContentAsString();
 		
-		UserData userData = gson.fromJson(response, UserData.class);
-		System.out.println("response: " + userData);
+		UserEntity userData = gson.fromJson(response, UserEntity.class);
+		System.out.println("response string: " + response);
+		System.out.println("response object: " + userData);
 		// MvcResult result =
 //		mockMvc.perform(post("/api/user/login")
 //				.contentType(MediaType.APPLICATION_JSON)
