@@ -37,6 +37,8 @@
 .card-body span {
   text-align: justify;
   text-justify: inter-word;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .icon {
