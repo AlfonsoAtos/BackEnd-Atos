@@ -59,4 +59,8 @@ public class CustomerSideController {
 		model.addAttribute("searchResult", searchResult);
 		return "simulation";
 	}
+
+	public Product getProductByID(int id){
+		return jdbcTemplateProducts.searchProductByID(id);
+	}
 }

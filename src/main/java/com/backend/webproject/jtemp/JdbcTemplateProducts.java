@@ -38,4 +38,12 @@ public class JdbcTemplateProducts {
         return searchResult;
     }
 
+    public Product searchProductByID(int productID){
+        String query = "SELECT * FROM product WHERE productID=:productID";
+        Map<String, Object> params = new HashMap<>();
+        params.put("productID", productID);
+        List<Product> searchResult = jdbcTemplate.query(query, params, ProductMapper);
+        return searchResult.get(0);
+    }
+
 }
