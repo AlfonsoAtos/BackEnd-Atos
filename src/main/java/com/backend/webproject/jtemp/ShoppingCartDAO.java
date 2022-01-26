@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.mapper.ShoppingCartMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartJDBC {
+public class ShoppingCartDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired

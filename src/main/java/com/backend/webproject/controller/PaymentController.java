@@ -3,7 +3,7 @@ package com.backend.webproject.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.entity.Payment;
-import com.backend.webproject.jtemp.PaymentJDBC;
+import com.backend.webproject.jtemp.PaymentDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class PaymentController {
     @Autowired
-	private PaymentJDBC paymentJDBC;
+	private PaymentDAO paymentJDBC;
     
     @RequestMapping("/byID/{id}")
 	public Payment searchByID(
