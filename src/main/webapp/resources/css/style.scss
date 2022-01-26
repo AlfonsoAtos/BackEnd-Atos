@@ -31,6 +31,11 @@
 
 .card-body {
     background-color: #f2f2f2;
+
+    span {
+        text-align: justify;
+        text-justify: inter-word;
+    }
 }
 
 .icon {
@@ -124,4 +129,14 @@
             width: 20%;
         }
     }
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: 0;
+    color: #cfcfcf;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
 }

@@ -62,8 +62,8 @@
 								<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 								<div class="card-body">
 									<h5 class="card-title">${product.getPName()}</h5>
-									<div class="d-flex justify-content-end align-items-center">
-										<span class="fa-stack cart-icon-group" onclick="$.post('addtocart/${product.getPID()}')">
+									<div class="d-flex align-items-center">
+										<span class="fa-stack cart-icon-group me-auto visible" onclick="$.post('addtocart/${product.getPID()}')">
                                             <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
                                             <i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
                                         </span>
