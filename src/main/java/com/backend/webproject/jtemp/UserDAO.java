@@ -29,7 +29,7 @@ public class UserDAO {
 
 	public int registerUser(String email, String pass, String name, String number) {
 		try {
-			String id = "(SELECT COALESCE(MAX(RegisteredUser) + 1, 1) FROM RegisteredUser)";
+			String id = "(SELECT COALESCE(MAX(userID) + 1, 1) FROM RegisteredUser)";
 			String insert = "insert into RegisteredUser values(";
 			String values = ", :email, :pass, :name, :address, :number, 1)";
 			String sql = insert + id + values;
