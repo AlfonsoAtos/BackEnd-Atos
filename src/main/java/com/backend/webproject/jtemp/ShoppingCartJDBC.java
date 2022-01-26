@@ -34,9 +34,13 @@ public class ShoppingCartJDBC {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("userID", userID);
         List<ShoppingCart> carts = jdbcTemplate.query(sql, paramMap, scm);
+        try {
         ShoppingCart cart = carts.get(0);
         
         return cart;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public int createNewCart(int userID) {

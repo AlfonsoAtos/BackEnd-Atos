@@ -36,8 +36,10 @@ public class CustomerSideController {
 	}
 
 	@PostMapping("addtocart/{pID}")
-	public void addToCartService(@PathVariable int pID){
+	public String addToCartService(@PathVariable int pID){
 		int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
+		String response = (productAdded == 1) ? "home" : "";
+		return response;
 	}
 
     @RequestMapping("search")
