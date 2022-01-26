@@ -1,8 +1,11 @@
 package com.backend.webproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.jtemp.JdbcTemplateProducts;
+import com.backend.webproject.jtemp.Product;
 import com.backend.webproject.jtemp.ShoppingCartJDBC;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +59,17 @@ public class ShoppingCartController {
     public List<ShoppingCart> getAllCarts(
             @PathVariable("userID") int userID) {
         return scj.getAllCompletedCarts(userID);
+    }
+
+    @RequestMapping("getProductsInCart/{cartID}")
+    public List<Product> getProductsInCart(
+        @PathVariable("cartID") int cartID
+    ){
+        List<Product> products = new ArrayList<Product>();
+        for(int i=0; i<10;i++){
+            CustomerSideController csc = new CustomerSideController();
+            products.add(csc.getProductByID(i));
+        }
+        return products;
     }
 }

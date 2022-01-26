@@ -15,31 +15,32 @@ import com.backend.webproject.mapper.UserMapper;
 @Component
 public class UserDAO {
 	@Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate jdbcTemplate;
+
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	public UserEntity getUser(String email) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("email", email);
 		List<UserEntity> user = jdbcTemplate.query("select * from RegisteredUser where userEmail = :email", params, userMapper);
 		return user.get(0);
 	}
-	
+
 	public int registerUser(String email, String pass, String name, String number) {
 		try {
 			String id = "(SELECT COALESCE(MAX(RegisteredUser) + 1, 1) FROM RegisteredUser)";
 			String insert = "insert into RegisteredUser values(";
 			String values = ", :email, :pass, :name, :address, :number, 1)";
-	        String sql = insert + id + values;
-	        Map<String, Object> params = new HashMap<>();
-	        params.put("email", email);
-	        params.put("pass", pass);
-	        params.put("name", name);
-	        params.put("number", number);
-	        params.put("address", "address");
+			String sql = insert + id + values;
+			Map<String, Object> params = new HashMap<>();
+			params.put("email", email);
+			params.put("pass", pass);
+			params.put("name", name);
+			params.put("number", number);
+			params.put("address", "address");
 			return jdbcTemplate.update(sql, params);
-		} catch(DataAccessException err) {
+		} catch (DataAccessException err) {
 			err.printStackTrace();
 		}
 		return 0;
