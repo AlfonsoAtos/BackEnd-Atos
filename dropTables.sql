@@ -15,6 +15,3 @@ drop table ProductCategory;
 drop table Admin;
 
 drop table RegisteredUser;
-
-
-
