@@ -59,4 +59,25 @@ public class CustomerSideController {
 	 * }
 	 */
 
+	@RequestMapping("rpg")
+	public String searchRpg(HttpServletRequest request, Model model) {
+		String pName = request.getParameter("pname");
+		String pCategoryID = "2";
+		List<Product> searchResult = jdbcTemplateProducts.searchProducts(pName, pCategoryID);
+		model.addAttribute("searchResult", searchResult);
+		return "rpg";
+	}
+
+	@RequestMapping("simulation")
+	public String searchSimulation(HttpServletRequest request, Model model) {
+		String pName = request.getParameter("pname");
+		String pCategoryID = "3";
+		List<Product> searchResult = jdbcTemplateProducts.searchProducts(pName, pCategoryID);
+		model.addAttribute("searchResult", searchResult);
+		return "simulation";
+	}
+
+	public Product getProductByID(int id){
+		return jdbcTemplateProducts.searchProductByID(id);
+	}
 }

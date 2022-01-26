@@ -10,11 +10,18 @@ function login(email, password) {
     cache: false,
     success: (res) => {
       localStorage.setItem('session', JSON.stringify({
-        username: res.username,
-        password: res.password
+        id: res.id,
+        name: res.fullname,
+        email: res.email,
+        password: res.password,
+        role: res.role
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
-      window.location.href = '/'
+      if (res.role == 10) {
+        window.location.href = '/admin-side/'
+      } else {
+        window.location.href = '/'
+      }
     },
     error: (err) => {
       console.log('error', err);
