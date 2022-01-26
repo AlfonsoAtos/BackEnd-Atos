@@ -15,7 +15,7 @@ public class JdbcTemplateShoppingProductDetails {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
-    private ShoppingCartJDBC jdbcTemplateShoppingCart;
+    private ShoppingCartDAO jdbcTemplateShoppingCart;
     @Autowired
     private JdbcTemplateProducts jdbcTemplateProducts;
 
