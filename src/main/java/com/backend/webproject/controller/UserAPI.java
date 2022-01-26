@@ -1,12 +1,9 @@
 package com.backend.webproject.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.webproject.entity.UserEntity;
@@ -19,11 +16,11 @@ public class UserAPI {
 	UserDAO db;
 	
 	@PostMapping("/signup")
-	public UserEntity signupUser(HttpServletRequest req) {
-		String email = req.getParameter("email");
-		String pass = req.getParameter("password");
-		String name = req.getParameter("name");
-		String number = req.getParameter("number");
+	public UserEntity signupUser(@RequestBody UserEntity user) {
+		String email = user.getEmail();
+		String pass = user.getPassword();
+		String name = user.getFullname();
+		String number = user.getNumber();
 		
 		if (db.registerUser(email, pass, name, number) == 1) {
 			// Create shopping cart
@@ -33,12 +30,13 @@ public class UserAPI {
 	}
 	
 	@PostMapping("/login")
-	public UserEntity loginUser(HttpServletRequest req) {
-		String email = req.getParameter("email");
-		String pass = req.getParameter("password");
-		UserEntity user = db.getUser(email);
-		if (user != null && user.getPassword().equals(pass)) {
-			return user;
+	public UserEntity loginUser(@RequestBody UserEntity user) {
+		String email = user.getEmail();
+		String pass = user.getPassword();
+		
+		UserEntity userResult = db.getUser(email);
+		if (userResult != null && userResult.getPassword() != null && userResult.getPassword().equals(pass)) {
+			return userResult;
 		}
 		return null;
 	}

@@ -5,11 +5,9 @@ function login(email, password) {
     url: '/api/user/login/',
     method: 'POST',
     dataType: 'JSON',
-    data: data,
-    async: false,
-    cache: false,
+    contentType: 'application/JSON',
+    data: JSON.stringify(data),
     success: (res) => {
-      console.log(res);
       localStorage.setItem('session', JSON.stringify({
         id: res.id,
         name: res.fullname,
