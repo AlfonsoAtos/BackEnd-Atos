@@ -11,11 +11,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.backend.webproject.jtemp.JdbcTemplateProductCategory;
-import com.backend.webproject.jtemp.JdbcTemplateProducts;
-import com.backend.webproject.jtemp.JdbcTemplateShoppingProductDetails;
-import com.backend.webproject.jtemp.Product;
-import com.backend.webproject.jtemp.ProductCategory;
+import com.backend.webproject.dao.JdbcTemplateProductCategory;
+import com.backend.webproject.dao.JdbcTemplateProducts;
+import com.backend.webproject.dao.JdbcTemplateShoppingProductDetails;
+import com.backend.webproject.dao.Product;
+import com.backend.webproject.dao.ProductCategory;
 
 @Controller
 public class CustomerSideController {
@@ -36,11 +36,11 @@ public class CustomerSideController {
 	}
 
 	@PostMapping("addtocart/{pID}")
-	public void addToCartService(@PathVariable int pID){
+	public void addToCartService(@PathVariable int pID) {
 		int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
 	}
 
-    @RequestMapping("search")
+	@RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
 		List<ProductCategory> productCategories = jdbcTemplateProductCategory.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
@@ -51,10 +51,12 @@ public class CustomerSideController {
 		return "products";
 	}
 
-	/* @RequestMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
-		return "redirect:/";
-	} */
+	/*
+	 * @RequestMapping("addtocart/{pID}")
+	 * public String addToCartService(@PathVariable int pID) {
+	 * int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
+	 * return "redirect:/";
+	 * }
+	 */
 
 }

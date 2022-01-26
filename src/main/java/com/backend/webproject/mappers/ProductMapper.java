@@ -1,14 +1,15 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.backend.webproject.dao.Product;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductMapper implements RowMapper<Product>
-{
+public class ProductMapper implements RowMapper<Product> {
 
 	@Override
 	public Product mapRow(ResultSet result, int arg1) throws SQLException {
@@ -24,4 +25,3 @@ public class ProductMapper implements RowMapper<Product>
 	}
 
 }
-

@@ -1,4 +1,4 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,14 +9,15 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.backend.webproject.entity.AdminData;
+import com.backend.webproject.mappers.AdminMapper;
 
 @Component
 public class JdbcTemplateAdmins {
 	@Autowired
-    public NamedParameterJdbcTemplate jdbcTemplate;
+	public NamedParameterJdbcTemplate jdbcTemplate;
 	@Autowired
-    private AdminMapper adminMapper;
-	
+	private AdminMapper adminMapper;
+
 	public AdminData getAdmin(String email) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("email", email);

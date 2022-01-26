@@ -1,4 +1,4 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 public class ProductCategory {
     int pcID;

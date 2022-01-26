@@ -1,14 +1,15 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.backend.webproject.dao.ProductCategory;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductCategoryMapper implements RowMapper<ProductCategory>
-{
+public class ProductCategoryMapper implements RowMapper<ProductCategory> {
 	@Override
 	public ProductCategory mapRow(ResultSet result, int arg1) throws SQLException {
 		ProductCategory obj = new ProductCategory();

@@ -1,4 +1,4 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +17,13 @@ public class JdbcTemplateShoppingProductDetails {
     private ShoppingCartJDBC jdbcTemplateShoppingCart;
     @Autowired
     private JdbcTemplateProducts jdbcTemplateProducts;
-    
+
     public int addToCart(int pID) {
-        //Fixed values for testing
+        // Fixed values for testing
         int inSessionCartId = 1;
         int userID = 1;
-        
-        if(inSessionCartId == 0) {
+
+        if (inSessionCartId == 0) {
             int ret = jdbcTemplateShoppingCart.createNewCart(userID);
             ShoppingCart createdShoppingCart = jdbcTemplateShoppingCart.getInSessionCart(userID);
             inSessionCartId = createdShoppingCart.getShoppingCartID();
@@ -35,8 +35,10 @@ public class JdbcTemplateShoppingProductDetails {
         params.put("cost", product.pPrice);
         params.put("pID", product.pID);
         params.put("scID", inSessionCartId);
-        int productExists = jdbcTemplate.queryForObject("SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID", params, Integer.class);
-        if(productExists == 1) {
+        int productExists = jdbcTemplate.queryForObject(
+                "SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID",
+                params, Integer.class);
+        if (productExists == 1) {
             String sql = "UPDATE ShoppingProductDetails SET quantity = quantity + :quantity WHERE shoppingCartId = :scID AND productID = :pID";
             int ret = jdbcTemplate.update(sql, params);
             return ret;
@@ -45,6 +47,6 @@ public class JdbcTemplateShoppingProductDetails {
             int ret = jdbcTemplate.update(sql, params);
             return ret;
         }
-	}
+    }
 
 }

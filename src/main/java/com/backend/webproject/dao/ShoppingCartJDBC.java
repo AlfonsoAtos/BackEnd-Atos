@@ -1,10 +1,11 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.mappers.ShoppingCartMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -35,7 +36,7 @@ public class ShoppingCartJDBC {
         paramMap.put("userID", userID);
         List<ShoppingCart> carts = jdbcTemplate.query(sql, paramMap, scm);
         ShoppingCart cart = carts.get(0);
-        
+
         return cart;
     }
 
@@ -50,13 +51,13 @@ public class ShoppingCartJDBC {
         }
     }
 
-    public int completeCart(int cartID){
-     
-            String sql = "update shoppingCart set cartStatus='Complete' where shoppingCartID=:cartID";
-            Map<String, Object> paramMap = new HashMap<String, Object>();
-            paramMap.put("cartID", cartID);
-            return jdbcTemplate.update(sql, paramMap);
-        
+    public int completeCart(int cartID) {
+
+        String sql = "update shoppingCart set cartStatus='Complete' where shoppingCartID=:cartID";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("cartID", cartID);
+        return jdbcTemplate.update(sql, paramMap);
+
     }
 
 }

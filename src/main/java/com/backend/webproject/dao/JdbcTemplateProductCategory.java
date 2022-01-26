@@ -1,6 +1,8 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.List;
+
+import com.backend.webproject.mappers.ProductCategoryMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +16,8 @@ public class JdbcTemplateProductCategory {
     private ProductCategoryMapper ProductCategoryMapper;
 
     public List<ProductCategory> getProductCategories() {
-        List<ProductCategory> productCategories = jdbcTemplate.query("SELECT * FROM ProductCategory", ProductCategoryMapper);
+        List<ProductCategory> productCategories = jdbcTemplate.query("SELECT * FROM ProductCategory",
+                ProductCategoryMapper);
         return productCategories;
     }
 }
