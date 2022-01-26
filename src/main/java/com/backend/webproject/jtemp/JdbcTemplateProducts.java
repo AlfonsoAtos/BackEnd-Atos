@@ -38,4 +38,9 @@ public class JdbcTemplateProducts {
         return searchResult;
     }
 
+    public Product getProductById(int pID) {
+        Product product = jdbcTemplate.queryForObject("SELECT * FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}}, ProductMapper);
+        return product;
+    }
+
 }

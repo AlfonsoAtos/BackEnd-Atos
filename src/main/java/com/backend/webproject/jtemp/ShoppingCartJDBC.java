@@ -41,7 +41,7 @@ public class ShoppingCartJDBC {
 
     public int createNewCart(int userID) {
         try {
-            String sql = "insert into shoppingCart values ((select max(shoppingCartID)+1 from shoppingCart), (SELECT SYSDATE FROM DUAL), 'Insession', :userID)";
+            String sql = "insert into shoppingCart values ((select COALESCE(MAX(shoppingCartID) + 1, 1) from shoppingCart), (SELECT SYSDATE FROM DUAL), 'Insession', :userID)";
             Map<String, Object> paramMap = new HashMap<String, Object>();
             paramMap.put("userID", userID);
             return jdbcTemplate.update(sql, paramMap);
