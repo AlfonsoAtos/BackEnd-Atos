@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -81,28 +83,39 @@ class UserTests {
 	@Test
 	public void loginUser() throws Exception {
 		UserEntity user = new UserEntity(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.addParameter("email", "al@gmail.com");
-		request.addParameter("password", "pass123");
+//		MockHttpServletRequest request = new MockHttpServletRequest();
+//		request.addParameter("email", "al@gmail.com");
+//		request.addParameter("password", "pass123");
+		
 		given(userDB.getUser("al@gmail.com")).willReturn(user);
 //		when((userDB.getUser("al@gmail.com")).thenReturn(user));
 		
 		Gson gson = new Gson();
 		
-		String json = gson.toJson(user);
+//		String json = gson.toJson(user);
+		String json = "{ \"email\": \"al@gmail.com\", \"password\": \"pass123\" }";
 		
 		System.out.println("json string: " + json);
 		
-		String response = mockMvc.perform(
+//		mockMvc.perform(get("/users/1/mobile")
+//		        .accept(MediaType.APPLICATION_JSON))
+//		        .andExpect(status().isOk())
+//		        .andDo(print())
+//		        .andExpect(content().string("iPhone"))
+		
+//		String response = 
+				mockMvc.perform(
 					post("/api/user/login")
 					.content(json)
 					.accept(MediaType.APPLICATION_JSON)
 					.contentType(MediaType.APPLICATION_JSON))
-					.andReturn().getResponse().getContentAsString();
+					.andDo(print())
+					.andExpect(jsonPath("email", is(user.getEmail())));
+//					.andReturn().getResponse().getContentAsString();
 		
-		UserEntity userData = gson.fromJson(response, UserEntity.class);
-		System.out.println("response string: " + response);
-		System.out.println("response object: " + userData);
+//		UserEntity userData = gson.fromJson(response, UserEntity.class);
+//		System.out.println("response string: " + response);
+//		System.out.println("response object: " + userData);
 		// MvcResult result =
 //		mockMvc.perform(post("/api/user/login")
 //				.contentType(MediaType.APPLICATION_JSON)
