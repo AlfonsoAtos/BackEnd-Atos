@@ -9,12 +9,13 @@ function login(email, password) {
     async: false,
     cache: false,
     success: (res) => {
+      console.log(res);
       localStorage.setItem('session', JSON.stringify({
         username: res.username,
         password: res.password
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
-      window.location.href = '/'
+      // window.location.href = '/'
     },
     error: (err) => {
       console.log('error', err);

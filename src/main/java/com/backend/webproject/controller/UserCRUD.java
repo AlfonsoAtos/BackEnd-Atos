@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.webproject.entity.UserData;
@@ -18,7 +19,7 @@ public class UserCRUD {
 	JdbcTemplateRegisteredUsers db;
 	
 	@PostMapping("/signup")
-	public UserData signupUser(HttpServletRequest req, Model model) {
+	public UserData signupUser(HttpServletRequest req) {
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
 		String name = req.getParameter("name");
@@ -26,13 +27,14 @@ public class UserCRUD {
 		
 		if (db.registerUser(email, pass, name, number) == 1) {
 			// Create shopping cart
-			return new UserData(-1, email, pass, name, number);
+			return db.getUser(email);
+//			return new UserData(-1, email, pass, name, number);
 		}
 		return null;
 	}
 	
 	@PostMapping("/login")
-	public UserData loginUser(HttpServletRequest req, Model model) {
+	public UserData loginUser(HttpServletRequest req) {
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
 		UserData user = db.getUser(email);
