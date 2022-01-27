@@ -11,9 +11,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.backend.webproject.DAO.ProductCategoryDAO;
-import com.backend.webproject.DAO.ProductDAO;
-import com.backend.webproject.DAO.ShoppingProductDetailsDAO;
+import com.backend.webproject.dao.ProductCategoryDAO;
+import com.backend.webproject.dao.ProductDAO;
+import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductCategory;
 

@@ -1,11 +1,10 @@
-package com.backend.webproject.DAO;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ShoppingCart;
-import com.backend.webproject.jtemp.ShoppingCartDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

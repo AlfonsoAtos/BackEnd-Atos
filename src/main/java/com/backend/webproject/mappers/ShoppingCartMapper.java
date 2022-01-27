@@ -1,4 +1,4 @@
-package com.backend.webproject.mapper;
+package com.backend.webproject.mappers;
 
 
 import java.sql.ResultSet;

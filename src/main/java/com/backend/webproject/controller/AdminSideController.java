@@ -1,9 +1,9 @@
 package com.backend.webproject.controller;
 
+import com.backend.webproject.dao.JdbcTemplateCoupons;
+import com.backend.webproject.dao.JdbcTemplateEvents;
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Events;
-import com.backend.webproject.jtemp.JdbcTemplateCoupons;
-import com.backend.webproject.jtemp.JdbcTemplateEvents;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.backend.webproject.DAO;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 import com.backend.webproject.entity.Product;
-import com.backend.webproject.mapper.ProductMapper;
+import com.backend.webproject.mappers.ProductMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

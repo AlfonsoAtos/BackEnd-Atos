@@ -1,10 +1,10 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.backend.webproject.entity.Payment;
-import com.backend.webproject.mapper.PaymentMapper;
+import com.backend.webproject.mappers.PaymentMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

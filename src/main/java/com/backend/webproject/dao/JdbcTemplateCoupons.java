@@ -1,10 +1,11 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.Coupons;
+import com.backend.webproject.mappers.CouponsMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

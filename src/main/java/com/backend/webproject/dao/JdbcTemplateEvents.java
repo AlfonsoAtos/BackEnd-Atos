@@ -1,8 +1,9 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.*;
 
 import com.backend.webproject.entity.Events;
+import com.backend.webproject.mappers.EventsMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

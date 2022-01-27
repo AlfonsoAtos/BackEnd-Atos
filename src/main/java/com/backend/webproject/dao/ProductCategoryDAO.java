@@ -1,9 +1,9 @@
-package com.backend.webproject.DAO;
+package com.backend.webproject.dao;
 
 import java.util.List;
 
 import com.backend.webproject.entity.ProductCategory;
-import com.backend.webproject.mapper.ProductCategoryMapper;
+import com.backend.webproject.mappers.ProductCategoryMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
