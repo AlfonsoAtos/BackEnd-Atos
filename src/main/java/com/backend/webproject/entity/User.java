@@ -1,6 +1,6 @@
 package com.backend.webproject.entity;
 
-public class UserEntity {
+public class User {
 	int id;
 	String email;
 	String password;
@@ -9,11 +9,11 @@ public class UserEntity {
 	String number;
 	int role;
 	
-	public UserEntity() {
+	public User() {
 		this.address = "";
 	}
 	
-	public UserEntity(int id, String email, String password, String fullname, String number, int role) {
+	public User(int id, String email, String password, String fullname, String number, int role) {
 		this.id = id;
 		this.email = email;
 		this.password = password;

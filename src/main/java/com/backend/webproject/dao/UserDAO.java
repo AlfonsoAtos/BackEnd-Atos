@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.backend.webproject.entity.UserEntity;
+import com.backend.webproject.entity.User;
 import com.backend.webproject.mappers.UserMapper;
 
 @Component
@@ -20,10 +20,10 @@ public class UserDAO {
 	@Autowired
 	private UserMapper userMapper;
 
-	public UserEntity getUser(String email) {
+	public User getUser(String email) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("email", email);
-		List<UserEntity> user = jdbcTemplate.query("select * from RegisteredUser where userEmail = :email", params, userMapper);
+		List<User> user = jdbcTemplate.query("select * from RegisteredUser where userEmail = :email", params, userMapper);
 		return user.get(0);
 	}
 

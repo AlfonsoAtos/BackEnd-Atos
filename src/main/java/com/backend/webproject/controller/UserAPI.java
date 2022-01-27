@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.webproject.entity.UserEntity;
+import com.backend.webproject.entity.User;
 import com.backend.webproject.dao.UserDAO;
 
 @RestController
@@ -16,7 +16,7 @@ public class UserAPI {
 	UserDAO db;
 	
 	@PostMapping("/signup")
-	public UserEntity signupUser(@RequestBody UserEntity user) {
+	public User signupUser(@RequestBody User user) {
 		String email = user.getEmail();
 		String pass = user.getPassword();
 		String name = user.getFullname();
@@ -30,11 +30,11 @@ public class UserAPI {
 	}
 
 	@PostMapping("/login")
-	public UserEntity loginUser(@RequestBody UserEntity user) {
+	public User loginUser(@RequestBody User user) {
 		String email = user.getEmail();
 		String pass = user.getPassword();
 		
-		UserEntity userResult = db.getUser(email);
+		User userResult = db.getUser(email);
 		if (userResult != null && userResult.getPassword() != null && userResult.getPassword().equals(pass)) {
 			return userResult;
 		}

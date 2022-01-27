@@ -33,10 +33,8 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 import static org.mockito.Mockito.*;
 
-import com.backend.webproject.controller.UserAPI;
-import com.backend.webproject.controller.UserController;
-import com.backend.webproject.entity.UserEntity;
-import com.backend.webproject.jtemp.UserDAO;
+import com.backend.webproject.entity.User;
+import com.backend.webproject.dao.UserDAO;
 import com.google.gson.Gson;
 
 import static org.mockito.Mockito.when;
@@ -55,17 +53,6 @@ class UserTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-//	@Autowired
-//	private UserController userController;
-//	
-//	@MockBean 
-//	private UserCRUD userCRUD;
-	
-//	@Test
-//	void contextLoads() throws Exception {
-//		assertThat(userController).isNotNull();
-//	}
-	
 	@MockBean 
 	private UserDAO userDB;
 	
@@ -82,7 +69,7 @@ class UserTests {
 	
 	@Test
 	public void loginUser() throws Exception {
-		UserEntity user = new UserEntity(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
+		User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
 //		MockHttpServletRequest request = new MockHttpServletRequest();
 //		request.addParameter("email", "al@gmail.com");
 //		request.addParameter("password", "pass123");
