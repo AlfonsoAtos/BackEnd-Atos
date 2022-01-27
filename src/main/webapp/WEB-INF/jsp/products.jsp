@@ -72,7 +72,7 @@
                                             <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
                                             <i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
                                         </span>
-                                        <p class="card-text text-end">$${product.getPPrice()}</p>
+                                        <p class="card-text text-end">$${product.getPFormattedPrice()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                             <button type="button" class="btn btn-success" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                                 <i class="fas fa-cart-plus"></i>  Add to cart
                                             </button>
-                                            <p class="card-text price-in-modal">$${product.getPPrice()}</p>
+                                            <p class="card-text price-in-modal">$${product.getPFormattedPrice()}</p>
                                         </div>
                                     </div>
                                 </div>

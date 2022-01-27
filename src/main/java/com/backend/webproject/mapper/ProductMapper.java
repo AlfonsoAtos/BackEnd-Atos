@@ -22,6 +22,7 @@ public class ProductMapper implements RowMapper<Product>
 		obj.setPDescription(result.getString(5));
 		obj.setPImagePath(result.getString(6));
 		obj.setPCategoryID(result.getInt(7));
+		obj.setPFormattedPrice(obj.formatPrice(obj.getPPrice()));
 		return obj;
 	}
 
