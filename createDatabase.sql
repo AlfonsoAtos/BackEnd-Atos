@@ -19,7 +19,7 @@ create table Product (
     productName varchar(20) not null,
     productCompany varchar(20) not null,
     productPrice numeric not null,
-    productDescription varchar(30),
+    productDescription varchar(500),
     productImagePath varchar(50),
     productCategoryID numeric references ProductCategory(productCategoryID) not null
 );
