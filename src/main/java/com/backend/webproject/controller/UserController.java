@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.backend.webproject.dao.UserDAO;
 import com.backend.webproject.entity.User;
+import com.backend.webproject.managers.UserManager;
 
 @Controller
 @RequestMapping("/user")
