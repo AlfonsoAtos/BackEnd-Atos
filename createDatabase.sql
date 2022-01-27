@@ -18,7 +18,7 @@ create table Product (
     productID numeric primary key,
     productName varchar(20) not null,
     productCompany varchar(20) not null,
-    productPrice numeric not null,
+    productPrice number not null,
     productDescription varchar(500),
     productImagePath varchar(50),
     productCategoryID numeric references ProductCategory(productCategoryID) not null
@@ -54,8 +54,8 @@ create table ShoppingCart(
 create table ShoppingProductDetails (
     shoppingProductDetailsID numeric primary key,
     quantity numeric not null,
-    shoppingCost numeric,
-    costAfterApplyingCoupon numeric,
+    shoppingCost number,
+    costAfterApplyingCoupon number,
     productID numeric references Product(productID) not null,
     shoppingCartId numeric references ShoppingCart(shoppingCartID) not null
 );
