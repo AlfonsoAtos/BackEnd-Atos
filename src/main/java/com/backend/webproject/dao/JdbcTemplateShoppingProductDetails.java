@@ -3,6 +3,7 @@ package com.backend.webproject.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ShoppingCart;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class JdbcTemplateShoppingProductDetails {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
-    private ShoppingCartJDBC jdbcTemplateShoppingCart;
+    private ShoppingCartDAO jdbcTemplateShoppingCart;
     @Autowired
     private JdbcTemplateProducts jdbcTemplateProducts;
 
@@ -32,8 +33,8 @@ public class JdbcTemplateShoppingProductDetails {
         Product product = jdbcTemplateProducts.getProductById(pID);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("quantity", 1);
-        params.put("cost", product.pPrice);
-        params.put("pID", product.pID);
+        params.put("cost", product.getPPrice());
+        params.put("pID", product.getPID());
         params.put("scID", inSessionCartId);
         int productExists = jdbcTemplate.queryForObject(
                 "SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID",
