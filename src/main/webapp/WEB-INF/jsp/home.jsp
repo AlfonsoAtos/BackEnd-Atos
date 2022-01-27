@@ -112,7 +112,9 @@
 										<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 										<div class="card-body">
 											<h5 class="card-title">${product.getPName()}</h5>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor, sem vel auctor faucibus, metus.</span>
+                                            <div id="short-desc-container">
+                                                <p id="short-desc-txt">${product.getPDescription()}</p>
+                                            </div>
                                 </a>
 											<div class="d-flex align-items-center mt-2">
                                                 <span class="fa-stack cart-icon-group me-auto visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
@@ -132,7 +134,7 @@
                                             <img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
                                             <div class="card-body">
                                                 <h5 class="card-title">${product.getPName()}</h5>
-                                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <p class="card-text">${product.getPDescription()}</p>
                                                 <div class="d-flex justify-content-between">
                                                     <p class="card-text">$${product.getPPrice()}</p>
                                                     <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
