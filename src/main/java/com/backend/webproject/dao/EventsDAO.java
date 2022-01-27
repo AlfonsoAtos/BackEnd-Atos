@@ -11,11 +11,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateEvents {
+public class EventsDAO {
 
     JdbcTemplate temp;
 
-    public JdbcTemplateEvents(JdbcTemplate temp) {
+    public EventsDAO(JdbcTemplate temp) {
         this.temp = temp;
     }
 

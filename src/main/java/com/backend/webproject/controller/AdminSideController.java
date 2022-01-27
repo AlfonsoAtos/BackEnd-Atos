@@ -1,7 +1,7 @@
 package com.backend.webproject.controller;
 
-import com.backend.webproject.dao.JdbcTemplateCoupons;
-import com.backend.webproject.dao.JdbcTemplateEvents;
+import com.backend.webproject.dao.CouponsDAO;
+import com.backend.webproject.dao.EventsDAO;
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Events;
 
@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminSideController {
 
     @Autowired
-    JdbcTemplateCoupons jdbcTemplateCoupons;
+    CouponsDAO jdbcTemplateCoupons;
 
     @Autowired
-    JdbcTemplateEvents jdbcTemplateEvents;
+    EventsDAO jdbcTemplateEvents;
 
     @RequestMapping("/")
     public String showAdminPage() {

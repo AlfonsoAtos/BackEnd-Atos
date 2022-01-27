@@ -13,11 +13,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateCoupons {
+public class CouponsDAO {
 
     JdbcTemplate temp;
 
-    public JdbcTemplateCoupons(JdbcTemplate temp) {
+    public CouponsDAO(JdbcTemplate temp) {
         this.temp = temp;
     }
 
