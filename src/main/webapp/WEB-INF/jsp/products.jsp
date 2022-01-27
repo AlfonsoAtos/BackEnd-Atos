@@ -22,7 +22,9 @@
     <div class="container-fluid p-0">
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">Logo</a>
+                <div class="logo-nav">
+                    <img src="../../resources/img/logo-g.jpg" />
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,8 +39,8 @@
                             </c:forEach>
                         </form> 
                     </ul>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#" class="ms-3"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>
@@ -56,22 +58,42 @@
 			<c:forEach var="product" items="${searchResult}" varStatus="p">
 				<c:if test="${(p.index % 4 == 0)}"><div class="row d-flex align-items-center mt-4 mb-4"></c:if>
 					<div class="col-3 d-flex justify-content-center">
-						<a data-bs-toggle="modal" data-bs-target="#myModal">
-							<div class="card border-0 product-card">
-								<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
-								<div class="card-body">
-									<h5 class="card-title">${product.getPName()}</h5>
-									<div class="d-flex justify-content-end align-items-center">
-										<span class="fa-stack cart-icon-group" data-pID="${product.getPID()}" onclick="addToCart(this)">
+                        <a data-bs-toggle="modal" data-bs-target="#modal${product.getPID()}">
+                            <div class="card border-0 product-card">
+                                <img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.getPName()}</h5>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor, sem vel auctor faucibus, metus.</span>
+                        </a>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="fa-stack cart-icon-group me-auto visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                             <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
                                             <i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
                                         </span>
-										<p class="card-text text-end">$${product.getPPrice()}</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
+                                        <p class="card-text text-end">$${product.getPPrice()}</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div id="modal${product.getPID()}" class="modal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border-0">
+                                <div class="card border-0">
+                                    <img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.getPName()}</h5>
+                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="card-text">$${product.getPPrice()}</p>
+                                            <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 				<c:if test="${((p.index + 1) % 4 == 0)}"></div></c:if>
 			</c:forEach>
         </div>
