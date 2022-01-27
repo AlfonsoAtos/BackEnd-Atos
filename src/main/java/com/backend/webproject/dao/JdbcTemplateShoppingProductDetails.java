@@ -56,7 +56,7 @@ public class JdbcTemplateShoppingProductDetails {
     }
 
     public List<ShoppingProductDetails> getAllDetailsFromCart(int cartID) {
-        String sql = "select * from shoppingproductdetails";
+        String sql = "select * from shoppingproductdetails where shoppingCartID=:cartID";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("cartID", cartID);
         List<ShoppingProductDetails> list = jdbcTemplate.query(sql, paramMap, spdm);
