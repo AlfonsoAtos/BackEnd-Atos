@@ -66,6 +66,10 @@ class UserControllerTests {
 		this.mockMvc.perform(get("/user/sign_up"))
 	     .andExpect(status().isOk())
 	     .andExpect(forwardedUrl("/WEB-INF/jsp/sign_up.jsp"));
+		
+		this.mockMvc.perform(get("/user/list"))
+	     .andExpect(status().isOk())
+	     .andExpect(forwardedUrl("/WEB-INF/jsp/user_list.jsp"));
 	}
 	
 	@Test
@@ -87,7 +91,43 @@ class UserControllerTests {
 			.accept(MediaType.APPLICATION_JSON)
 			.contentType(MediaType.APPLICATION_JSON))
 			.andDo(print())
-			.andExpect(jsonPath("email", is(user.getEmail())));
+			.andExpect(jsonPath("email", is(user.getEmail())))
+			.andExpect(jsonPath("password", is(user.getPassword())))
+			.andExpect(jsonPath("fullname", is(user.getFullname())))
+			.andExpect(jsonPath("number", is(user.getNumber())))
+			.andExpect(jsonPath("id", is(user.getId())))
+			.andExpect(jsonPath("role", is(user.getRole())));
+//					.andReturn().getResponse().getContentAsString();
+		
+//		UserEntity userData = gson.fromJson(response, UserEntity.class);
+//		System.out.println("response string: " + response);
+//		System.out.println("response object: " + userData);
+	}
+	
+	@Test
+	public void signupUserAPITest() throws Exception {
+		User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
+		
+		given(userManager.signupUser("al@gmail.com", "pass123", "Alberto", "8110")).willReturn(user);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(user);
+		
+		System.out.println("json string: " + json);
+		
+//		String response = 
+		mockMvc.perform(
+			post("/user/api/signup")
+			.content(json)
+			.accept(MediaType.APPLICATION_JSON)
+			.contentType(MediaType.APPLICATION_JSON))
+			.andDo(print())
+			.andExpect(jsonPath("email", is(user.getEmail())))
+			.andExpect(jsonPath("password", is(user.getPassword())))
+			.andExpect(jsonPath("fullname", is(user.getFullname())))
+			.andExpect(jsonPath("number", is(user.getNumber())))
+			.andExpect(jsonPath("id", is(user.getId())))
+			.andExpect(jsonPath("role", is(user.getRole())));
 //					.andReturn().getResponse().getContentAsString();
 		
 //		UserEntity userData = gson.fromJson(response, UserEntity.class);
