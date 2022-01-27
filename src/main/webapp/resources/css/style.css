@@ -96,6 +96,7 @@
 .carousel-main {
   -webkit-filter: blur(8px);
           filter: blur(8px);
+  height: 400px;
 }
 
 .bg-text {

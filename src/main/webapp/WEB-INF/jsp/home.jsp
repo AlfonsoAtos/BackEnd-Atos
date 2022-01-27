@@ -61,15 +61,14 @@
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner carousel-main pb-2">
-                <div class="carousel-item active">
+                <!-- <div class="carousel-item active">
                     <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
-                </div>
+                </div> -->
+                <c:forEach var="product" items="${newProducts}" varStatus="p">
+                    <c:if test="${(p.index % 1 == 0)}"><div class="carousel-item ${(p.index == 0) ? 'active' : ''}"></c:if>
+                        <img src="../../resources/img/${product.getPImagePath()}" class="d-block w-100" alt="">
+                    <c:if test="${((p.index + 1) % 1 == 0)}"></div></c:if>
+                </c:forEach>
             </div>
             <div class="bg-text px-5 py-auto">
                 <form action="search">
@@ -107,7 +106,7 @@
 					<c:forEach var="product" items="${newProducts}" varStatus="p">
 						<c:if test="${(p.index % 4 == 0)}"><div class="carousel-item ${(p.index == 0) ? 'active' : ''}"><div class="row d-flex align-items-center"></c:if>
 							<div class="col-3 d-flex justify-content-center">
-								<a data-bs-toggle="modal" data-bs-target="#myModal">
+								<a data-bs-toggle="modal" data-bs-target="#modal${product.getPID()}">
 									<div class="card border-0 product-card">
 										<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 										<div class="card-body">
@@ -123,31 +122,31 @@
 										</div>
 									</div>
 								</a>
-							</div>                            
+							</div>
+
+                            <div id="modal${product.getPID()}" class="modal" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                        <div class="card border-0">
+                                            <img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${product.getPName()}</h5>
+                                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="card-text">$${product.getPPrice()}</p>
+                                                    <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
 						<c:if test="${((p.index + 1) % 4 == 0)}"></div></div></c:if>
 					</c:forEach>
                 </div>
             </div>
         </div>
-
-<!--         <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="card border-0">
-                        <img src="./img/splatoon.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Product Name</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="d-flex justify-content-between">
-                                <p class="card-text">$00.00</p>
-                                <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     </div>
     <script>
         document.querySelectorAll('.card').forEach(item => {
