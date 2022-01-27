@@ -20,10 +20,12 @@ public class UserManager {
   }
 
   public User loginUser(String email, String pass) {
-    User userResult = db.getUser(email);
-    if (userResult != null && userResult.getPassword() != null && userResult.getPassword().equals(pass)) {
-      return userResult;
-    }
-    return null;
+	  if (email != null && pass != null) {
+		  User userResult = db.getUser(email);
+		  if (userResult != null && pass.equals(userResult.getPassword())) {
+			  return userResult;
+		  }
+	  }
+	  return null;
   }
 }
