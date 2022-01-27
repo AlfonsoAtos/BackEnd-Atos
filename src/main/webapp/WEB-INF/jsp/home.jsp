@@ -135,9 +135,11 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">${product.getPName()}</h5>
                                                 <p class="card-text">${product.getPDescription()}</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="card-text">$${product.getPPrice()}</p>
-                                                    <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
+                                                <div class="d-flex justify-content-between align-items-end">
+                                                    <button type="button" class="btn btn-success" data-pID="${product.getPID()}" onclick="addToCart(this)">
+                                                        <i class="fas fa-cart-plus"></i>  Add to cart
+                                                    </button>
+                                                    <p class="card-text price-in-modal">$${product.getPPrice()}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +153,7 @@
             </div>
         </div>
 
-        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 2000">
             <div id="addToCartNotification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <i class="fas fa-cart-plus me-2"></i>
