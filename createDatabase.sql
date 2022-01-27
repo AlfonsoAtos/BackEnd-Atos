@@ -56,7 +56,7 @@ create table ShoppingProductDetails (
     quantity numeric not null,
     shoppingCost numeric,
     costAfterApplyingCoupon numeric,
-    productID numeric references Product(productID) not null unique,
+    productID numeric references Product(productID) not null,
     shoppingCartId numeric references ShoppingCart(shoppingCartID) not null
 );
 
