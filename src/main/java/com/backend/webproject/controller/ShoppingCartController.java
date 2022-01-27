@@ -2,8 +2,9 @@ package com.backend.webproject.controller;
 
 import java.util.List;
 
+import com.backend.webproject.dao.ShoppingCartDAO;
+import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ShoppingCart;
-import com.backend.webproject.jtemp.ShoppingCartDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
