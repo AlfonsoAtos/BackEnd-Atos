@@ -1,10 +1,12 @@
 package com.backend.webproject.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.backend.webproject.dao.UserDAO;
 import com.backend.webproject.entity.User;
 
+@Component
 public class UserManager {
   @Autowired
   UserDAO db;
