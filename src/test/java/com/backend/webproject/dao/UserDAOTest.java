@@ -29,6 +29,9 @@ class UserDAOTest {
 	@Mock
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
+	@Mock
+	private UserMapper userMapper;
+
 	@Test
 	void getUserTest() {
 		User user = new User(1, "user@user.com", "pass123", "User", "8110", 1);
@@ -40,7 +43,7 @@ class UserDAOTest {
 				new HashMap<String, String>() {{
 					put("email", user.getEmail());
 				}},
-				userDAO.getUserMapper()))
+				userMapper))
 				.willReturn(userList);
 
 		User userResult = userDAO.getUser("user@user.com");
@@ -56,7 +59,7 @@ class UserDAOTest {
 				new HashMap<String, String>() {{
 					put("email", "user@user.com");
 				}},
-				userDAO.getUserMapper()))
+				userMapper))
 				.willReturn(userList);
 
 		User userResult = userDAO.getUser("user@user.com");
@@ -70,12 +73,13 @@ class UserDAOTest {
 		given(jdbcTemplate.update(
 			"insert into RegisteredUser values((SELECT COALESCE(MAX(userID) + 1, 1) FROM RegisteredUser), :email, :pass, :name, :address, :number, 1)",
 			new HashMap<String, String>() {{
-			put("email", user.getEmail());
-			put("pass", user.getPassword());
-			put("name", user.getFullname());
-			put("number", user.getNumber());
-			put("address", "address");
-		}})).willReturn(1);
+				put("email", user.getEmail());
+				put("pass", user.getPassword());
+				put("name", user.getFullname());
+				put("number", user.getNumber());
+				put("address", "address");
+			}}
+		)).willReturn(1);
 
 		int result = userDAO.registerUser("user@user.com", "pass123", "User", "8110");
 		assertEquals(1, result);

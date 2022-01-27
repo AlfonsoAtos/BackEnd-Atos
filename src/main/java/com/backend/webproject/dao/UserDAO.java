@@ -19,10 +19,6 @@ public class UserDAO {
 
 	@Autowired
 	private UserMapper userMapper;
-	
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
 
 	public User getUser(String email) {
 		List<User> user = jdbcTemplate.query(
