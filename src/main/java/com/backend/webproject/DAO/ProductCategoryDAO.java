@@ -1,13 +1,16 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.DAO;
 
 import java.util.List;
+
+import com.backend.webproject.entity.ProductCategory;
+import com.backend.webproject.mapper.ProductCategoryMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateProductCategory {
+public class ProductCategoryDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Autowired

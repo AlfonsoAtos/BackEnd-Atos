@@ -11,51 +11,51 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.backend.webproject.jtemp.JdbcTemplateProductCategory;
-import com.backend.webproject.jtemp.JdbcTemplateProducts;
-import com.backend.webproject.jtemp.JdbcTemplateShoppingProductDetails;
-import com.backend.webproject.jtemp.Product;
-import com.backend.webproject.jtemp.ProductCategory;
+import com.backend.webproject.DAO.ProductCategoryDAO;
+import com.backend.webproject.DAO.ProductDAO;
+import com.backend.webproject.DAO.ShoppingProductDetailsDAO;
+import com.backend.webproject.entity.Product;
+import com.backend.webproject.entity.ProductCategory;
 
 @Controller
 public class CustomerSideController {
 	@Autowired
-	JdbcTemplateProducts jdbcTemplateProducts;
+	ProductDAO productDAO;
 	@Autowired
-	JdbcTemplateProductCategory jdbcTemplateProductCategory;
+	ProductCategoryDAO productCategoryDAO;
 	@Autowired
-	JdbcTemplateShoppingProductDetails jdbcTemplateShoppingProductDetails;
+	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		List<ProductCategory> productCategories = jdbcTemplateProductCategory.getProductCategories();
+		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
-		List<Product> newProducts = jdbcTemplateProducts.getNewProducts();
+		List<Product> newProducts = productDAO.getNewProducts();
 		model.addAttribute("newProducts", newProducts);
 		return "home";
 	}
 
 	@PostMapping("addtocart/{pID}")
 	public String addToCartService(@PathVariable int pID){
-		int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
+		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
 		String response = (productAdded == 1) ? "home" : "";
 		return response;
 	}
 
     @RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
-		List<ProductCategory> productCategories = jdbcTemplateProductCategory.getProductCategories();
+		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
 		String pName = request.getParameter("pname");
 		String pCategoryID = request.getParameter("pcatid");
-		List<Product> searchResult = jdbcTemplateProducts.searchProducts(pName, pCategoryID);
+		List<Product> searchResult = productDAO.searchProducts(pName, pCategoryID);
 		model.addAttribute("searchResult", searchResult);
 		return "products";
 	}
 
 	/* @RequestMapping("addtocart/{pID}")
 	public String addToCartService(@PathVariable int pID) {
-		int productAdded = jdbcTemplateShoppingProductDetails.addToCart(pID);
+		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
 		return "redirect:/";
 	} */
 

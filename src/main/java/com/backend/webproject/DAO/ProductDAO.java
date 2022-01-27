@@ -1,16 +1,19 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.DAO;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import com.backend.webproject.entity.Product;
+import com.backend.webproject.mapper.ProductMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateProducts {
+public class ProductDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired

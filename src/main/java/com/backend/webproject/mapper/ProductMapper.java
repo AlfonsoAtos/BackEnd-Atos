@@ -1,7 +1,9 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.backend.webproject.entity.Product;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
