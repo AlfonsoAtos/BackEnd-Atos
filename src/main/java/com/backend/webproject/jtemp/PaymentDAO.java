@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.backend.webproject.entity.Payment;
+import com.backend.webproject.mapper.PaymentMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PaymentJDBC {
+public class PaymentDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
