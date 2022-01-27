@@ -17,7 +17,7 @@ import com.backend.webproject.entity.User;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	UserDAO db;
+	UserManager userManager;
 	
 	@RequestMapping("/login")
 	public String Login() {
@@ -43,12 +43,8 @@ public class UserController {
 		String pass = user.getPassword();
 		String name = user.getFullname();
 		String number = user.getNumber();
-		
-		if (db.registerUser(email, pass, name, number) == 1) {
-			// Create shopping cart
-			return db.getUser(email);
-		}
-		return null;
+
+		return userManager.signupUser(email, pass, name, number);
 	}
 
 	@PostMapping("/api/login")
@@ -56,11 +52,6 @@ public class UserController {
 	public User loginUser(@RequestBody User user) {
 		String email = user.getEmail();
 		String pass = user.getPassword();
-		
-		User userResult = db.getUser(email);
-		if (userResult != null && userResult.getPassword() != null && userResult.getPassword().equals(pass)) {
-			return userResult;
-		}
-		return null;
+		return userManager.loginUser(email, pass);
 	}
 }
