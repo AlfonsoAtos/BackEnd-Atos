@@ -1,10 +1,16 @@
 package com.backend.webproject.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.backend.webproject.dao.JdbcTemplateProducts;
+import com.backend.webproject.dao.JdbcTemplateShoppingProductDetails;
 import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.entity.Product;
+import com.backend.webproject.entity.ProductAndDetails;
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.entity.ShoppingProductDetails;
+import com.backend.webproject.manager.ProductAndDetailManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartDAO scj;
+    @Autowired
+    JdbcTemplateShoppingProductDetails jdbc;
+    @Autowired
+    JdbcTemplateProducts jtp;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(
@@ -58,16 +68,23 @@ public class ShoppingCartController {
             @PathVariable("userID") int userID) {
         return scj.getAllCompletedCarts(userID);
     }
-/*
+
     @RequestMapping("getProductsInCart/{cartID}")
-    public List<Product> getProductsInCart(
+    public List<ProductAndDetails> getProductsInCart(
         @PathVariable("cartID") int cartID
     ){
-        List<Product> products = new ArrayList<Product>();
-        for(int i=0; i<10;i++){
-            CustomerSideController csc = new CustomerSideController();
-            products.add(csc.getProductByID(i));
+        
+        List<ShoppingProductDetails> spdList = jdbc.getAllDetailsFromCart(cartID);
+        ProductAndDetails p = new ProductAndDetails();
+        List<ProductAndDetails> returnList = Arrays.asList(p);
+        for (int i = 0; i < spdList.size(); i++) {
+            ShoppingProductDetails spd = spdList.get(i);
+            Product product = jtp.getProductById(spd.getProductID());
+            ProductAndDetails pad = new ProductAndDetails();
+            pad.setProduct(product);
+            pad.setSpd(spd);
+            returnList.add(pad);
         }
-        return products;
-    }*/
+        return returnList;
+    }
 }

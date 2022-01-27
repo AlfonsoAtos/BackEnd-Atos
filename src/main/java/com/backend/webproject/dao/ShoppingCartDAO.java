@@ -18,6 +18,7 @@ public class ShoppingCartDAO {
     @Autowired
     private ShoppingCartMapper scm;
 
+
     public List<ShoppingCart> getAllCompletedCarts(int userID) {
         String sql = "select * from shoppingCart where cartStatus='Complete' and userID=:userID";
         Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -36,7 +37,7 @@ public class ShoppingCartDAO {
         paramMap.put("userID", userID);
         List<ShoppingCart> carts = jdbcTemplate.query(sql, paramMap, scm);
         ShoppingCart cart = carts.get(0);
-        
+
         return cart;
     }
 
@@ -51,13 +52,11 @@ public class ShoppingCartDAO {
         }
     }
 
-    public int completeCart(int cartID){
-     
-            String sql = "update shoppingCart set cartStatus='Complete' where shoppingCartID=:cartID";
-            Map<String, Object> paramMap = new HashMap<String, Object>();
-            paramMap.put("cartID", cartID);
-            return jdbcTemplate.update(sql, paramMap);
-        
+    public int completeCart(int cartID) {
+        String sql = "update shoppingCart set cartStatus='Complete' where shoppingCartID=:cartID";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("cartID", cartID);
+        return jdbcTemplate.update(sql, paramMap);
     }
 
 }

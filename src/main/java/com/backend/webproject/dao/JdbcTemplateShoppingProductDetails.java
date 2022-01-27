@@ -1,10 +1,13 @@
 package com.backend.webproject.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.entity.ShoppingProductDetails;
+import com.backend.webproject.mappers.ShoppingProductDetailsMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class JdbcTemplateShoppingProductDetails {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+    @Autowired
+    private ShoppingProductDetailsMapper spdm;
     @Autowired
     private ShoppingCartDAO jdbcTemplateShoppingCart;
     @Autowired
@@ -48,6 +53,15 @@ public class JdbcTemplateShoppingProductDetails {
             int ret = jdbcTemplate.update(sql, params);
             return ret;
         }
+    }
+
+    public List<ShoppingProductDetails> getAllDetailsFromCart(int cartID) {
+        String sql = "select * from shoppingproductdetails where shoppingCartID=:cartID";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("cartID", cartID);
+        List<ShoppingProductDetails> list = jdbcTemplate.query(sql, paramMap, spdm);
+        System.out.println(list.size());
+        return list;
     }
 
 }
