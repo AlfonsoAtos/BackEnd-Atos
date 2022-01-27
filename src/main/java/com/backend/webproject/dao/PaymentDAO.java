@@ -43,7 +43,7 @@ public class PaymentDAO {
 
     public Payment searchPaymentByCartID(int cid)
 	{
-        String sql = "select * from payment whereshoppingCartID=:cid";
+        String sql = "select * from payment where shoppingCartID=:cid";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("cid", cid);
 		Payment pay = jdbcTemplate.query(sql, paramMap, paymentMapper).get(0);

@@ -10,7 +10,6 @@ import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductAndDetails;
 import com.backend.webproject.entity.ShoppingCart;
 import com.backend.webproject.entity.ShoppingProductDetails;
-import com.backend.webproject.manager.ProductAndDetailManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -73,7 +72,6 @@ public class ShoppingCartController {
     public List<ProductAndDetails> getProductsInCart(
         @PathVariable("cartID") int cartID
     ){
-        
         List<ShoppingProductDetails> spdList = jdbc.getAllDetailsFromCart(cartID);
         ProductAndDetails p = new ProductAndDetails();
         List<ProductAndDetails> returnList = Arrays.asList(p);
@@ -85,6 +83,7 @@ public class ShoppingCartController {
             pad.setSpd(spd);
             returnList.add(pad);
         }
+        returnList.remove(0);
         return returnList;
     }
 }
