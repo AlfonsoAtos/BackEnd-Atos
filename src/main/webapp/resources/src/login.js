@@ -2,7 +2,7 @@ function login(email, password) {
   let data = { email, password };
 
   let settings = {
-    url: '/api/user/login/',
+    url: '/user/api/login/',
     method: 'POST',
     dataType: 'JSON',
     contentType: 'application/JSON',

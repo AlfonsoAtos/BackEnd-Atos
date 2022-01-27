@@ -6,7 +6,7 @@ function registerUser(fullname, email, number, password) {
   }
 
   let settings = {
-    url: '/api/user/signup/',
+    url: '/user/api/signup/',
     method: 'POST',
     dataType: 'JSON',
     contentType: 'application/JSON',
