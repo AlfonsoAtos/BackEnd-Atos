@@ -2,12 +2,11 @@ function login(email, password) {
   let data = { email, password };
 
   let settings = {
-    url: '/api/user/login/',
+    url: '/user/api/login/',
     method: 'POST',
     dataType: 'JSON',
-    data: data,
-    async: false,
-    cache: false,
+    contentType: 'application/JSON',
+    data: JSON.stringify(data),
     success: (res) => {
       localStorage.setItem('session', JSON.stringify({
         id: res.id,
