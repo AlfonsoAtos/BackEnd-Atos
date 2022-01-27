@@ -6,18 +6,13 @@ import static org.mockito.BDDMockito.given;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.backend.webproject.entity.User;
-import com.backend.webproject.managers.UserManager;
 import com.backend.webproject.mappers.UserMapper;
 
 @SpringBootTest
