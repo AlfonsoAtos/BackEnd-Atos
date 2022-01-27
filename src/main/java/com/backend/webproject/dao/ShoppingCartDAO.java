@@ -1,17 +1,18 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.dao;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.mappers.ShoppingCartMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartJDBC {
+public class ShoppingCartDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired

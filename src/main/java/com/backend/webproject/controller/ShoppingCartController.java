@@ -1,12 +1,10 @@
 package com.backend.webproject.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.webproject.dao.ShoppingCartDAO;
+import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ShoppingCart;
-import com.backend.webproject.jtemp.JdbcTemplateProducts;
-import com.backend.webproject.jtemp.Product;
-import com.backend.webproject.jtemp.ShoppingCartJDBC;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class ShoppingCartController {
     @Autowired
-    private ShoppingCartJDBC scj;
+    private ShoppingCartDAO scj;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(
@@ -60,7 +58,7 @@ public class ShoppingCartController {
             @PathVariable("userID") int userID) {
         return scj.getAllCompletedCarts(userID);
     }
-
+/*
     @RequestMapping("getProductsInCart/{cartID}")
     public List<Product> getProductsInCart(
         @PathVariable("cartID") int cartID
@@ -71,5 +69,5 @@ public class ShoppingCartController {
             products.add(csc.getProductByID(i));
         }
         return products;
-    }
+    }*/
 }

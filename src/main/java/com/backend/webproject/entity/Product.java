@@ -1,4 +1,4 @@
-package com.backend.webproject.jtemp;
+package com.backend.webproject.entity;
 
 public class Product {
     int pID;
@@ -64,5 +64,5 @@ public class Product {
     public void setPCategoryID(int pCategoryID) {
         this.pCategoryID = pCategoryID;
     }
-    
+
 }

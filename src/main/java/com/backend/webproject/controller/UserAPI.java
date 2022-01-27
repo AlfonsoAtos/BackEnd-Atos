@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.webproject.entity.UserEntity;
-import com.backend.webproject.jtemp.UserDAO;
+import com.backend.webproject.dao.UserDAO;
 
 @RestController
 @RequestMapping("/api/user")
@@ -28,7 +28,7 @@ public class UserAPI {
 		}
 		return null;
 	}
-	
+
 	@PostMapping("/login")
 	public UserEntity loginUser(@RequestBody UserEntity user) {
 		String email = user.getEmail();
