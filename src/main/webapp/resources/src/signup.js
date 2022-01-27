@@ -1,21 +1,23 @@
 $('.error-message').hide()
 
-function registerUser(name, email, number, password) {
+function registerUser(fullname, email, number, password) {
   let data = {
-    name, email, number, password
+    fullname, email, number, password
   }
 
   let settings = {
-    url: '/api/user/signup/',
+    url: '/user/api/signup/',
     method: 'POST',
     dataType: 'JSON',
-    data: data,
-    async: false,
-    cache: false,
+    contentType: 'application/JSON',
+    data: JSON.stringify(data),
     success: (res) => {
       localStorage.setItem('session', JSON.stringify({
-        username: res.username,
-        password: res.password
+        id: res.id,
+        name: res.fullname,
+        email: res.email,
+        password: res.password,
+        role: res.role
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
       window.location.href = '/'

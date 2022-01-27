@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.backend.webproject.entity.UserEntity;
+import com.backend.webproject.entity.User;
 import com.backend.webproject.mappers.UserMapper;
 
 @Component
@@ -20,26 +20,31 @@ public class UserDAO {
 	@Autowired
 	private UserMapper userMapper;
 
-	public UserEntity getUser(String email) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("email", email);
-		List<UserEntity> user = jdbcTemplate.query("select * from RegisteredUser where userEmail = :email", params, userMapper);
-		return user.get(0);
+	public User getUser(String email) {
+		List<User> user = jdbcTemplate.query(
+				"select * from RegisteredUser where userEmail = :email",
+				new HashMap<String, String>() {{
+					put("email", email);
+				}}, 
+				userMapper);
+		if (user.size() > 0) {			
+			return user.get(0);
+		}
+		return null;
 	}
 
 	public int registerUser(String email, String pass, String name, String number) {
 		try {
-			String id = "(SELECT COALESCE(MAX(RegisteredUser) + 1, 1) FROM RegisteredUser)";
-			String insert = "insert into RegisteredUser values(";
-			String values = ", :email, :pass, :name, :address, :number, 1)";
-			String sql = insert + id + values;
-			Map<String, Object> params = new HashMap<>();
-			params.put("email", email);
-			params.put("pass", pass);
-			params.put("name", name);
-			params.put("number", number);
-			params.put("address", "address");
-			return jdbcTemplate.update(sql, params);
+			return jdbcTemplate.update(
+				"insert into RegisteredUser values((SELECT COALESCE(MAX(userID) + 1, 1) FROM RegisteredUser), :email, :pass, :name, :address, :number, 1)",
+				new HashMap<String, String>() {{
+					put("email", email);
+					put("pass", pass);
+					put("name", name);
+					put("number", number);
+					put("address", "address");
+				}}
+			);
 		} catch (DataAccessException err) {
 			err.printStackTrace();
 		}

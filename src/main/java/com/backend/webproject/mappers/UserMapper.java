@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.backend.webproject.entity.UserEntity;
+import com.backend.webproject.entity.User;
 
 @Component
-public class UserMapper implements RowMapper<UserEntity> {
+public class UserMapper implements RowMapper<User> {
 
 	@Override
-	public UserEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
-		UserEntity obj = new UserEntity(
+	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+		User obj = new User(
 			rs.getInt(1), 
 			rs.getString(2), 
 			rs.getString(3), 

@@ -3,10 +3,10 @@ package com.backend.webproject.mappers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.backend.webproject.entity.ProductCategory;
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
+import com.backend.webproject.entity.ProductCategory;
 
 @Component
 public class ProductCategoryMapper implements RowMapper<ProductCategory>
