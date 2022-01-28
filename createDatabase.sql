@@ -70,6 +70,7 @@ create table Payment(
 );
 
 insert into RegisteredUser values(1, 'admin@admin.com', 'pass123', 'admin', 'adress', '1234567890', 10);
+insert into RegisteredUser values(2, 'user@user.com', 'pass123', 'user', 'adress', '1234567890', 1);
 
 insert into productCategory values (1, 'Shooter', 'Shooter video games.');
 insert into productCategory values (2, 'RPG', 'RPG video games.');
@@ -89,6 +90,6 @@ insert into Product values (8, 'PvZ BFN', 'PopCap Games', 44, 'Prepare to Kick S
 INSERT INTO PromotionEvent VALUES (1, 'test2022', 'Discount test2022', TO_DATE('2022-01-21 17:09:58', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-01-29 17:10:03', 'YYYY-MM-DD HH24:MI:SS'), 'Valid', 1);
 INSERT INTO PromotionEvent VALUES (2, 'test2023', 'Discount test2023', TO_DATE('2022-01-21 17:40:24', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-01-29 17:40:28', 'YYYY-MM-DD HH24:MI:SS'), 'Expired', 1);
 
-insert into coupon values( 1, 'Black Friday',  'Open',  20, 1, 1, 'YZX12345');
-insert into coupon values( 2, 'Christmas', 'Nopen', 53, 1, 1, 'HDKA6445J');
+insert into coupon values( 1, 'Black Friday', 'YZX12345',  'Open',  20, 1, 1);
+insert into coupon values( 2, 'Christmas', 'HDKA6445J', 'Nopen', 53, 1, 1);
 
