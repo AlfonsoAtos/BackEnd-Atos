@@ -1,4 +1,4 @@
-package com.backend.webproject.controllers;
+package com.atos.checkpoint.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

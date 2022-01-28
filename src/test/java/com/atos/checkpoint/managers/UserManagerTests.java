@@ -1,4 +1,4 @@
-package com.backend.webproject.managers;
+package com.atos.checkpoint.managers;
 
 import static org.junit.jupiter.api.Assertions.*;
 

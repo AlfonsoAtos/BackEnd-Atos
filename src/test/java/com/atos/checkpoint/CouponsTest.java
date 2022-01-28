@@ -1,3 +1,4 @@
+package com.atos.checkpoint;
 // package com.backend.webproject;
 
 // import static org.junit.jupiter.api.Assertions.assertTrue;
