@@ -13,7 +13,7 @@ public class ShoppingCartMapper implements RowMapper<ShoppingCart> {
 
     @Override
     public ShoppingCart mapRow(ResultSet rs, int rowNum) throws SQLException {
-
+        
         ShoppingCart sc = new ShoppingCart();
         sc.setShoppingCartID(rs.getInt(1));
         sc.setCreationDate(rs.getDate(2));
@@ -21,5 +21,5 @@ public class ShoppingCartMapper implements RowMapper<ShoppingCart> {
         sc.setUserID(rs.getInt(4));
         return sc;
     }
-
+    
 }

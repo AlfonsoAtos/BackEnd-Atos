@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import com.atos.checkpoint.entity.ProductCategory;
 
 @Component
-public class ProductCategoryMapper implements RowMapper<ProductCategory> {
+public class ProductCategoryMapper implements RowMapper<ProductCategory>
+{
 	@Override
 	public ProductCategory mapRow(ResultSet result, int arg1) throws SQLException {
 		ProductCategory obj = new ProductCategory();

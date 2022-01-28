@@ -22,17 +22,19 @@ public class PaymentController {
     
   @RequestMapping("/byID/{id}")
 	public Payment searchByID(
-			@PathVariable("id") int id) {
+		@PathVariable("id") int id
+		) {
 		Payment pay = paymentJDBC.searchPaymentByID(id);
-
+		
 		return pay;
 	}
 
 	@RequestMapping("/byCartID/{id}")
 	public Payment searchByCartID(
-			@PathVariable("id") int id) {
+		@PathVariable("id") int id
+		) {
 		Payment pay = paymentJDBC.searchPaymentByCartID(id);
-
+		
 		return pay;
 	}
 
@@ -42,12 +44,13 @@ public class PaymentController {
 		int shoppingAmount = Integer.parseInt(req.getParameter("shoppingAmount"));
 		String paymentStatus = req.getParameter("paymentStatus");
 		int shoppingCartID = Integer.parseInt(req.getParameter("shoppingCartID"));
-
-		if (paymentJDBC.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID) == 1) {
+		
+		if (paymentJDBC.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
 			// Create shopping cart
 			return 1;
 		}
 		return 0;
 	}
 
+	
 }

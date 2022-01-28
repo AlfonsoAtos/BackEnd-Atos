@@ -21,5 +21,4 @@ public class ShoppingProductDetailsMapper implements RowMapper<ShoppingProductDe
         obj.setShoppingCartID(rs.getInt(6));
 		return obj;
 	}
-
 }

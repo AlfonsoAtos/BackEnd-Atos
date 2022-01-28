@@ -3,6 +3,14 @@ package com.atos.checkpoint.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.atos.checkpoint.dao.ProductDAO;
+import com.atos.checkpoint.dao.ShoppingCartDAO;
+import com.atos.checkpoint.dao.ShoppingProductDetailsDAO;
+import com.atos.checkpoint.entity.Product;
+import com.atos.checkpoint.entity.ProductAndDetails;
+import com.atos.checkpoint.entity.ShoppingCart;
+import com.atos.checkpoint.entity.ShoppingProductDetails;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atos.checkpoint.dao.JdbcTemplateProducts;
-import com.atos.checkpoint.dao.JdbcTemplateShoppingProductDetails;
-import com.atos.checkpoint.dao.ShoppingCartDAO;
-import com.atos.checkpoint.entity.Product;
-import com.atos.checkpoint.entity.ProductAndDetails;
-import com.atos.checkpoint.entity.ShoppingCart;
-import com.atos.checkpoint.entity.ShoppingProductDetails;
-
 @RestController
 @RequestMapping("/shoppingcart")
 @CrossOrigin(origins = "*")
@@ -26,9 +26,9 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartDAO cartDAO;
     @Autowired
-    private JdbcTemplateProducts productsDAO;
+    private ProductDAO productsDAO;
     @Autowired
-    private JdbcTemplateShoppingProductDetails detailsDAO;
+    private ShoppingProductDetailsDAO detailsDAO;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(
