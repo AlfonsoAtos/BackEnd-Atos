@@ -27,9 +27,9 @@ public class ShoppingProductDetailsDAO {
     @Autowired
     private ProductDAO productDAO;
     
-    public int addToCart(int pID) {
+    public int addToCart(int pID, int userID) {
         //Fixed value for testing
-        int userID = 1;
+        // int userID = 1;
 
         ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);   
         if(inSessionCart == null) {

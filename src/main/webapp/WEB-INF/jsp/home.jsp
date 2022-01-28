@@ -22,16 +22,15 @@
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo-g.jpg" />
+                    <a href="/">
+                        <img src="../../resources/img/logo-g.jpg" />
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link active" aria-current="page">Home</a>
-                        </li>
                         <form action="search" class="d-flex">
                             <c:forEach var="pCategory" items="${productCategories}">
                                 <button class="nav-btn" type="submit" name="pcatid" value="${pCategory.pcID}">${pCategory.pcName}</button>
@@ -115,7 +114,6 @@
                                             <div id="short-desc-container">
                                                 <p id="short-desc-txt">${product.getPDescription()}</p>
                                             </div>
-                                </a>
 											<div class="d-flex align-items-center mt-2">
                                                 <span class="fa-stack cart-icon-group me-auto visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                                     <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
@@ -125,6 +123,7 @@
 											</div>
 										</div>
 									</div>
+                                </a>
 							</div>
 
                             <div id="modal${product.getPID()}" class="modal" tabindex="-1">

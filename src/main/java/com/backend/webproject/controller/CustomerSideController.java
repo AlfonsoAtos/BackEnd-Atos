@@ -35,9 +35,9 @@ public class CustomerSideController {
 		return "home";
 	}
 
-	@PostMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID){
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
+	@PostMapping("addtocart/{pID}/{uID}")
+	public String addToCartService(@PathVariable int pID, @PathVariable int uID){
+		int productAdded = shoppingProductDetailsDAO.addToCart(pID, uID);
 		String response = (productAdded == 1) ? "home" : "";
 		return response;
 	}
