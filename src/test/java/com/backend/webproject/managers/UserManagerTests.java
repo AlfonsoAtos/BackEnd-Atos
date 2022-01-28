@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.backend.webproject.dao.UserDAO;
-import com.backend.webproject.entity.User;
+import com.atos.checkpoint.dao.UserDAO;
+import com.atos.checkpoint.entity.User;
+import com.atos.checkpoint.managers.UserManager;
 
 import static org.mockito.BDDMockito.given;
 

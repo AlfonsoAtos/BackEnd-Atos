@@ -18,8 +18,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.backend.webproject.entity.User;
-import com.backend.webproject.managers.UserManager;
+import com.atos.checkpoint.entity.User;
+import com.atos.checkpoint.managers.UserManager;
 import com.google.gson.Gson;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

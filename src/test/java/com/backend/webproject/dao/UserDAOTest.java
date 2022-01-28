@@ -12,8 +12,9 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.backend.webproject.entity.User;
-import com.backend.webproject.mappers.UserMapper;
+import com.atos.checkpoint.dao.UserDAO;
+import com.atos.checkpoint.entity.User;
+import com.atos.checkpoint.mappers.UserMapper;
 
 @SpringBootTest
 class UserDAOTest {
