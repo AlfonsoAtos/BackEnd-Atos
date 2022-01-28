@@ -39,7 +39,7 @@
                         </form> 
                     </ul>
                     <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="#" class="ms-3"><i class="fas fa-user"></i></a>
+                    <span class="ms-3" id="user-icon"></span>
                 </div>
                 <!-- <a href="#">
                     <span class="fa-stack cart-icon-group">
@@ -166,7 +166,7 @@
             </div>
         </div>
 
-<!--         <div id="myModal" class="modal" tabindex="-1">
+       <%-- <div id="myModal" class="modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content border-0">
                     <div class="card border-0">
@@ -182,7 +182,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div> --%>
 
     </div>
     <script>
@@ -198,6 +198,11 @@
                 cartIcon.style.visibility = "hidden";
             });
         });
+    </script>
+
+    <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+    <script type="text/javascript">
+        checkSessionUser();
     </script>
 </body>
 </html>
