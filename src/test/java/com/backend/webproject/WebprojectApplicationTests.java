@@ -16,17 +16,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
-// @AutoConfigureMockMvc
+@AutoConfigureMockMvc
 class WebprojectApplicationTests {
-	// @Autowired
-	// private MockMvc mockMvc;
-	//
-	// @Test
-	// public void shouldReturnDefaultMessage() throws Exception {
-	// this.mockMvc.perform(get("/")).andExpect(status().isOk());
-	// }
-
+	@Autowired
+	private MockMvc mockMvc;
+	
 	@Test
-	void contextLoads() {
+	public void shouldReturnDefaultMessage() throws Exception {
+		this.mockMvc.perform(get("/")).andExpect(status().isOk());
 	}
+
+//	@Test
+//	void contextLoads() {
+//	}
 }

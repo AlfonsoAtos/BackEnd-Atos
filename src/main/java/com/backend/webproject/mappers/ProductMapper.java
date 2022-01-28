@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import com.backend.webproject.entity.Product;
 
 @Component
-public class ProductMapper implements RowMapper<Product> {
+public class ProductMapper implements RowMapper<Product>
+{
 
 	@Override
 	public Product mapRow(ResultSet result, int arg1) throws SQLException {
@@ -21,7 +22,9 @@ public class ProductMapper implements RowMapper<Product> {
 		obj.setPDescription(result.getString(5));
 		obj.setPImagePath(result.getString(6));
 		obj.setPCategoryID(result.getInt(7));
+		obj.setPFormattedPrice(obj.formatPrice(obj.getPPrice()));
 		return obj;
 	}
 
 }
+

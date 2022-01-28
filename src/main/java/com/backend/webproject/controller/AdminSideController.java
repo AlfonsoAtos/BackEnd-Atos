@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminSideController {
 
     @Autowired
-    CouponsDAO couponsDao;
+    CouponsDAO couponsDAO;
 
     @Autowired
-    EventsDAO eventsDao;
+    EventsDAO eventsDAO;
 
     @RequestMapping("/")
     public String showAdminPage() {
@@ -35,7 +35,7 @@ public class AdminSideController {
     @RequestMapping("/coupons")
     public String showCouponsPage(Model model) {
         try {
-            List<Coupons> newCoupons = couponsDao.getNewCoupons();
+            List<Coupons> newCoupons = couponsDAO.getNewCoupons();
             model.addAttribute("newCoupons", newCoupons);
 
             List<Events> newEvents = eventsDao.getNewEvents();
@@ -50,7 +50,7 @@ public class AdminSideController {
     @RequestMapping("insertCoupon")
     public String insertNewCouponForm(HttpServletRequest request) {
         try {
-            int couponId = couponsDao.getAutoCouponId();
+            int couponId = couponsDAO.getAutoCouponId();
             String couponName = request.getParameter("couponName");
             String couponCode = request.getParameter("couponCode");
             String couponType = request.getParameter("couponType");
@@ -58,7 +58,7 @@ public class AdminSideController {
             int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
             int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
 
-            couponsDao.insertNewCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
+            couponsDAO.insertNewCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
                     promotionEventId,
                     productCategoryId);
         } catch (Exception e) {
@@ -71,7 +71,7 @@ public class AdminSideController {
     @RequestMapping("updateCoupon/{couponId}")
     public String updateCoupon(@PathVariable int couponId, Model model) {
         try {
-            Coupons couponData = couponsDao.searchCouponByID(couponId);
+            Coupons couponData = couponsDAO.searchCouponByID(couponId);
             model.addAttribute("couponData", couponData);
 
             List<Events> newEvents = eventsDao.getNewEvents();
@@ -93,7 +93,7 @@ public class AdminSideController {
             int promotionEventId = Integer.parseInt(request.getParameter("promotionEventId"));
             int productCategoryId = Integer.parseInt(request.getParameter("productCategoryId"));
 
-            couponsDao.updateCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
+            couponsDAO.updateCoupon(couponId, couponName, couponCode, couponType, couponDiscount,
                     promotionEventId,
                     productCategoryId);
 
@@ -109,7 +109,7 @@ public class AdminSideController {
     public String deleteCoupon(@PathVariable(name = "couponId") int couponId) {
 
         try {
-            couponsDao.deleteCoupon(couponId);
+        	couponsDAO.deleteCoupon(couponId);
         } catch (Exception e) {
             System.out.println("Can not delete the coupon, reason: '" + e + "'");
         }
@@ -124,7 +124,7 @@ public class AdminSideController {
     public String showEventsPage(Model model) {
 
         try {
-            List<Events> newEvents = eventsDao.getNewEvents();
+            List<Events> newEvents = eventsDAO.getNewEvents();
             model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get the event list, reason: '" + e + "'");
@@ -137,7 +137,7 @@ public class AdminSideController {
     public String insertNewEvents(HttpServletRequest request) {
 
         try {
-            int eventsId = eventsDao.getAutoEventsId();
+            int eventsId = eventsDAO.getAutoEventsId();
             String eventsName = request.getParameter("eventsName");
             String eventsDescription = request.getParameter("eventsDescription");
             String eventsStartDate = request.getParameter("eventsStartDate");
@@ -145,7 +145,7 @@ public class AdminSideController {
             String eventsStatus = request.getParameter("eventsStatus");
             int eventsAdminId = Integer.parseInt(request.getParameter("eventsAdminId"));
 
-            eventsDao.insertNewEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+            eventsDAO.insertNewEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                     eventsStatus, eventsAdminId);
         } catch (Exception e) {
             System.out.println("Can not insert the event, reason: '" + e + "'");
@@ -158,7 +158,7 @@ public class AdminSideController {
     public String updateEventsService(@PathVariable int eventsId, Model model) {
 
         try {
-            Events eventsData = eventsDao.searchEventsById(eventsId);
+            Events eventsData = eventsDAO.searchEventsById(eventsId);
             model.addAttribute("eventsData", eventsData);
         } catch (Exception e) {
             System.out.println("Can not get event data, reason: '" + e + "'");
@@ -178,7 +178,7 @@ public class AdminSideController {
             String eventsStatus = request.getParameter("eventsStatus");
             int eventsAdminId = Integer.parseInt(request.getParameter("eventsAdminId"));
 
-            eventsDao.updateEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+            eventsDAO.updateEvents(eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                     eventsStatus, eventsAdminId);
         } catch (Exception e) {
             System.out.println("Can not update the event data, reason: '" + e + "'");
@@ -191,7 +191,7 @@ public class AdminSideController {
     public String deleteEvents(@PathVariable int eventsId) {
 
         try {
-            eventsDao.deleteEvents(eventsId);
+        	eventsDAO.deleteEvents(eventsId);
         } catch (Exception e) {
             System.out.println("Can not delete the event, reason: '" + e + "'");
         }

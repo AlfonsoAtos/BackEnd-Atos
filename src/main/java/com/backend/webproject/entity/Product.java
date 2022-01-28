@@ -1,5 +1,8 @@
 package com.backend.webproject.entity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Product {
     int pID;
     String pName;
@@ -8,6 +11,13 @@ public class Product {
     String pDescription;
     String pImagePath;
     int pCategoryID;
+    
+    String pFormattedPrice;
+
+    public String formatPrice(float price) {
+        NumberFormat priceFormatter = new DecimalFormat("#0.00");
+        return priceFormatter.format(price);
+    }
 
     public int getPID() {
         return this.pID;
@@ -65,4 +75,12 @@ public class Product {
         this.pCategoryID = pCategoryID;
     }
 
+    public String getPFormattedPrice() {
+        return this.pFormattedPrice;
+    }
+
+    public void setPFormattedPrice(String pFormattedPrice) {
+        this.pFormattedPrice = pFormattedPrice;
+    }
+    
 }

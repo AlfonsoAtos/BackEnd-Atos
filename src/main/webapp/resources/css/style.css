@@ -157,4 +157,20 @@
 .nav-btn:hover {
   color: #ffffff;
 }
+
+#short-desc-container {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#short-desc-txt {
+  font-size: 13px;
+}
+
+.price-in-modal {
+  font-size: 25px;
+}
+
 /*# sourceMappingURL=style.css.map */
