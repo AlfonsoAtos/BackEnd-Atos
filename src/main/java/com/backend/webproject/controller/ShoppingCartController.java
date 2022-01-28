@@ -78,4 +78,11 @@ public class ShoppingCartController {
         }
         return returnList;
     }
+
+    @PostMapping("removeProductFromCart/{shoppingproductdetailsID}")
+    public int removeFromCart(
+        @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
+    ){
+        return detailsDAO.removeFromCart(shoppingproductdetailsID);
+    }
 }
