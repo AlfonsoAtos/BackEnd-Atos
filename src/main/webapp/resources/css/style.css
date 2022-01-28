@@ -173,4 +173,11 @@
   font-size: 25px;
 }
 
+#cartBtn {
+  text-decoration: none;
+}
+
+#cartCounter {
+  color: orange;
+}
 /*# sourceMappingURL=style.css.map */

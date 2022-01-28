@@ -64,6 +64,21 @@ public class ShoppingProductDetailsDAO {
         return list;
     }
 
+    public int getNumProductsInCart() {
+        //Fixed value for testing
+        int userID = 1;
+        ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
+        if(inSessionCart != null) {
+            int inSessionCartId = inSessionCart.getShoppingCartID();
+            String sql = "SELECT SUM(quantity) FROM ShoppingProductDetails WHERE shoppingCartId = :inSessionCartId";
+            int numProductsInCart = jdbcTemplate.queryForObject(sql, new HashMap<String, Object>() {{put("inSessionCartId", inSessionCartId);}}, Integer.class);
+            return numProductsInCart;
+        } else {
+            return 0;
+        }
+
+    }
+  
     public int removeFromCart(int shoppingProductDetailsID) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("spdid", shoppingProductDetailsID);
