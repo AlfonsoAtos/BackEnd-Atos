@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-//historial de carritos no activos
-//traer carrito activo >
-//crear carrito activo >
-//convertir carrito de activo a no activo >
-
 @RestController
 @RequestMapping("/shoppingcart")
 @CrossOrigin(origins = "*")
@@ -31,6 +26,8 @@ public class ShoppingCartController {
     private ShoppingCartDAO cartDAO;
     @Autowired
     private ProductDAO productsDAO;
+    @Autowired
+    private JdbcTemplateShoppingProductDetails detailsDAO;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(
@@ -68,13 +65,7 @@ public class ShoppingCartController {
     @RequestMapping("getProductsInCart/{cartID}")
     public List<ProductAndDetails> getProductsInCart(
             @PathVariable("cartID") int cartID) {
-        List<ShoppingProductDetails> spdList = new ArrayList<ShoppingProductDetails>();
-        ShoppingProductDetails spd = new ShoppingProductDetails();
-        spd.setProductID(1);
-        spd.setQuantity(1);
-        spd.setShoppingCartID(cartID);
-        spd.setShoppingProductDetailsID(1);
-        spdList.add(spd);
+        List<ShoppingProductDetails> spdList = detailsDAO.getAllDetailsFromCart(cartID);
         List<ProductAndDetails> returnList = new ArrayList<ProductAndDetails>();
         for (int i = 0; i < spdList.size(); i++) {
             ShoppingProductDetails aux = spdList.get(i);
