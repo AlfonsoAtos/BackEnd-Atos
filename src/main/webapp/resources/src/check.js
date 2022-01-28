@@ -1,29 +1,37 @@
-/*
-const API_URL = "/shoppingcart/getProductsInCart/";
-
-const xhr = new XMLHttpRequest();
-
-function onRequestHandler(){
-    if(this.readyState ===4&&this.status===200){
-        //0 = UNSET
-        //1 = OPENED
-        //2 = HEADERS_RECEIVED
-        //3 = LOADING
-        //4 = DONE
-        console.log(this.response);
-    }
+function productHTML(name) {
+    return `
+        <div class="product row">
+            <p>${name}</p>
+        </div>
+    `
 }
 
-xhr.addEventListener("load",onRequestHandler);
-xhr.open("GET",`${API_URL}123`);
-xhr.send();
-*/
+function fillProductsList(products) {
+    let list = $('#products-list');
+    products.forEach(p => {
+        list.append(productHTML(p.product.pname));
+    })
+}
 
+function getCart() {
+    let cID = '1'
 
-const url = "/shoppingcart/getProductsInCart/123";
-fetch(url)
-.then(res=>res.json())
-.then(data=>console.log(data))
-.catch(err=>console.log(err))
+    let settings = {
+        url: `/shoppingcart/getProductsInCart/${cID}`,
+        method: 'GET',
+        dataType: 'JSON',
+        contentType: 'application/JSON',
+        success: (res) => {
+            console.log(res);
+            fillProductsList(res);
+        },
+        error: (err) => {
+          console.log('error', err);
+        }
+    };
 
+    $.ajax(settings);
+}
+
+getCart();
 

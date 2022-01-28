@@ -54,47 +54,37 @@
             </div>
         </nav>
 
-		<!-- Checkout elements -->
-		<div id="order-shop">
-			<!-- Change to call checkout -->
-			<c:forEach var="product" items="${productCart}" varStatus="c">
-				<div class="order-element">
-					<img src="" alt="" width="100px" height="60px" style="display: inline-block;">
-					<div style="display: inline-block;">     
-						<!-- name -->
-						<h5>name ${c.pname}</h5>
-						
-						<sub>Remove</sub>
-						<h6 style="position:relative; display: inline-block; left: 95px;"><b>10.73</b></h6>
-					</div>
-				</div>
-			</c:forEach>
-            <div id="last-element">
-                <h6>All prices include VAT if applicable</h6> <b>ORDER TOTAL: 32.19</b>
-            </div>
-		</div>
-		<div id="right-side">
-            <div id="balance">
-                <h3>Wallet founds (balance $0.00)</h3>
-                <h6><b>Purchase more wallet founds </b><button type="button" class="btn btn-success btn-sm">add founds</button></h6>
-            </div>
-            <br>
-            <div id="payment">
-                <div class="payment-method"><i>Visa/MasterCard/American Express/ Credit & Debit Card</i></div>
-                <div class="payment-method"><i>Paypal</i></div>
-                <div class="payment-method"><i>Google pay</i></div>
-                <div id="isAGift">
-                    <input type="checkbox" id="gift" name="gift" value="isAGift">
-                    <label for="gift">Gift this order</label><br>
+        <main class="container">
+            <div class="row">
+                <!-- Checkout elements -->
+                <div id="order-shop" class="col-8">
+                    <!-- Change to call checkout -->
+                    <div id="products-list"></div>
+                    <div id="last-element">
+                        <h6>All prices include VAT if applicable</h6> <b>ORDER TOTAL: 32.19</b>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-success">Pay for your order now</button>
+                <div id="right-side" class="col-4">
+                    <div id="balance">
+                        <h3>Wallet founds (balance $0.00)</h3>
+                        <h6><b>Purchase more wallet founds </b><button type="button" class="btn btn-success btn-sm">add founds</button></h6>
+                    </div>
+                    <br>
+                    <div id="payment">
+                        <div class="payment-method"><i>Visa/MasterCard/American Express/ Credit & Debit Card</i></div>
+                        <div class="payment-method"><i>Paypal</i></div>
+                        <div class="payment-method"><i>Google pay</i></div>
+                        <div id="isAGift">
+                            <input type="checkbox" id="gift" name="gift" value="isAGift">
+                            <label for="gift">Gift this order</label><br>
+                        </div>
+                        <button type="button" class="btn btn-success">Pay for your order now</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        
-        <script src="<c:url value='../../resources/src/check.js' />" type="text/javascript"></script>
+        </main>
 
-        
-        <!-- <script src="../../resources/src/check.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="<c:url value='../../resources/src/check.js' />" type="text/javascript"></script>
     </body>
 </html>
