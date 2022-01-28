@@ -8,18 +8,18 @@ prefix="c"%>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
-        <title>Coupon Details</title>
+        <title>Promotion Event Details</title>
     </head>
     <body>
         <div>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo.jpg" />
+                    <img src="../../resources/img/logo-w.png" />
                 </div>
                 <div class="items-nav">
                     <li>
@@ -93,15 +93,56 @@ prefix="c"%>
                 </div>
             </ul>
             <!-- Main Content -->
-            <div class="content"></div>
+            <div class="content">
+                <div class="admin-dash">
+                    <a href="/admin-side/products" class="admin-item">
+                        <svg
+                            fill="#E53935"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                        <span class="admin-title">Products</span>
+                    </a>
+                    <a href="/admin-side/events" class="admin-item">
+                        <svg
+                            fill="#2962FF"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                            ></path>
+                        </svg>
+                        <span class="admin-title">Events</span>
+                    </a>
+                    <a href="/admin-side/coupons" class="admin-item">
+                        <svg
+                            fill="#FFD600"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z"
+                            ></path>
+                        </svg>
+                        <span class="admin-title">Coupons</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </body>
 </html>
