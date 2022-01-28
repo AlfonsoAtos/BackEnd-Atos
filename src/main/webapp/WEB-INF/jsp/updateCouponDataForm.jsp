@@ -137,14 +137,14 @@ prefix="c"%>
                             <div class="item-form">
                                 <label for="">Promotional Event: </label>
                                 <select name="promotionEventId" id="" required>
-                                    <option value="none" disabled hidden>
-                                        Select an Option
-                                    </option>
-                                    <option value="1" selected>
-                                        Black Friday
-                                    </option>
-                                    <option value="2">Halloween</option>
-                                    <option value="3">Christmas</option>
+                                    <c:forEach
+                                        var="events"
+                                        items="${newEvents}"
+                                    >
+                                        <option value="${events.getEventsId()}">
+                                            ${events.getEventsName()}
+                                        </option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="item-form">

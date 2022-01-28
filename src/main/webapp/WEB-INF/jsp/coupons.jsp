@@ -147,23 +147,16 @@ prefix="c"%>
                                                 id=""
                                                 required
                                             >
-                                                <option
-                                                    value="none"
-                                                    selected
-                                                    disabled
-                                                    hidden
+                                                <c:forEach
+                                                    var="events"
+                                                    items="${newEvents}"
                                                 >
-                                                    Select an Option
-                                                </option>
-                                                <option value="1">
-                                                    Black Friday
-                                                </option>
-                                                <option value="2">
-                                                    Halloween
-                                                </option>
-                                                <option value="3">
-                                                    Christmas
-                                                </option>
+                                                    <option
+                                                        value="${events.getEventsId()}"
+                                                    >
+                                                        ${events.getEventsName()}
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="item-form">
