@@ -19,7 +19,7 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo.jpg" />
+                    <img src="../../resources/img/logo-w.png" />
                 </div>
                 <div class="items-nav">
                     <li>
@@ -137,14 +137,14 @@ prefix="c"%>
                             <div class="item-form">
                                 <label for="">Promotional Event: </label>
                                 <select name="promotionEventId" id="" required>
-                                    <option value="none" disabled hidden>
-                                        Select an Option
-                                    </option>
-                                    <option value="1" selected>
-                                        Black Friday
-                                    </option>
-                                    <option value="2">Halloween</option>
-                                    <option value="3">Christmas</option>
+                                    <c:forEach
+                                        var="events"
+                                        items="${newEvents}"
+                                    >
+                                        <option value="${events.getEventsId()}">
+                                            ${events.getEventsName()}
+                                        </option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="item-form">
@@ -194,12 +194,12 @@ prefix="c"%>
             </div>
         </div>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </body>
 </html>

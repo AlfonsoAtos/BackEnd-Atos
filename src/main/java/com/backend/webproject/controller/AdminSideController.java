@@ -37,6 +37,9 @@ public class AdminSideController {
         try {
             List<Coupons> newCoupons = couponsDAO.getNewCoupons();
             model.addAttribute("newCoupons", newCoupons);
+
+            List<Events> newEvents = eventsDAO.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
@@ -70,6 +73,9 @@ public class AdminSideController {
         try {
             Coupons couponData = couponsDAO.searchCouponByID(couponId);
             model.addAttribute("couponData", couponData);
+
+            List<Events> newEvents = eventsDAO.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get coupon data, reason: '" + e + "'");
         }
@@ -103,7 +109,7 @@ public class AdminSideController {
     public String deleteCoupon(@PathVariable(name = "couponId") int couponId) {
 
         try {
-        	couponsDAO.deleteCoupon(couponId);
+            couponsDAO.deleteCoupon(couponId);
         } catch (Exception e) {
             System.out.println("Can not delete the coupon, reason: '" + e + "'");
         }
@@ -185,7 +191,7 @@ public class AdminSideController {
     public String deleteEvents(@PathVariable int eventsId) {
 
         try {
-        	eventsDAO.deleteEvents(eventsId);
+            eventsDAO.deleteEvents(eventsId);
         } catch (Exception e) {
             System.out.println("Can not delete the event, reason: '" + e + "'");
         }
