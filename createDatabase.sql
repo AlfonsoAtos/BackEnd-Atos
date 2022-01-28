@@ -37,11 +37,12 @@ create table PromotionEvent (
 create table Coupon (
     couponID numeric primary key,
     couponName varchar(15) not null unique,
+    couponCode varchar(15) not null,
     couponType varchar(10) not null constraint chkcouponType check (couponType in ('Open','Nopen')),
     couponDiscount numeric not null,
     promotionEventID numeric references PromotionEvent(promotionEventID) not null,
-    productCategoryID numeric references ProductCategory(productCategoryID),
-    couponCode VARCHAR2(15 BYTE) NOT NULL UNIQUE
+    productCategoryID numeric references ProductCategory(productCategoryID)
+    
 );
 
 create table ShoppingCart(
