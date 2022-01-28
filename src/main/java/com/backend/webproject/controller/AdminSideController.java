@@ -37,6 +37,9 @@ public class AdminSideController {
         try {
             List<Coupons> newCoupons = couponsDao.getNewCoupons();
             model.addAttribute("newCoupons", newCoupons);
+
+            List<Events> newEvents = eventsDao.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
@@ -70,6 +73,9 @@ public class AdminSideController {
         try {
             Coupons couponData = couponsDao.searchCouponByID(couponId);
             model.addAttribute("couponData", couponData);
+
+            List<Events> newEvents = eventsDao.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get coupon data, reason: '" + e + "'");
         }
