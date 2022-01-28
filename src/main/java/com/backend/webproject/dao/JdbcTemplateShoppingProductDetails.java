@@ -16,7 +16,7 @@ public class JdbcTemplateShoppingProductDetails {
     @Autowired
     private ShoppingCartJDBC jdbcTemplateShoppingCart;
     @Autowired
-    private JdbcTemplateProducts jdbcTemplateProducts;
+    private ProductsDAO jdbcTemplateProducts;
 
     public int addToCart(int pID) {
         // Fixed values for testing

@@ -2,9 +2,12 @@ package com.backend.webproject.controller;
 
 import com.backend.webproject.dao.CouponsDAO;
 import com.backend.webproject.dao.EventsDAO;
+import com.backend.webproject.dao.Product;
+import com.backend.webproject.dao.ProductsDAO;
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Events;
 
+import org.aspectj.bridge.context.PinpointingMessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,9 @@ public class AdminSideController {
 
     @Autowired
     EventsDAO eventsDao;
+
+    @Autowired
+    ProductsDAO productsDAO;
 
     @RequestMapping("/")
     public String showAdminPage() {
@@ -190,6 +196,84 @@ public class AdminSideController {
             System.out.println("Can not delete the event, reason: '" + e + "'");
         }
         return "redirect:/admin-side/events";
+    }
+
+    /*----------------------------------------------------------------------*/
+
+    // Get all the products
+    @RequestMapping("/products")
+    public String showProductsPage(Model model) {
+        try {
+            List<Product> allProducts = productsDAO.getAllProducts();
+            model.addAttribute("allProducts", allProducts);
+        } catch (Exception e) {
+            System.out.println("Can not get the product list, reason: '" + e + "'");
+        }
+        return "productsAdmin";
+    }
+
+    // Insert a new product
+    @RequestMapping("insertProduct")
+    public String insertNewProductForm(HttpServletRequest request) {
+        try {
+            int pID = productsDAO.getAutoProductId();
+            String pName = request.getParameter("pName");
+            String pCompany = request.getParameter("pCompany");
+            int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+            String pDescription = request.getParameter("pDescription");
+            String pImagePath = request.getParameter("pImagePath");
+            int pCategoryId = Integer.parseInt(request.getParameter("pCategoryId"));
+
+            productsDAO.insertNewProduct(pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryId);
+        } catch (Exception e) {
+            System.out.println("Can not insert the product, reason: '" + e + "'");
+        }
+        return "redirect:/admin-side/products";
+    }
+
+    // Update a product
+    @RequestMapping("updateProduct/{pID}")
+    public String updateProduct(@PathVariable(name = "pID") int pID, Model model) {
+        try {
+            Product productData = productsDAO.getProductById(pID);
+            model.addAttribute("productData", productData);
+        } catch (Exception e) {
+            System.out.println("Can not get product data, reason: '" + e + "'");
+        }
+        return "updateProductDataForm";
+    }
+
+    @RequestMapping("updateProductData/{pID}")
+    public String updateProduct(HttpServletRequest request, @PathVariable(name = "pID") int pID) {
+
+        try {
+            String pName = request.getParameter("pName");
+            String pCompany = request.getParameter("pCompany");
+            int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+            String pDescription = request.getParameter("pDescription");
+            String pImagePath = request.getParameter("pImagePath");
+            int pCategoryID = Integer.parseInt(request.getParameter("pCategoryID"));
+
+            productsDAO.updateProduct(pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID);
+
+        } catch (Exception e) {
+            System.out.println("Can not update the product data, reason: '" + e + "'");
+        }
+
+        return "redirect:/admin-side/products";
+    }
+
+    // Delete a product
+    @RequestMapping("/deleteProduct/{pID}")
+    public String deleteProduct(@PathVariable(name = "pID") int pID) {
+
+        try {
+            productsDAO.deleteProduct(pID);
+        } catch (Exception e) {
+            System.out.println("Can not delete the product, reason: '" + e + "'");
+        }
+
+        return "redirect:/admin-side/products";
     }
 
 }

@@ -7,7 +7,7 @@ public class Product {
     float pPrice;
     String pDescription;
     String pImagePath;
-    int pCategoryID;
+    int pCategoryID; 
 
     public int getPID() {
         return this.pID;
