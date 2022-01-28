@@ -12,7 +12,7 @@ prefix="c"%>
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
-        <title>Promotion Event Details</title>
+        <title>Administrator Dashboard</title>
     </head>
     <body>
         <div>
