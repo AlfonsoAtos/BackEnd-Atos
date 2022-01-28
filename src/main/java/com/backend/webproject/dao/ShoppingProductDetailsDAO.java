@@ -23,18 +23,18 @@ public class ShoppingProductDetailsDAO {
 
     @Autowired
     private ShoppingProductDetailsMapper spdm;
-    
+
     @Autowired
     private ProductDAO productDAO;
-    
+
     public int addToCart(int pID) {
-        //Fixed value for testing
+        // Fixed value for testing
         int userID = 1;
 
-        ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);   
-        if(inSessionCart == null) {
+        ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
+        if (inSessionCart == null) {
             shoppingCartDAO.createNewCart(userID);
-            inSessionCart = shoppingCartDAO.getInSessionCart(userID);   
+            inSessionCart = shoppingCartDAO.getInSessionCart(userID);
         }
         int inSessionCartId = inSessionCart.getShoppingCartID();
 
@@ -44,15 +44,17 @@ public class ShoppingProductDetailsDAO {
         params.put("cost", product.getPPrice());
         params.put("pID", product.getPID());
         params.put("scID", inSessionCartId);
-        int productExists = jdbcTemplate.queryForObject("SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID", params, Integer.class);
-        if(productExists == 1) {
+        int productExists = jdbcTemplate.queryForObject(
+                "SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID",
+                params, Integer.class);
+        if (productExists == 1) {
             String sql = "UPDATE ShoppingProductDetails SET quantity = quantity + :quantity WHERE shoppingCartId = :scID AND productID = :pID";
             return jdbcTemplate.update(sql, params);
         } else {
             String sql = "INSERT INTO ShoppingProductDetails VALUES ((SELECT COALESCE(MAX(shoppingProductDetailsID) + 1, 1) FROM ShoppingProductDetails),:quantity,:cost,null,:pID,:scID)";
             return jdbcTemplate.update(sql, params);
         }
-	}
+    }
 
     public List<ShoppingProductDetails> getAllDetailsFromCart(int cartID) {
         String sql = "select * from shoppingproductdetails where shoppingCartID=:cartID";
@@ -74,6 +76,28 @@ public class ShoppingProductDetailsDAO {
         } else {
             return 0;
         }
+
+    }
+  
+    public int removeFromCart(int shoppingProductDetailsID) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("spdid", shoppingProductDetailsID);
+        int quantityOfItems = jdbcTemplate.queryForObject(
+                "SELECT quantity FROM shoppingproductdetails WHERE SHOPPINGPRODUCTDETAILSID=:spdid", params,
+                Integer.class);
+        String query = "";
+        if (quantityOfItems > 1) {
+            query = "UPDATE shoppingproductdetails SET quantity=quantity-1 WHERE SHOPPINGPRODUCTDETAILSID=:spdid";
+        } else {
+            query = "DELETE from shoppingproductdetails WHERE SHOPPINGPRODUCTDETAILSID=:spdid";
+        }
+        int aux = 0;
+        try {
+            aux = jdbcTemplate.update(query, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return aux;
     }
 
 }
