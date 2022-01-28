@@ -28,6 +28,8 @@ public class CustomerSideController {
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
+		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
+		model.addAttribute("numProductsInCart", numProductsInCart);
 		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
 		List<Product> newProducts = productDAO.getNewProducts();
@@ -44,6 +46,8 @@ public class CustomerSideController {
 
     @RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
+		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
+		model.addAttribute("numProductsInCart", numProductsInCart);
 		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
 		String pName = request.getParameter("pname");

@@ -39,8 +39,11 @@
                             </c:forEach>
                         </form> 
                     </ul>
-                    <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="#" class="ms-3"><i class="fas fa-user"></i></a>
+                    <a id="cartBtn" href="#" class="ms-4">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCounter">${numProductsInCart}</span>
+                    </a>
+                    <a href="#" class="ms-4"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>

@@ -37,7 +37,10 @@
                             </c:forEach>
                         </form> 
                     </ul>
-                    <a href="#" class="ms-4"><i class="fas fa-shopping-cart"></i></a>
+                    <a id="cartBtn" href="#" class="ms-4">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCounter">${numProductsInCart}</span>
+                    </a>
                     <span class="ms-3" id="user-icon"></span>
                 </div>
                 <!-- <a href="#">
