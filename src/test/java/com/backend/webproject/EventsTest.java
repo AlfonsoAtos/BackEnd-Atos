@@ -15,6 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 public class EventsTest {
 
     @MockBean
+    AdminSideController adminSideController = mock(AdminSideController.class);
+
+    @MockBean
     EventsDAO eventsDAO = mock(EventsDAO.class);
 
     @Test
