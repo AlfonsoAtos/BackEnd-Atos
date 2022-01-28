@@ -3,9 +3,9 @@ package com.backend.webproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backend.webproject.dao.JdbcTemplateProducts;
-import com.backend.webproject.dao.JdbcTemplateShoppingProductDetails;
+import com.backend.webproject.dao.ProductDAO;
 import com.backend.webproject.dao.ShoppingCartDAO;
+import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductAndDetails;
 import com.backend.webproject.entity.ShoppingCart;
@@ -26,9 +26,9 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartDAO cartDAO;
     @Autowired
-    private JdbcTemplateProducts productsDAO;
+    private ProductDAO productsDAO;
     @Autowired
-    private JdbcTemplateShoppingProductDetails detailsDAO;
+    private ShoppingProductDetailsDAO detailsDAO;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(

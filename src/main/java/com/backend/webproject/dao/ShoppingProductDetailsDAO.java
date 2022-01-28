@@ -14,46 +14,45 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateShoppingProductDetails {
+public class ShoppingProductDetailsDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private ShoppingCartDAO shoppingCartDAO;
+
     @Autowired
     private ShoppingProductDetailsMapper spdm;
+    
     @Autowired
-    private ShoppingCartDAO jdbcTemplateShoppingCart;
-    @Autowired
-    private JdbcTemplateProducts jdbcTemplateProducts;
-
+    private ProductDAO productDAO;
+    
     public int addToCart(int pID) {
-        // Fixed values for testing
-        int inSessionCartId = 1;
+        //Fixed value for testing
         int userID = 1;
 
-        if (inSessionCartId == 0) {
-            int ret = jdbcTemplateShoppingCart.createNewCart(userID);
-            ShoppingCart createdShoppingCart = jdbcTemplateShoppingCart.getInSessionCart(userID);
-            inSessionCartId = createdShoppingCart.getShoppingCartID();
+        ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);   
+        if(inSessionCart == null) {
+            shoppingCartDAO.createNewCart(userID);
+            inSessionCart = shoppingCartDAO.getInSessionCart(userID);   
         }
+        int inSessionCartId = inSessionCart.getShoppingCartID();
 
-        Product product = jdbcTemplateProducts.getProductById(pID);
+        Product product = productDAO.getProductById(pID);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("quantity", 1);
         params.put("cost", product.getPPrice());
         params.put("pID", product.getPID());
         params.put("scID", inSessionCartId);
-        int productExists = jdbcTemplate.queryForObject(
-                "SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID",
-                params, Integer.class);
-        if (productExists == 1) {
+        int productExists = jdbcTemplate.queryForObject("SELECT COUNT(productID) FROM ShoppingProductDetails WHERE shoppingCartId = :scID AND productID = :pID", params, Integer.class);
+        if(productExists == 1) {
             String sql = "UPDATE ShoppingProductDetails SET quantity = quantity + :quantity WHERE shoppingCartId = :scID AND productID = :pID";
-            int ret = jdbcTemplate.update(sql, params);
-            return ret;
+            return jdbcTemplate.update(sql, params);
         } else {
             String sql = "INSERT INTO ShoppingProductDetails VALUES ((SELECT COALESCE(MAX(shoppingProductDetailsID) + 1, 1) FROM ShoppingProductDetails),:quantity,:cost,null,:pID,:scID)";
-            int ret = jdbcTemplate.update(sql, params);
-            return ret;
+            return jdbcTemplate.update(sql, params);
         }
-    }
+	}
 
     public List<ShoppingProductDetails> getAllDetailsFromCart(int cartID) {
         String sql = "select * from shoppingproductdetails where shoppingCartID=:cartID";

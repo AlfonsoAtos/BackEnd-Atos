@@ -13,17 +13,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcTemplateProducts {
+public class ProductDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
     private ProductMapper ProductMapper;
-
+    
     public List<Product> getNewProducts() {
-        List<Product> newProducts = jdbcTemplate.query(
-                "SELECT * FROM (SELECT * FROM Product ORDER BY productID DESC) WHERE ROWNUM <= 8", ProductMapper);
+        List<Product> newProducts = jdbcTemplate.query("SELECT * FROM (SELECT * FROM Product ORDER BY productID DESC) WHERE ROWNUM <= 8", ProductMapper);
         return newProducts;
-    }
+	}
 
     public List<Product> searchProducts(String pName, String pCategoryID) {
         StringJoiner where = new StringJoiner(" AND ", " WHERE ", "").setEmptyValue("");
@@ -43,12 +42,7 @@ public class JdbcTemplateProducts {
     }
 
     public Product getProductById(int pID) {
-        Product product = jdbcTemplate.queryForObject("SELECT * FROM Product WHERE productID = :pID",
-                new HashMap<String, Object>() {
-                    {
-                        put("pID", pID);
-                    }
-                }, ProductMapper);
+        Product product = jdbcTemplate.queryForObject("SELECT * FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}}, ProductMapper);
         return product;
     }
 
