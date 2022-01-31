@@ -44,18 +44,6 @@
                     </a>
                     <a href="#" class="ms-4"><i class="fas fa-user"></i></a>
                 </div>
-                <!-- <a href="#">
-                    <span class="fa-stack cart-icon-group">
-                        <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fas fa-shopping-cart fa-sm fa-stack-1x icon"></i>
-                    </span>
-                </a>
-                <a href="#">
-                    <span class="fa-stack user-icon-group">
-                        <i id="user-icon-bg" class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fas fa-user fa-stack-1x icon"></i>
-                    </span>
-                </a> -->
             </div>
         </nav>
         <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -65,9 +53,6 @@
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner carousel-main pb-2">
-                <!-- <div class="carousel-item active">
-                    <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
-                </div> -->
                 <c:forEach var="product" items="${newProducts}" varStatus="p">
                     <c:if test="${(p.index % 1 == 0)}"><div class="carousel-item ${(p.index == 0) ? 'active' : ''}"></c:if>
                         <img src="../../resources/img/${product.getPImagePath()}" class="d-block w-100" alt="">
@@ -168,25 +153,6 @@
                 </div>
             </div>
         </div>
-
-<!--         <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="card border-0">
-                        <img src="./img/splatoon.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Product Name</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="d-flex justify-content-between">
-                                <p class="card-text">$00.00</p>
-                                <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     </div>
     <script>
         document.querySelectorAll('.card').forEach(item => {

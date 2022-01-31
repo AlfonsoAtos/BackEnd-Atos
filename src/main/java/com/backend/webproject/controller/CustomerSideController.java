@@ -70,10 +70,4 @@ public class CustomerSideController {
 		return "products";
 	}
 
-	/* @RequestMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		return "redirect:/";
-	} */
-
 }
