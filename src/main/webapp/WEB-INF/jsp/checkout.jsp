@@ -59,9 +59,9 @@
                 <!-- Checkout elements -->
                 <div id="order-shop" class="col-8">
                     <!-- Change to call checkout -->
-                    <div id="products-list"></div>
+                    <div id="products-list">
+                    </div>
                     <div id="last-element">
-                        <h6>All prices include VAT if applicable</h6> <b>ORDER TOTAL: 32.19</b>
                     </div>
                 </div>
                 <div id="right-side" class="col-4">
@@ -71,6 +71,36 @@
                     </div>
                     <br>
                     <div id="payment">
+                        
+                        <form action="POST" id="payment_form">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="card">Card Number</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="card" form="payment_form" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="cvv">CVV</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="cvv" form="payment_form" placeholder="XXX">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="vThru">Valid Thru</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="vDate" form="payment_form" placeholder="XX/XX">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        
                         <div class="payment-method"><i>Visa/MasterCard/American Express/ Credit & Debit Card</i></div>
                         <div class="payment-method"><i>Paypal</i></div>
                         <div class="payment-method"><i>Google pay</i></div>
@@ -83,7 +113,6 @@
                 </div>
             </div>
         </main>
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="<c:url value='../../resources/src/check.js' />" type="text/javascript"></script>
     </body>

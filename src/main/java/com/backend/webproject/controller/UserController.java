@@ -58,7 +58,8 @@ public class UserController {
 	}
 
 	@RequestMapping("/check/{cid}")
-	public String userCart(@PathVariable int cid) {
+	public String userCart(@PathVariable int cid, Model model) {
+		model.addAttribute("cid", cid);
 		return "checkout";
 	}
 }
