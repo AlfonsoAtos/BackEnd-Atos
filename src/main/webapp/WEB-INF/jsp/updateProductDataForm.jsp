@@ -154,7 +154,7 @@ prefix="c"%>
                             </div>
                             <div class="item-form">
                                 <label>Product Category: </label>
-                                <select name="productCategoryId" required>
+                                <select name="pCategoryID" required>
                                     <option value="none" disabled hidden>
                                         Select an Option
                                     </option>

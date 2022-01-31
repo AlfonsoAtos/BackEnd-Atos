@@ -258,7 +258,7 @@ prefix="c"%>
                                                 ></path>
                                             </svg>
                                         </a>
-                                        <a href="#deleteItem">
+                                        <a href="deleteProduct/${product.getPID()}">
                                             <svg
                                                 fill="red"
                                                 viewBox="0 0 20 20"
