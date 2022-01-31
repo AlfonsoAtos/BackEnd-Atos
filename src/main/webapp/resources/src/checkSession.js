@@ -16,15 +16,19 @@ function checkSessionUser() {
 }
 
 function checkSessionAdmin() {
-  if (checkSession()) {
+  if (checkSession() && session.role == 10) {
     // Show user name
+    $('#admin-name').text(session.name);
   } else {
-    // Redirect??/
+    window.location.href = '/user/login'
   }
 }
 
 function logout() {
+  let path = '/';
+  if (session.role == 10) {
+    path = '/user/login/';
+  }
   localStorage.removeItem('session');
-  //reload page
-  window.location.href = '/';
+  window.location.href = path;
 }
