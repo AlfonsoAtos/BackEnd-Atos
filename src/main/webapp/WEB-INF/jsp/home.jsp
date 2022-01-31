@@ -123,6 +123,7 @@
                                             <div id="short-desc-container">
                                                 <p id="short-desc-txt">${product.getPDescription()}</p>
                                             </div>
+                                </a>
 											<div class="d-flex align-items-center mt-2">
                                                 <span class="fa-stack cart-icon-group me-auto visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                                     <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
@@ -132,8 +133,7 @@
 											</div>
 										</div>
 									</div>
-                                </a>
-                        </div>  
+                            </div>  
 
                             <div id="modal${product.getPID()}" class="modal" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
