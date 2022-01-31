@@ -61,7 +61,7 @@
             </div>
             <div class="bg-text px-5 py-auto">
                 <form action="search">
-                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h5 id="banner-title" class="display-5 fw-bold">Search for your next adventure!</h5>
                     <input name="pname" class="form-control mt-3" type="search" placeholder="Search Products" aria-label="Search">
                     <button class="btn btn-success mt-3" type="submit">Search</button>
                 </form>

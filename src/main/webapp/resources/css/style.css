@@ -180,4 +180,9 @@
 #cartCounter {
   color: orange;
 }
+
+#banner-title {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 /*# sourceMappingURL=style.css.map */
