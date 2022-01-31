@@ -25,21 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class EventsTestTest {
-    private WebDriver driver;
-    private Map<String, Object> vars;
-    JavascriptExecutor js;
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        js = (JavascriptExecutor) driver;
-        vars = new HashMap<String, Object>();
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+    public static RemoteWebDriver driver;
 
     @Test
     public void eventsAddTest() {
