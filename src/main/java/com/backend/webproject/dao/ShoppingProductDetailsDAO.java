@@ -93,7 +93,7 @@ public class ShoppingProductDetailsDAO {
         }
         int aux = 0;
         try {
-            aux = jdbcTemplate.update(query, params);
+            aux = jdbcTemplate.update(query, params); 
         } catch (Exception e) {
             e.printStackTrace();
         }
