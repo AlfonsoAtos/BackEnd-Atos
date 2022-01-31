@@ -85,4 +85,13 @@ public class ShoppingProductDetailsDAO {
         return aux;
     }
 
+    public int finalizeShoppingProductDetail(ShoppingProductDetails spd){
+        String query = "UPDATE shoppingproductdetails SET shoppingcost=:shoppingcost, costafterapplyingcoupon=:costafterapplyingcoupon WHERE shoppingProductDetailsID=:id";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("shoppingcost", spd.getShoppingCost());
+        params.put("costafterapplyingcoupon", spd.getCostAfterApplyingCoupon());
+        params.put("id", spd.getShoppingProductDetailsID());
+        return jdbcTemplate.update(query, params);
+    }
+
 }
