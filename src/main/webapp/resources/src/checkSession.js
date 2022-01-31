@@ -9,9 +9,9 @@ function checkSession() {
 
 function checkSessionUser() {
   if (checkSession()) {
-    $('#user-icon').html('<a href="#"><i class="fas fa-user"></i></a>');
+    $('#user-icons').removeClass('d-none');
   } else {
-    $('#user-icon').html('<a href="/user/login/"><button type="button" class="btn btn-primary">Log in</button></a>');
+    $('#login-button').removeClass('d-none');
   }
 }
 
@@ -23,4 +23,8 @@ function checkSessionAdmin() {
   }
 }
 
-
+function logout() {
+  localStorage.removeItem('session');
+  //reload page
+  window.location.href = '/';
+}
