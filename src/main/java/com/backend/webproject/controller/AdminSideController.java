@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping("/admin-side")
@@ -44,6 +45,13 @@ public class AdminSideController {
             System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
         return "coupons";
+    }
+
+    @RequestMapping("/validateCoupon/{couponCode}")
+    public Coupons searchByCartID(
+            @PathVariable("couponCode") String couponCode) {
+        Coupons coupon = couponsDAO.validateCoupons(couponCode);
+        return coupon;
     }
 
     // Insert new Coupon
