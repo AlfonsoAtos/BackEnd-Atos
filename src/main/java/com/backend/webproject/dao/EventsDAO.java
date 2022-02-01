@@ -35,28 +35,28 @@ public class EventsDAO {
     }
 
     /* POST */
-    public void insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+    public int insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
         String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?)";
-        temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+        return temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId });
     }
 
     /* PUT */
-    public void updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+    public int updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
         String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "UPDATE promotionevent SET promotioneventname = ?, promotioneventdescription = ?, promotioneventstartdate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventenddate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventstatus = ?, adminid = ? WHERE promotioneventid = ?";
-        temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+        return temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId, eventsId });
     }
 
     /* DELETE */
-    public void deleteEvents(int eventsId) {
+    public int deleteEvents(int eventsId) {
 
         String sql = "DELETE FROM promotionevent WHERE promotioneventid = ?";
-        temp.update(sql, new Object[] { eventsId });
+        return temp.update(sql, new Object[] { eventsId });
     }
 
     /* AUTO INCREMENT for ID */
