@@ -85,30 +85,16 @@
                                 <tr>
                                     <td>
                                         <label for="cvv">CVV</label>
+                                        <input type="text" name="cvv" form="payment_form" placeholder="XXX" style="width: 50px;">
                                     </td>
-                                    <td>
-                                        <input type="text" name="cvv" form="payment_form" placeholder="XXX">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                    <td style="float: right;">
                                         <label for="vThru">Valid Thru</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="vDate" form="payment_form" placeholder="XX/XX">
+                                        <input type="text" name="vDate" form="payment_form" placeholder="XX/XX" style="width: 80px;">
                                     </td>
                                 </tr>
                             </table>
                         </form>
-                        
-                        <div class="payment-method"><i>Visa/MasterCard/American Express/ Credit & Debit Card</i></div>
-                        <div class="payment-method"><i>Paypal</i></div>
-                        <div class="payment-method"><i>Google pay</i></div>
-                        <div id="isAGift">
-                            <input type="checkbox" id="gift" name="gift" value="isAGift">
-                            <label for="gift">Gift this order</label><br>
-                        </div>
-                        <button type="button" class="btn btn-success">Pay for your order now</button>
+                    <button type="button" class="btn btn-success">Pay for your order now</button>
                     </div>
                 </div>
             </div>

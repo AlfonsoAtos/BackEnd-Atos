@@ -13,8 +13,7 @@ function productN(id, img, name,price,amount,sum) {
                 </svg>
             </span>
 ${amount} x ${price} = ${sum}</p>
-<button style="width:150px;" type="button" class="btn btn-danger">delete</button>
-<button type="button" class="btn btn-secondary">edit</button>
+<button type="button" class="btn btn-secondary">Apply coupon</button>
             </div>
             `
 }
@@ -34,7 +33,6 @@ function product0(id, img, name,price,amount,sum) {
                 </svg>
             </span>
 ${amount} x ${price} = ${sum}</p>
-<button style="width:150px;" type="button" class="btn btn-danger">delete</button>
 <button type="button" class="btn btn-secondary">edit</button>
             </div>
             `
@@ -96,6 +94,29 @@ function getCart() {
 
     $.ajax(settings);
 }
+
+function ApplyCoupon() {
+    let pathArray = window.location.pathname.split('/')
+    let cID = pathArray[3]
+    // let cID = pathArray[pathArray.length-1]
+    
+    let settings = {
+        url: `/shoppingcart/getProductsInCart/${cID}`,
+        method: 'POST',
+        dataType: 'JSON',
+        contentType: 'application/JSON',
+        success: (res) => {
+            console.log(res);
+            fillProductsList(res);
+        },
+        error: (err) => {
+          console.log('error', err);
+        }
+    };
+
+    $.ajax(settings);
+}
+
 
 getCart();
 
