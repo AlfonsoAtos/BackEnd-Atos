@@ -55,6 +55,7 @@
         </nav>
 
         <main class="container">
+            <br>
             <div class="row">
                 <!-- Checkout elements -->
                 <div id="order-shop" class="col-8">
@@ -65,10 +66,6 @@
                     </div>
                 </div>
                 <div id="right-side" class="col-4">
-                    <div id="balance">
-                        <h3>Wallet founds (balance $0.00)</h3>
-                        <h6><b>Purchase more wallet founds </b><button type="button" class="btn btn-success btn-sm">add founds</button></h6>
-                    </div>
                     <br>
                     <div id="payment">
                         <form action="POST" id="payment_form">
