@@ -58,6 +58,11 @@
                 <input name="pname" class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <c:if test="${fn:length(searchResult) == 0}">
+                <div id="noGamesFoundMsg" class="d-flex align-items-center justify-content-center">
+                    <h5 class="display-5">No games found :(</h5>
+                </div>
+            </c:if>
 			<c:forEach var="product" items="${searchResult}" varStatus="p">
 				<c:if test="${(p.index % 4 == 0)}"><div class="row d-flex align-items-center mt-4 mb-4"></c:if>
 					<div class="col-3 d-flex justify-content-center">
@@ -100,7 +105,6 @@
                             </div>
                         </div>
                     </div>
-
 				<c:if test="${((p.index + 1) % 4 == 0)}"></div></c:if>
 			</c:forEach>
         </div>
