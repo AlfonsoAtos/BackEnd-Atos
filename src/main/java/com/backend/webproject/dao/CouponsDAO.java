@@ -36,34 +36,33 @@ public class CouponsDAO {
     }
 
     // Insert Query for Coupon table
-    public void insertNewCoupon(int couponId, String couponName, String couponCode, String couponType,
+    public int insertNewCoupon(int couponId, String couponName, String couponCode, String couponType,
             int couponDiscount, int promotionEventId, int productCategoryId) {
-        jdbcTemplate.update("INSERT INTO coupon VALUES(?,?,?,?,?,?,?)", new Object[] { couponId, couponName, couponCode,
-                couponType, couponDiscount, promotionEventId, productCategoryId });
+        return jdbcTemplate.update("INSERT INTO coupon VALUES(?,?,?,?,?,?,?)",
+                new Object[] { couponId, couponName, couponCode,
+                        couponType, couponDiscount, promotionEventId, productCategoryId });
     }
 
     public Coupons searchCouponByID(int couponId) {
-        String sql = "SELECT * FROM coupon WHERE couponId = :couponId";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("couponId", couponId);
-        Coupons coupons = namedParameterJdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
+        String sql = "SELECT * FROM coupon WHERE couponId = ?";
+        Coupons coupons = (Coupons) jdbcTemplate.query(sql, new Object[] { couponId }, couponsMapper).get(0);
         return coupons;
     }
 
     // Edit Query for Coupon table
-    public void updateCoupon(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
+    public int updateCoupon(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
             int promotionEventId, int productCategoryId) {
-        jdbcTemplate.update(
+        return jdbcTemplate.update(
                 "UPDATE coupon SET couponName = ?, couponCode = ?, couponType = ?, couponDiscount = ?, promotionEventId = ?, productCategoryId = ? where couponId=?",
                 new Object[] { couponName, couponCode, couponType, couponDiscount, promotionEventId, productCategoryId,
                         couponId });
     }
 
     // Delete Query for Coupon table
-    public void deleteCoupon(int couponId) {
+    public int deleteCoupon(int couponId) {
 
         String sql = "DELETE FROM coupon WHERE couponId = ?";
-        jdbcTemplate.update(sql, couponId);
+        return jdbcTemplate.update(sql, couponId);
     }
 
     public int getAutoCouponId() {
