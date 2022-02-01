@@ -16,17 +16,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class CouponsDAO {
 
-	
-	private final JdbcTemplate jdbcTemplate;
-    
+    private final JdbcTemplate jdbcTemplate;
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public CouponsDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
-		this.jdbcTemplate = jdbcTemplate;
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-		}
-	
-	
+    public CouponsDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
     @Autowired
     private CouponsMapper couponsMapper;
 
@@ -55,7 +53,7 @@ public class CouponsDAO {
     // Edit Query for Coupon table
     public void updateCoupon(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
             int promotionEventId, int productCategoryId) {
-    	jdbcTemplate.update(
+        jdbcTemplate.update(
                 "UPDATE coupon SET couponName = ?, couponCode = ?, couponType = ?, couponDiscount = ?, promotionEventId = ?, productCategoryId = ? where couponId=?",
                 new Object[] { couponName, couponCode, couponType, couponDiscount, promotionEventId, productCategoryId,
                         couponId });
@@ -73,11 +71,11 @@ public class CouponsDAO {
         return newCouponId;
     }
 
-    public Coupons validateCoupons(String couponCode){
+    public Coupons validateCoupons(String couponCode) {
         String sql = "SELECT * FROM coupon WHERE couponCode = :couponCode";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("couponCode", couponCode);
-        Coupons coupon = jdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
+        Coupons coupon = namedParameterJdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
         return coupon;
     }
 
