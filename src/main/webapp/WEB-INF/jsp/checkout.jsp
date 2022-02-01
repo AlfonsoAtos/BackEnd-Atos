@@ -71,7 +71,6 @@
                     </div>
                     <br>
                     <div id="payment">
-                        
                         <form action="POST" id="payment_form">
                             <table>
                                 <tr>
@@ -95,10 +94,16 @@
                             </table>
                         </form>
                     <button type="button" class="btn btn-success">Pay for your order now</button>
+                    <form>
+                        <label for="vThru">Insert coupon code</label>
+                        <input type="text" name="vDate" form="payment_form" placeholder="________" style="width: 80px;">
+                        <button type="button" class="btn btn-success">Apply coupon</button>
+                    </form>
                     </div>
                 </div>
             </div>
         </main>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="<c:url value='../../resources/src/check.js' />" type="text/javascript"></script>
     </body>
