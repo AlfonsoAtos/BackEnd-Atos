@@ -73,4 +73,12 @@ public class CouponsDAO {
         return newCouponId;
     }
 
+    public Coupons validateCoupons(String couponCode){
+        String sql = "SELECT * FROM coupon WHERE couponCode = :couponCode";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("couponCode", couponCode);
+        Coupons coupon = jdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
+        return coupon;
+    }
+
 }

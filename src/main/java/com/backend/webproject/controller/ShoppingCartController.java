@@ -3,9 +3,11 @@ package com.backend.webproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backend.webproject.dao.JdbcTemplateProducts;
-import com.backend.webproject.dao.JdbcTemplateShoppingProductDetails;
+import javax.servlet.http.HttpServletRequest;
+
+import com.backend.webproject.dao.ProductDAO;
 import com.backend.webproject.dao.ShoppingCartDAO;
+import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductAndDetails;
 import com.backend.webproject.entity.ShoppingCart;
@@ -19,11 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-//historial de carritos no activos
-//traer carrito activo >
-//crear carrito activo >
-//convertir carrito de activo a no activo >
-
 @RestController
 @RequestMapping("/shoppingcart")
 @CrossOrigin(origins = "*")
@@ -31,7 +28,9 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartDAO cartDAO;
     @Autowired
-    private JdbcTemplateProducts productsDAO;
+    private ProductDAO productsDAO;
+    @Autowired
+    private ShoppingProductDetailsDAO detailsDAO;
 
     @RequestMapping("completeCart/{cartID}/{userID}")
     public int completeCart(
@@ -69,13 +68,7 @@ public class ShoppingCartController {
     @RequestMapping("getProductsInCart/{cartID}")
     public List<ProductAndDetails> getProductsInCart(
             @PathVariable("cartID") int cartID) {
-        List<ShoppingProductDetails> spdList = new ArrayList<ShoppingProductDetails>();
-        ShoppingProductDetails spd = new ShoppingProductDetails();
-        spd.setProductID(1);
-        spd.setQuantity(1);
-        spd.setShoppingCartID(cartID);
-        spd.setShoppingProductDetailsID(1);
-        spdList.add(spd);
+        List<ShoppingProductDetails> spdList = detailsDAO.getAllDetailsFromCart(cartID);
         List<ProductAndDetails> returnList = new ArrayList<ProductAndDetails>();
         for (int i = 0; i < spdList.size(); i++) {
             ShoppingProductDetails aux = spdList.get(i);
@@ -86,5 +79,22 @@ public class ShoppingCartController {
             returnList.add(pad);
         }
         return returnList;
+    }
+
+    @PostMapping("removeProductFromCart/{shoppingproductdetailsID}")
+    public int removeFromCart(
+        @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
+    ){
+        return detailsDAO.removeFromCart(shoppingproductdetailsID);
+    }
+
+    @PostMapping("/finalizeShoppingProductDetails")
+	public int updateShoppingProductDetails(HttpServletRequest req) {
+        ShoppingProductDetails spd = new ShoppingProductDetails();
+        spd.setCostAfterApplyingCoupon(Integer.parseInt(req.getParameter("costAfterApplyingCoupon")));
+        spd.setShoppingProductDetailsID(Integer.parseInt(req.getParameter("shoppingProductDetailsID")));
+        spd.setShoppingCost(Integer.parseInt(req.getParameter("shoppingCost")));
+        
+        return detailsDAO.finalizeShoppingProductDetail(spd);
     }
 }
