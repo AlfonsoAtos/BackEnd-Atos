@@ -3,6 +3,8 @@ package com.backend.webproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.backend.webproject.dao.ProductDAO;
 import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.dao.ShoppingProductDetailsDAO;
@@ -84,5 +86,15 @@ public class ShoppingCartController {
         @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
     ){
         return detailsDAO.removeFromCart(shoppingproductdetailsID);
+    }
+
+    @PostMapping("/finalizeShoppingProductDetails")
+	public int updateShoppingProductDetails(HttpServletRequest req) {
+        ShoppingProductDetails spd = new ShoppingProductDetails();
+        spd.setCostAfterApplyingCoupon(Integer.parseInt(req.getParameter("costAfterApplyingCoupon")));
+        spd.setShoppingProductDetailsID(Integer.parseInt(req.getParameter("shoppingProductDetailsID")));
+        spd.setShoppingCost(Integer.parseInt(req.getParameter("shoppingCost")));
+        
+        return detailsDAO.finalizeShoppingProductDetail(spd);
     }
 }
