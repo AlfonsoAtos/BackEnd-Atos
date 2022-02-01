@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping("/admin-side")
@@ -37,10 +38,20 @@ public class AdminSideController {
         try {
             List<Coupons> newCoupons = couponsDAO.getNewCoupons();
             model.addAttribute("newCoupons", newCoupons);
+
+            List<Events> newEvents = eventsDAO.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
         return "coupons";
+    }
+
+    @RequestMapping("/validateCoupon/{couponCode}")
+    public Coupons searchByCartID(
+            @PathVariable("couponCode") String couponCode) {
+        Coupons coupon = couponsDAO.validateCoupons(couponCode);
+        return coupon;
     }
 
     // Insert new Coupon
@@ -70,6 +81,9 @@ public class AdminSideController {
         try {
             Coupons couponData = couponsDAO.searchCouponByID(couponId);
             model.addAttribute("couponData", couponData);
+
+            List<Events> newEvents = eventsDAO.getNewEvents();
+            model.addAttribute("newEvents", newEvents);
         } catch (Exception e) {
             System.out.println("Can not get coupon data, reason: '" + e + "'");
         }
@@ -103,7 +117,7 @@ public class AdminSideController {
     public String deleteCoupon(@PathVariable(name = "couponId") int couponId) {
 
         try {
-        	couponsDAO.deleteCoupon(couponId);
+            couponsDAO.deleteCoupon(couponId);
         } catch (Exception e) {
             System.out.println("Can not delete the coupon, reason: '" + e + "'");
         }
@@ -185,7 +199,7 @@ public class AdminSideController {
     public String deleteEvents(@PathVariable int eventsId) {
 
         try {
-        	eventsDAO.deleteEvents(eventsId);
+            eventsDAO.deleteEvents(eventsId);
         } catch (Exception e) {
             System.out.println("Can not delete the event, reason: '" + e + "'");
         }
