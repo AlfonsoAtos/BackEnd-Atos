@@ -32,10 +32,45 @@ class AdminSideControllerTest {
         this.mockMvc.perform(get("/admin-side/coupons"))
                 .andExpect(status().isOk())
                 .andExpect(forwardedUrl("/WEB-INF/jsp/coupons.jsp"));
+        
+//        this.mockMvc.perform(get("/admin-side/updateCoupon/1"))
+//	        .andExpect(status().is(200))
+//	        .andExpect(redirectedUrl("/WEB-INF/jsp/updateCouponDataForm.jsp"));
 
         this.mockMvc.perform(get("/admin-side/insertCoupon"))
                 .andExpect(status().is(302))
                 .andExpect(redirectedUrl("/admin-side/coupons"));
+        
+        this.mockMvc.perform(get("/admin-side/updateCouponData/1"))
+	        .andExpect(status().is(302))
+	        .andExpect(redirectedUrl("/admin-side/coupons"));
+        
+        this.mockMvc.perform(get("/admin-side/deleteCoupon/1"))
+	        .andExpect(status().is(302))
+	        .andExpect(redirectedUrl("/admin-side/coupons"));
+    }
+    
+    @Test
+    public void eventsRoutingTest() throws Exception {
+        this.mockMvc.perform(get("/admin-side/events"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/WEB-INF/jsp/events.jsp"));
+        
+        this.mockMvc.perform(get("/admin-side/updateEvents/1"))
+	        .andExpect(status().isOk())
+	        .andExpect(forwardedUrl("/WEB-INF/jsp/updateEventsData.jsp"));
+        
 
+        this.mockMvc.perform(get("/admin-side/insertEvent"))
+                .andExpect(status().is(302))
+                .andExpect(redirectedUrl("/admin-side/events"));
+        
+        this.mockMvc.perform(get("/admin-side/updateEventsData/1"))
+	        .andExpect(status().is(302))
+	        .andExpect(redirectedUrl("/admin-side/events"));
+        
+//        this.mockMvc.perform(get("/admin-side/deleteEvents/1"))
+//	        .andExpect(status().is(302))
+//	        .andExpect(redirectedUrl("/admin-side/events"));
     }
 }
