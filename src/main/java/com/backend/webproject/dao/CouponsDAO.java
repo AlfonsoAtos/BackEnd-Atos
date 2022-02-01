@@ -30,7 +30,7 @@ public class CouponsDAO {
     // Get the entire data from Coupon table
     public List<Coupons> getNewCoupons() {
         List<Coupons> newCoupons = jdbcTemplate.query(
-                "SELECT * FROM (SELECT * FROM Coupon ORDER BY couponId DESC) WHERE ROWNUM <= 5", couponsMapper);
+                "SELECT * FROM Coupon ORDER BY couponId DESC", couponsMapper);
         return newCoupons;
     }
 
@@ -70,7 +70,7 @@ public class CouponsDAO {
         return newCouponId;
     }
 
-    public Coupons validateCoupons(String couponCode){
+    public Coupons validateCoupons(String couponCode) {
         String sql = "SELECT * FROM coupon WHERE couponCode = :couponCode";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("couponCode", couponCode);
