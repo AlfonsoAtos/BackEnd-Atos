@@ -28,39 +28,46 @@ public class CustomerSideController {
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		List<Product> newProducts = productDAO.getNewProducts();
-		model.addAttribute("newProducts", newProducts);
+		try {
+			int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
+			model.addAttribute("numProductsInCart", numProductsInCart);
+			List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
+			model.addAttribute("productCategories", productCategories);
+			List<Product> newProducts = productDAO.getNewProducts();
+			model.addAttribute("newProducts", newProducts);
+		} catch(Exception e) {
+			System.out.println("Can not display homepage data, reason: '" + e + "'");
+		}
 		return "home";
 	}
 
 	@PostMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID){
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		String response = (productAdded == 1) ? "home" : "";
+	public String addToCartService(@PathVariable int pID) {
+		String response = "";
+		try {
+			int productAdded = shoppingProductDetailsDAO.addToCart(pID);
+			response = (productAdded == 1) ? "home" : "";
+		} catch (Exception e) {
+			System.out.println("Can not add to cart, reason: '" + e + "'");
+		}
 		return response;
 	}
 
     @RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		String pName = request.getParameter("pname");
-		String pCategoryID = request.getParameter("pcatid");
-		List<Product> searchResult = productDAO.searchProducts(pName, pCategoryID);
-		model.addAttribute("searchResult", searchResult);
+		try {
+			int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
+			model.addAttribute("numProductsInCart", numProductsInCart);
+			List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
+			model.addAttribute("productCategories", productCategories);
+			String pName = request.getParameter("pname");
+			String pCategoryID = request.getParameter("pcatid");
+			List<Product> searchResult = productDAO.searchProducts(pName, pCategoryID);
+			model.addAttribute("searchResult", searchResult);
+		} catch (Exception e) {
+			System.out.println("Can not search products, reason: '" + e + "'");
+		}
 		return "products";
 	}
-
-	/* @RequestMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		return "redirect:/";
-	} */
 
 }
