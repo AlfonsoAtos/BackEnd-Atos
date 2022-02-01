@@ -23,10 +23,6 @@ public class AdminSideManager {
     @Autowired
     EventsDAO eventsDAO;
 
-    public String showAdminPage() {
-        return "admin";
-    }
-
     // Shows all couponsjose
     public String showCouponsPage(Model model) {
         try {
