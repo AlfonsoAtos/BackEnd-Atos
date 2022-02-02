@@ -40,7 +40,7 @@
                         <span class="d-none" id="user-icons">
                             <a id="cartBtn" href="#" class="ms-4">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span id="cartCounter">${numProductsInCart}</span>
+                                <span id="cartCounter"></span>
                             </a>
                             <a href="#"><i class="fas fa-user ms-3"></i></a>
                             <button type="button" class="btn btn-danger ms-3" onclick="logout()">Log out</button>
@@ -161,8 +161,10 @@
         });
     </script>
     <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/src/getNumProductsInCart.js" />" type="text/javascript"></script>
     <script type="text/javascript">
         checkSessionUser();
+        getNumProductsInCart();
     </script>
 </body>
 </html>

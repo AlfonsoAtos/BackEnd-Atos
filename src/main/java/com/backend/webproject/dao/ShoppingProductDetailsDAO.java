@@ -64,9 +64,7 @@ public class ShoppingProductDetailsDAO {
         return list;
     }
 
-    public int getNumProductsInCart() {
-        //Fixed value for testing
-        int userID = 1;
+    public int getNumProductsInCart(int userID) {
         ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
         if(inSessionCart != null) {
             int inSessionCartId = inSessionCart.getShoppingCartID();

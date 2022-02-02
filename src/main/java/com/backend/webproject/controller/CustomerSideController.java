@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,13 +29,18 @@ public class CustomerSideController {
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
 		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
 		List<Product> newProducts = productDAO.getNewProducts();
 		model.addAttribute("newProducts", newProducts);
 		return "home";
+	}
+
+	@PostMapping("numproductsincart/{uID}")
+	@ResponseBody
+	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
+		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
+		return numProductsInCart;
 	}
 
 	@PostMapping("addtocart/{pID}/{uID}")
@@ -46,8 +52,6 @@ public class CustomerSideController {
 
     @RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
 		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 		model.addAttribute("productCategories", productCategories);
 		String pName = request.getParameter("pname");
