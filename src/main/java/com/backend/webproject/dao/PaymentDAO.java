@@ -1,6 +1,7 @@
 package com.backend.webproject.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.Payment;
@@ -37,8 +38,11 @@ public class PaymentDAO {
         String sql = "select * from payment where paymentID=:pid";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("pid", pid);
-		Payment pay = jdbcTemplate.query(sql, paramMap, paymentMapper).get(0);
-		return pay;
+		List<Payment> pays = jdbcTemplate.query(sql, paramMap, paymentMapper);
+        if(pays.size()>0){
+            return pays.get(0);
+        }
+		return null;
 	}
 
     public Payment searchPaymentByCartID(int cid)
@@ -46,7 +50,10 @@ public class PaymentDAO {
         String sql = "select * from payment whereshoppingCartID=:cid";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("cid", cid);
-		Payment pay = jdbcTemplate.query(sql, paramMap, paymentMapper).get(0);
-		return pay;
+        List<Payment> pays = jdbcTemplate.query(sql, paramMap, paymentMapper);
+		if(pays.size()>0){
+            return pays.get(0);
+        }
+		return null;
 	}
 }
