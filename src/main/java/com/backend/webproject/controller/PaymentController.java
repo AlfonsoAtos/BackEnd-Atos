@@ -18,21 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
 	@Autowired
-	PaymentManager paymentManager;
+	PaymentManager manager;
 
 	@RequestMapping("/byID/{id}")
 	public Payment searchByID(@PathVariable("id") int id) {
-		return paymentManager.searchByID(id);
+		return manager.searchPaymentByID(id);
 	}
 
 	@RequestMapping("/byCartID/{id}")
 	public Payment searchByCartID(@PathVariable("id") int id) {
-		return paymentManager.searchByCartID(id);
+		return manager.searchPaymentByCartID(id);
 	}
 
 	@PostMapping("/pay")
 	public int processPayment(HttpServletRequest req) {
-		return paymentManager.processPayment(req);
+		int openCoupon = Integer.parseInt(req.getParameter("openCoupon"));
+		int shoppingAmount = Integer.parseInt(req.getParameter("shoppingAmount"));
+		String paymentStatus = req.getParameter("paymentStatus");
+		int shoppingCartID = Integer.parseInt(req.getParameter("shoppingCartID"));
+		
+		if (manager.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
+			// Create shopping cart
+			return 1;
+		}
+		return 0;
 	}
 
 }

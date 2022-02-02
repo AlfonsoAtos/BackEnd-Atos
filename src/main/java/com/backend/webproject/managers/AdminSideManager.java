@@ -223,7 +223,7 @@ public class AdminSideManager {
     }
 
     // Update a product
-    public String updateProduct(@PathVariable(name = "pID") int pID, Model model) {
+    public String updateProduct(int pID, Model model) {
         try {
             Product productData = productDAO.getProductById(pID);
             model.addAttribute("productData", productData);
@@ -233,7 +233,7 @@ public class AdminSideManager {
         return "updateProductDataForm";
     }
 
-    public String updateProduct(HttpServletRequest request, @PathVariable(name = "pID") int pID) {
+    public String updateProduct(HttpServletRequest request, int pID) {
 
         try {
             String pName = request.getParameter("pName");
@@ -253,7 +253,7 @@ public class AdminSideManager {
     }
 
     // Delete a product
-    public String deleteProduct(@PathVariable(name = "pID") int pID) {
+    public String deleteProduct(int pID) {
 
         try {
             productDAO.deleteProduct(pID);
