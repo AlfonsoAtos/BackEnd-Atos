@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class PaymentController {
 
-  @Autowired
 	private PaymentManager manager;
     
   @RequestMapping("/byID/{id}")
