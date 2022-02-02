@@ -28,9 +28,6 @@ public class ShoppingProductDetailsDAO {
     private ProductDAO productDAO;
     
     public int addToCart(int pID, int userID) {
-        //Fixed value for testing
-        // int userID = 1;
-
         ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
         if (inSessionCart == null) {
             shoppingCartDAO.createNewCart(userID);
@@ -96,6 +93,38 @@ public class ShoppingProductDetailsDAO {
             e.printStackTrace();
         }
         return aux;
+    }
+
+    //cart and item
+    public int removeFromCart2(int cartID, int shoppingProductDetailsID) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("spdid", shoppingProductDetailsID);
+        params.put("cid", cartID);
+        int quantityOfItems = jdbcTemplate.queryForObject(
+                "SELECT quantity FROM shoppingproductdetails WHERE SHOPPINGPRODUCTDETAILSID=:spdid and shoppingCartID=:cid", params,
+                Integer.class);
+        String query = "";
+        if (quantityOfItems > 1) {
+            query = "UPDATE shoppingproductdetails SET quantity=quantity-1 WHERE SHOPPINGPRODUCTDETAILSID=:spdid and shoppingCartID=:cid";
+        } else {
+            query = "DELETE from shoppingproductdetails WHERE SHOPPINGPRODUCTDETAILSID=:spdid and shoppingCartID=:cid";
+        }
+        int aux = 0;
+        try {
+            aux = jdbcTemplate.update(query, params); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return aux;
+    }
+
+    public int addToCart2(int cartID, int shoppingProductDetailsID) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("spdid", shoppingProductDetailsID);
+        params.put("cid", cartID);
+        String sql = "UPDATE shoppingproductdetails SET quantity=quantity+1 WHERE SHOPPINGPRODUCTDETAILSID=:spdid and shoppingCartID=:cid";
+        return jdbcTemplate.update(sql, params);
+        
     }
 
     public int finalizeShoppingProductDetail(ShoppingProductDetails spd){

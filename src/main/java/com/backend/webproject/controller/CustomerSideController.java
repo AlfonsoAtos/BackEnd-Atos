@@ -8,63 +8,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
-import com.backend.webproject.dao.ProductCategoryDAO;
-import com.backend.webproject.dao.ProductDAO;
-import com.backend.webproject.dao.ShoppingProductDetailsDAO;
-import com.backend.webproject.entity.Product;
-import com.backend.webproject.entity.ProductCategory;
+import com.backend.webproject.managers.CustomerSideManager;
 
 @Controller
 public class CustomerSideController {
 	@Autowired
-	ProductDAO productDAO;
-	@Autowired
-	ProductCategoryDAO productCategoryDAO;
-	@Autowired
-	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+	CustomerSideManager customerSideManager;
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		List<Product> newProducts = productDAO.getNewProducts();
-		model.addAttribute("newProducts", newProducts);
-		return "home";
+		return customerSideManager.showHomePage(model);
 	}
 
 	@PostMapping("numproductsincart/{uID}")
 	@ResponseBody
 	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
-		return numProductsInCart;
+		return customerSideManager.getNumProductsInCartService(uID, model);
+	}
+
+	@RequestMapping("search")
+	public String searchProductsService(HttpServletRequest request, Model model) {
+		return customerSideManager.searchProductsService(request, model);
 	}
 
 	@PostMapping("addtocart/{pID}/{uID}")
-	public String addToCartService(@PathVariable int pID, @PathVariable int uID){
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID, uID);
-		String response = (productAdded == 1) ? "home" : "";
-		return response;
+	public String addToCartService(@PathVariable int pID, @PathVariable int uID) {
+		return customerSideManager.addToCartService(pID, uID);
 	}
-
-    @RequestMapping("search")
-	public String searchProductsService(HttpServletRequest request, Model model) {
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		String pName = request.getParameter("pname");
-		String pCategoryID = request.getParameter("pcatid");
-		List<Product> searchResult = productDAO.searchProducts(pName, pCategoryID);
-		model.addAttribute("searchResult", searchResult);
-		return "products";
-	}
-
-	/* @RequestMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		return "redirect:/";
-	} */
-
 }
