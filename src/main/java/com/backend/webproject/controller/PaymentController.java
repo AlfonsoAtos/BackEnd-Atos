@@ -2,8 +2,8 @@ package com.backend.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.backend.webproject.dao.PaymentDAO;
 import com.backend.webproject.entity.Payment;
+import com.backend.webproject.managers.PaymentManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
   @Autowired
-	private PaymentDAO paymentJDBC;
+	private PaymentManager manager;
     
   @RequestMapping("/byID/{id}")
 	public Payment searchByID(
 		@PathVariable("id") int id
 		) {
-		Payment pay = paymentJDBC.searchPaymentByID(id);
+		Payment pay = manager.searchPaymentByID(id);
 		
 		return pay;
 	}
@@ -35,7 +35,7 @@ public class PaymentController {
 	public Payment searchByCartID(
 		@PathVariable("id") int id
 		) {
-		Payment pay = paymentJDBC.searchPaymentByCartID(id);
+		Payment pay = manager.searchPaymentByCartID(id);
 		
 		return pay;
 	}
@@ -47,7 +47,7 @@ public class PaymentController {
 		String paymentStatus = req.getParameter("paymentStatus");
 		int shoppingCartID = Integer.parseInt(req.getParameter("shoppingCartID"));
 		
-		if (paymentJDBC.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
+		if (manager.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
 			// Create shopping cart
 			return 1;
 		}
