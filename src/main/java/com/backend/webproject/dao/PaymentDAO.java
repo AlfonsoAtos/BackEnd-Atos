@@ -16,16 +16,16 @@ public class PaymentDAO {
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
     private PaymentMapper paymentMapper;
-
-    public int processPayment(int openCoupon, int shoppingAmount, String paymentStatus, int shoppingCartID)
+    //int openCoupon, int shoppingAmount, String paymentStatus, int shoppingCartID
+    public int processPayment(Payment payment)
 	{
         try{
             String query = "insert into payment (paymentID, openCoupon, shoppingFinalAmount, paymentStatus, shoppingCartID) values((select max(paymentID)+1 from payment), :openCoupon, :shoppingAmount, :paymentStatus, :shoppingCartID)";
             Map<String, Object> paramMap = new HashMap<String, Object>();
-            paramMap.put("openCoupon", openCoupon);
-            paramMap.put("shoppingAmount", shoppingAmount);
-            paramMap.put("paymentStatus", paymentStatus);
-            paramMap.put("shoppingCartID", shoppingCartID);
+            paramMap.put("openCoupon", payment.getOpenCoupon());
+            paramMap.put("shoppingAmount", payment.getShoppingFinalAmount());
+            paramMap.put("paymentStatus", payment.getPaymentStatus());
+            paramMap.put("shoppingCartID", payment.getShoppingCartID());
 		    return jdbcTemplate.update(query,paramMap);	
         } catch (Exception e){
             return 0;
