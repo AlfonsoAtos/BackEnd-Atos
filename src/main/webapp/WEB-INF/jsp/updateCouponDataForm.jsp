@@ -183,7 +183,7 @@ prefix="c"%>
                                         type="radio"
                                         id="no_open"
                                         name="couponType"
-                                        value="Nopen"
+                                        value="Not open"
                                     />
                                     <label for="no_open">No Open</label>
                                 </div>
