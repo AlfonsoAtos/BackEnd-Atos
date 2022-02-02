@@ -19,7 +19,9 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo-w.png" />
+                    <div class="logo-bg">
+                        <img src="../../resources/img/logo.png" />
+                    </div>
                 </div>
                 <div class="items-nav">
                     <li>
