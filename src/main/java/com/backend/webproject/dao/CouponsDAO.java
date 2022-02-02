@@ -15,54 +15,46 @@ import org.springframework.stereotype.Component;
 @Component
 public class CouponsDAO {
 
-    JdbcTemplate temp;
-
-    public CouponsDAO(JdbcTemplate temp) {
-        this.temp = temp;
-    }
-
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    JdbcTemplate temp;
 
     @Autowired
     private CouponsMapper couponsMapper;
 
     // Get the entire data from Coupon table
     public List<Coupons> getNewCoupons() {
-        List<Coupons> newCoupons = jdbcTemplate.query(
+        List<Coupons> newCoupons = temp.query(
                 "SELECT * FROM Coupon ORDER BY couponId DESC", couponsMapper);
         return newCoupons;
     }
 
     // Insert Query for Coupon table
-    public void insertNewCoupon(int couponId, String couponName, String couponCode, String couponType,
+    public int insertNewCoupon(int couponId, String couponName, String couponCode, String couponType,
             int couponDiscount, int promotionEventId, int productCategoryId) {
-        temp.update("INSERT INTO coupon VALUES(?,?,?,?,?,?,?)", new Object[] { couponId, couponName, couponCode,
+        return temp.update("INSERT INTO coupon VALUES(?,?,?,?,?,?,?)", new Object[] { couponId, couponName, couponCode,
                 couponType, couponDiscount, promotionEventId, productCategoryId });
     }
 
     public Coupons searchCouponByID(int couponId) {
-        String sql = "SELECT * FROM coupon WHERE couponId = :couponId";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("couponId", couponId);
-        Coupons coupons = jdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
-        return coupons;
+        String sql = "SELECT * FROM coupon WHERE couponId = ?";
+        Coupons couponsData = (Coupons) temp.query(sql, new Object[] { couponId }, couponsMapper).get(0);
+        return couponsData;
     }
 
     // Edit Query for Coupon table
-    public void updateCoupon(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
+    public int updateCoupon(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
             int promotionEventId, int productCategoryId) {
-        temp.update(
+        return temp.update(
                 "UPDATE coupon SET couponName = ?, couponCode = ?, couponType = ?, couponDiscount = ?, promotionEventId = ?, productCategoryId = ? where couponId=?",
                 new Object[] { couponName, couponCode, couponType, couponDiscount, promotionEventId, productCategoryId,
                         couponId });
     }
 
     // Delete Query for Coupon table
-    public void deleteCoupon(int couponId) {
+    public int deleteCoupon(int couponId) {
 
         String sql = "DELETE FROM coupon WHERE couponId = ?";
-        temp.update(sql, couponId);
+        return temp.update(sql, couponId);
     }
 
     public int getAutoCouponId() {
@@ -71,10 +63,8 @@ public class CouponsDAO {
     }
 
     public Coupons validateCoupons(String couponCode) {
-        String sql = "SELECT * FROM coupon WHERE couponCode = :couponCode";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("couponCode", couponCode);
-        Coupons coupon = jdbcTemplate.query(sql, paramMap, couponsMapper).get(0);
+        String sql = "SELECT * FROM coupon WHERE couponCode = ?";
+        Coupons coupon = (Coupons) temp.query(sql, new Object[] { couponCode }, couponsMapper).get(0);
         return coupon;
     }
 
