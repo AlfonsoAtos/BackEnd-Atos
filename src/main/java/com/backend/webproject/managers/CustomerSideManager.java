@@ -17,31 +17,34 @@ import com.backend.webproject.entity.ProductCategory;
 
 @Component
 public class CustomerSideManager {
-    @Autowired
+	@Autowired
 	ProductDAO productDAO;
+
 	@Autowired
 	ProductCategoryDAO productCategoryDAO;
+
 	@Autowired
 	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
 
-    public String showHomePage(Model model) {
-        try {
-            int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-            model.addAttribute("numProductsInCart", numProductsInCart);
-            List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-            model.addAttribute("productCategories", productCategories);
-            List<Product> newProducts = productDAO.getNewProducts();
-            model.addAttribute("newProducts", newProducts);
-        } catch(Exception e) {
-            System.out.println("Can not display homepage data, reason: '" + e + "'");
-        }
-        return "home";
-    }
+	public String showHomePage(Model model) {
+		try {
+			List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
+			model.addAttribute("productCategories", productCategories);
+			List<Product> newProducts = productDAO.getNewProducts();
+			model.addAttribute("newProducts", newProducts);
+		} catch(Exception e) {
+			System.out.println("Can not display homepage data, reason: '" + e + "'");
+		}
+		return "home";
+	}
+
+	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
+		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
+		return numProductsInCart;
+	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
 		try {
-			int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-			model.addAttribute("numProductsInCart", numProductsInCart);
 			List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 			model.addAttribute("productCategories", productCategories);
 			String pName = request.getParameter("pname");
@@ -54,10 +57,10 @@ public class CustomerSideManager {
 		return "products";
 	}
 
-	public String addToCartService(@PathVariable int pID) {
+	public String addToCartService(int pID, int uID) {
 		String response = "";
 		try {
-			int productAdded = shoppingProductDetailsDAO.addToCart(pID);
+			int productAdded = shoppingProductDetailsDAO.addToCart(pID, uID);
 			response = (productAdded == 1) ? "home" : "";
 		} catch (Exception e) {
 			System.out.println("Can not add to cart, reason: '" + e + "'");

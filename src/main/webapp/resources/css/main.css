@@ -634,3 +634,18 @@ footer .footer-component span {
   background: none;
 }
 /*# sourceMappingURL=main.css.map */
+
+.logout-button {
+  background: #f44336;
+  width: 5rem;
+  height: 100%;
+  padding: 0.7rem;
+  border: 0;
+  color: #eeeeee;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: white;
+  color: #f44336;
+}

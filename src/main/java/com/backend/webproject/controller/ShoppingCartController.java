@@ -88,6 +88,26 @@ public class ShoppingCartController {
         return detailsDAO.removeFromCart(shoppingproductdetailsID);
     }
 
+    // shop & item 
+    @PostMapping("removeProductFromCart2/{cartID}/{shoppingproductdetailsID}")
+    public int removeItemFromCart(
+        @PathVariable("cartID") int cartID,
+        @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
+    ){
+        return detailsDAO.removeFromCart2(cartID,shoppingproductdetailsID);
+    }
+
+	@Autowired
+	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+    
+    @PostMapping("addProductToCart/{cartID}/{shoppingproductdetailsID}")
+	public int addProductToCart(
+    @PathVariable("cartID") int cartID,
+    @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
+    ){
+        return shoppingProductDetailsDAO.addToCart2(cartID,shoppingproductdetailsID);
+	}
+
     @PostMapping("/finalizeShoppingProductDetails")
 	public int updateShoppingProductDetails(HttpServletRequest req) {
         ShoppingProductDetails spd = new ShoppingProductDetails();

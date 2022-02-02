@@ -1,0 +1,27 @@
+/* 
+.class
+#id
+ */
+ /* *{background-color: #eaeaec;} */
+
+#right-side, #order-shop, .payment-method, main {
+    background-color: #eaeaec;
+}
+
+#right-side {
+    /* position: relative;
+    width: fit-content;
+    float: right; */
+}
+
+#order-shop {
+    /* display: inline-block;
+    position: relative;
+    width: fit-content; */
+}
+
+.payment-method {
+    border: 1px;
+    border-style: solid;
+    border-color: coral;
+}
