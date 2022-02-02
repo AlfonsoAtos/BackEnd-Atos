@@ -20,7 +20,9 @@ prefix="c"%>
             <ul class="navbar">
                 <div class="logo-nav">
                     <a href="/admin-side/">
-                        <img src="../../resources/img/logo-w.png" />
+                        <div class="logo-bg">
+                            <img src="../../resources/img/logo.png" />
+                        </div>
                     </a>
                 </div>
                 <div class="items-nav">
@@ -104,134 +106,96 @@ prefix="c"%>
                     <a href="#miModal">New Coupon</a>
                     <!-- Modal Window -->
 
-                    <div id="miModal" class="modal">
-                        <div class="modal-contenido">
-                            <a class="close-modal" href="#">X</a>
-                            <h2>New Coupon</h2>
-                            <div class="coupon-form">
-                                <form action="insertCoupon">
-                                    <div class="first-half">
-                                        <div class="item-form">
-                                            <label>Coupon Name: </label>
-                                            <input
-                                                type="text"
-                                                name="couponName"
-                                                maxlength="15"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="item-form">
-                                            <label>Coupon Code: </label>
-                                            <input
-                                                type="text"
-                                                style="
-                                                    text-transform: uppercase;
-                                                "
-                                                name="couponCode"
-                                                minlength="10"
-                                                maxlength="10"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="item-form">
-                                            <label>Coupon Discount: </label>
-                                            <input
-                                                type="number"
-                                                name="couponDiscount"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="second-half">
-                                        <div class="item-form">
-                                            <label for=""
-                                                >Promotional Event:
-                                            </label>
-                                            <select
-                                                name="promotionEventId"
-                                                id=""
-                                                required
-                                            >
-                                                <c:forEach
-                                                    var="events"
-                                                    items="${newEvents}"
-                                                >
-                                                    <option
-                                                        value="${events.getEventsId()}"
-                                                    >
-                                                        ${events.getEventsName()}
-                                                    </option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div class="item-form">
-                                            <label>Product Category: </label>
-                                            <select
-                                                name="productCategoryId"
-                                                id=""
-                                                required
-                                            >
-                                                <option
-                                                    value="none"
-                                                    selected
-                                                    disabled
-                                                    hidden
-                                                >
-                                                    Select an Option
-                                                </option>
-                                                <option value="1">
-                                                    Shooter
-                                                </option>
-                                                <option value="2">VR</option>
-                                                <option value="3">
-                                                    Strategy
-                                                </option>
-                                                <option value="4">
-                                                    Simulation
-                                                </option>
-                                                <option value="5">RPG</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="radio-form">
-                                        <div class="radio-item">
-                                            <input
-                                                type="radio"
-                                                id="open"
-                                                name="couponType"
-                                                value="Open"
-                                                required
-                                            />
-                                            <label for="open">Open</label>
-                                        </div>
-                                        <div class="radio-item">
-                                            <input
-                                                type="radio"
-                                                id="no_open"
-                                                name="couponType"
-                                                value="Nopen"
-                                            />
-                                            <label for="no_open">No Open</label>
-                                        </div>
-                                    </div>
-                                    <div class="button-form">
-                                        <a class="cancel-button" href="#"
-                                            >Cancel</a
-                                        >
-                                        <input
-                                            class="accept-button"
-                                            type="submit"
-                                            value="Add"
-                                        />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Main window for managing coupons -->
-                <div class="coupon-table">
-                    <!-- <div class="search-table">
+					<div id="miModal" class="modal">
+						<div class="modal-contenido">
+							<a class="close-modal" href="#">X</a>
+							<h2>New Coupon</h2>
+							<div class="coupon-form">
+								<form action="insertCoupon">
+									<div class="first-half">
+										<div class="item-form">
+											<label>Coupon Name: </label>
+											<input
+												type="text"
+												name="couponName"
+												maxlength="15"
+												required
+											/>
+										</div>
+										<div class="item-form">
+											<label>Coupon Code: </label>
+											<input
+												type="text"
+												style="text-transform: uppercase"
+												name="couponCode"
+												minlength="10"
+												maxlength="10"
+												required
+											/>
+										</div>
+										<div class="item-form">
+											<label>Coupon Discount: </label>
+											<input type="number" name="couponDiscount" required />
+										</div>
+									</div>
+									<div class="second-half">
+										<div class="item-form">
+											<label for="">Promotional Event: </label>
+											<select name="promotionEventId" id="" required>
+												<c:forEach var="events" items="${newEvents}">
+													<option value="${events.getEventsId()}">
+														${events.getEventsName()}
+													</option>
+												</c:forEach>
+											</select>
+										</div>
+										<div class="item-form">
+											<label>Product Category: </label>
+											<select name="productCategoryId" id="" required>
+												<option value="none" selected disabled hidden>
+													Select an Option
+												</option>
+												<option value="1">Shooter</option>
+												<option value="2">VR</option>
+												<option value="3">Strategy</option>
+												<option value="4">Simulation</option>
+												<option value="5">RPG</option>
+											</select>
+										</div>
+									</div>
+									<div class="radio-form">
+										<div class="radio-item">
+											<input
+												type="radio"
+												id="open"
+												name="couponType"
+												value="Open"
+												required
+											/>
+											<label for="open">Open</label>
+										</div>
+										<div class="radio-item">
+											<input
+												type="radio"
+												id="no_open"
+												name="couponType"
+												value="Not open"
+											/>
+											<label for="no_open">No Open</label>
+										</div>
+									</div>
+									<div class="button-form">
+										<a class="cancel-button" href="#">Cancel</a>
+										<input class="accept-button" type="submit" value="Add" />
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Main window for managing coupons -->
+				<div class="coupon-table">
+					<!-- <div class="search-table">
 						<svg
 							class="w-6 h-6"
 							fill="currentColor"
@@ -246,93 +210,82 @@ prefix="c"%>
 						</svg>
 						<input type="text" class="search-table" placeholder="Search..." />
 					</div> -->
-                    <table class="table" id="couponsTable">
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Name</td>
-                                <td>Code</td>
-                                <td>Type</td>
-                                <td>Discount</td>
-                                <td>Event ID</td>
-                                <td>Category ID</td>
-                                <td>Actions</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="coupon" items="${newCoupons}">
-                                <tr>
-                                    <td>${coupon.getCouponId()}</td>
-                                    <td>${coupon.getCouponName()}</td>
-                                    <td>${coupon.getCouponCode()}</td>
-                                    <td>${coupon.getCouponType()}</td>
-                                    <td>${coupon.getCouponDiscount()}</td>
-                                    <td>${coupon.getPromotionEventId()}</td>
-                                    <td>${coupon.getProductCategoryId()}</td>
-                                    <td>
-                                        <a
-                                            href="updateCoupon/${coupon.couponId}"
-                                        >
-                                            <svg
-                                                fill="blue"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                                                ></path>
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                    clip-rule="evenodd"
-                                                ></path>
-                                            </svg>
-                                        </a>
-                                        <a href="#deleteItem">
-                                            <svg
-                                                fill="red"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clip-rule="evenodd"
-                                                ></path>
-                                            </svg>
-                                            <div id="deleteItem" class="modal">
-                                                <div
-                                                    class="modal-contenido-delete"
-                                                >
-                                                    <h2>
-                                                        Are you sure to delete
-                                                        this item?
-                                                    </h2>
-                                                    <div class="button-form">
-                                                        <a
-                                                            href="#"
-                                                            class="cancel-button"
-                                                            >No</a
-                                                        >
-                                                        <a
-                                                            href="deleteCoupon/${coupon.couponId}"
-                                                            class="accept-button"
-                                                            >Yes</a
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <!-- Footer -->
-        <!-- <footer>
+					<table class="table" id="couponsTable">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<td>Name</td>
+								<td>Code</td>
+								<td>Type</td>
+								<td>Discount</td>
+								<td>Event ID</td>
+								<td>Category ID</td>
+								<td>Actions</td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="coupon" items="${newCoupons}">
+								<tr>
+									<td>${coupon.getCouponId()}</td>
+									<td>${coupon.getCouponName()}</td>
+									<td>${coupon.getCouponCode()}</td>
+									<td>${coupon.getCouponType()}</td>
+									<td>${coupon.getCouponDiscount()}</td>
+									<td>${coupon.getPromotionEventId()}</td>
+									<td>${coupon.getProductCategoryId()}</td>
+									<td>
+										<a href="updateCoupon/${coupon.couponId}">
+											<svg
+												fill="blue"
+												viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+												></path>
+												<path
+													fill-rule="evenodd"
+													d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+													clip-rule="evenodd"
+												></path>
+											</svg>
+										</a>
+										<a href="#deleteItem">
+											<svg
+												fill="red"
+												viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													fill-rule="evenodd"
+													d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+													clip-rule="evenodd"
+												></path>
+											</svg>
+											<div id="deleteItem" class="modal">
+												<div class="modal-contenido-delete">
+													<h2>Are you sure to delete this item?</h2>
+													<div class="button-form">
+														<a href="#" class="cancel-button">No</a>
+														<a
+															href="deleteCoupon/${coupon.couponId}"
+															class="accept-button"
+															>Yes</a
+														>
+													</div>
+												</div>
+											</div>
+										</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- Footer -->
+		<!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>

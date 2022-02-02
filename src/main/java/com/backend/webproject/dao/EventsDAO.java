@@ -21,7 +21,7 @@ public class EventsDAO {
     /* GET */
     public List<Events> getNewEvents() {
 
-        String sql = "SELECT * FROM (SELECT * FROM promotionevent ORDER BY promotioneventid DESC) WHERE ROWNUM <= 5";
+        String sql = "SELECT * FROM promotionevent ORDER BY promotioneventid DESC";
         List<Events> newEvents = temp.query(sql, eventsMapper);
         return newEvents;
     }
@@ -29,13 +29,13 @@ public class EventsDAO {
     /* GET By ID */
     public Events searchEventsById(int eventsId) {
         String sql = "SELECT * FROM promotionevent WHERE promotioneventid = ?";
-        Events eventsData = (Events) temp.query(sql,  new Object[] {eventsId}, eventsMapper).get(0);
+        Events eventsData = (Events) temp.query(sql, new Object[] { eventsId }, eventsMapper).get(0);
         return eventsData;
     }
 
     /* POST */
     public int insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
-        String eventsEndDate, String eventsStatus, int eventsAdminId) {
+            String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?)";
         return temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
@@ -44,7 +44,7 @@ public class EventsDAO {
 
     /* PUT */
     public int updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
-        String eventsEndDate, String eventsStatus, int eventsAdminId) {
+            String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "UPDATE promotionevent SET promotioneventname = ?, promotioneventdescription = ?, promotioneventstartdate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventenddate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventstatus = ?, adminid = ? WHERE promotioneventid = ?";
         return temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,

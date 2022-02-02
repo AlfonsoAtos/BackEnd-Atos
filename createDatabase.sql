@@ -38,7 +38,7 @@ create table Coupon (
     couponID numeric primary key,
     couponName varchar(15) not null unique,
     couponCode varchar(15) not null,
-    couponType varchar(10) not null constraint chkcouponType check (couponType in ('Open','Nopen')),
+    couponType varchar(10) not null constraint chkcouponType check (couponType in ('Open','Not open')),
     couponDiscount numeric not null,
     promotionEventID numeric references PromotionEvent(promotionEventID) not null,
     productCategoryID numeric references ProductCategory(productCategoryID)
@@ -91,5 +91,5 @@ INSERT INTO PromotionEvent VALUES (1, 'test2022', 'Discount test2022', TO_DATE('
 INSERT INTO PromotionEvent VALUES (2, 'test2023', 'Discount test2023', TO_DATE('2022-01-21 17:40:24', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2022-01-29 17:40:28', 'YYYY-MM-DD HH24:MI:SS'), 'Expired', 1);
 
 insert into coupon values( 1, 'Black Friday', 'YZX12345',  'Open',  20, 1, 1);
-insert into coupon values( 2, 'Christmas', 'HDKA6445J', 'Nopen', 53, 1, 1);
+insert into coupon values( 2, 'Christmas', 'HDKA6445J', 'Not open', 53, 1, 1);
 
