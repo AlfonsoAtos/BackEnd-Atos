@@ -50,13 +50,14 @@
           <div class="col">
             <img class="mb-4 img-fluid" src="../../resources/img/logo-g.jpg" alt="" width="450" height="auto">
             <h1 class="h3 mb-3 fw-normal">Log in</h1>
+            <p class="error-message d-none">Error logging in</p>
             <form id="login_form" class="form-signin col">
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                 <label for="floatingInput">Email address</label>
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
               </div>
       

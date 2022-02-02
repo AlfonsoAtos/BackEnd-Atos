@@ -47,30 +47,31 @@
         <div class="col">
           <img class="mb-4 img-fluid" src="../../resources/img/logo-g.jpg" alt="" width="450" height="auto">
           <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+          <p id="signup-error" class="error-message d-none">Error signing up</p>
           <form id="signup_form" class="form-signin col">
 
             <div class="form-floating">
-              <input type="text" class="form-control" id="floatingName" name="name" placeholder="John Smith">
+              <input type="text" class="form-control" id="floatingName" name="name" placeholder="John Smith" required>
               <label for="floatingName">Name</label>
             </div>
             <div class="form-floating">
-              <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+              <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
               <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating">
-              <input type="text" class="form-control" id="floatingPhone" name="number" placeholder="81 1071 7952">
+              <input type="text" class="form-control" id="floatingPhone" name="number" placeholder="81 1071 7952" required>
               <label for="floatingPhone">Phone Number</label>
             </div>
             <div class="form-floating">
-              <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+              <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
               <label for="floatingPassword">Password</label>
             </div>
             <div class="form-floating">
-              <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="ConfirmPassword">
+              <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="ConfirmPassword" required>
               <label for="floatingConfirmPassword">Confirm Password</label>
             </div>
             <div>
-              <p class="error-message">Passwords don't match</p>
+              <p id="password-error" class="error-message d-none">Passwords don't match</p>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
