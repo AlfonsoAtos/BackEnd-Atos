@@ -22,7 +22,7 @@ public class EventsDAO {
     /* GET */
     public List<Events> getNewEvents() {
 
-        String sql = "SELECT * FROM (SELECT * FROM promotionevent ORDER BY promotioneventid DESC) WHERE ROWNUM <= 5";
+        String sql = "SELECT * FROM promotionevent ORDER BY promotioneventid DESC";
         List<Events> newEvents = temp.query(sql, eventsMapper);
         return newEvents;
     }
