@@ -6,15 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.dao.ProductDAO;
-import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductAndDetails;
 import com.backend.webproject.entity.ShoppingCart;
 import com.backend.webproject.entity.ShoppingProductDetails;
+import com.backend.webproject.managers.ShoppingCartManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shoppingcart")
-@CrossOrigin(origins = "*")
 public class ShoppingCartController {
     @Autowired
-    private ShoppingCartDAO cartDAO;
+    private ShoppingCartManager manager;
     @Autowired
     private ProductDAO productsDAO;
     @Autowired
@@ -36,14 +34,14 @@ public class ShoppingCartController {
     public int completeCart(
             @PathVariable("cartID") int cartID,
             @PathVariable("userID") int userID) {
-        cartDAO.createNewCart(userID);
-        return cartDAO.completeCart(cartID);
+        manager.createNewCart(userID);
+        return manager.completeCart(cartID);
     }
 
     @PostMapping("createNewCart/{userID}")
     public int createNewCart(
             @PathVariable("userID") int userID) {
-        int i = cartDAO.createNewCart(userID);
+        int i = manager.createNewCart(userID);
         if (i > 0) {
             return 1;
         }
@@ -54,7 +52,7 @@ public class ShoppingCartController {
     @ResponseBody
     public ShoppingCart getInsessionCart(
             @PathVariable("userID") int userID) {
-        ShoppingCart sc = cartDAO.getInSessionCart(userID);
+        ShoppingCart sc = manager.getInSessionCart(userID);
 
         return sc;
     }
@@ -62,12 +60,13 @@ public class ShoppingCartController {
     @RequestMapping("getAllCarts/{userID}")
     public List<ShoppingCart> getAllCarts(
             @PathVariable("userID") int userID) {
-        return cartDAO.getAllCompletedCarts(userID);
+        return manager.getAllCompletedCarts(userID);
     }
 
     @RequestMapping("getProductsInCart/{cartID}")
     public List<ProductAndDetails> getProductsInCart(
             @PathVariable("cartID") int cartID) {
+
         List<ShoppingProductDetails> spdList = detailsDAO.getAllDetailsFromCart(cartID);
         List<ProductAndDetails> returnList = new ArrayList<ProductAndDetails>();
         for (int i = 0; i < spdList.size(); i++) {
@@ -83,38 +82,35 @@ public class ShoppingCartController {
 
     @PostMapping("removeProductFromCart/{shoppingproductdetailsID}")
     public int removeFromCart(
-        @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
-    ){
+            @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID) {
         return detailsDAO.removeFromCart(shoppingproductdetailsID);
     }
 
-    // shop & item 
+    // shop & item
     @PostMapping("removeProductFromCart2/{cartID}/{shoppingproductdetailsID}")
     public int removeItemFromCart(
-        @PathVariable("cartID") int cartID,
-        @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
-    ){
-        return detailsDAO.removeFromCart2(cartID,shoppingproductdetailsID);
+            @PathVariable("cartID") int cartID,
+            @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID) {
+        return detailsDAO.removeFromCart2(cartID, shoppingproductdetailsID);
     }
 
-	@Autowired
-	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
-    
+    @Autowired
+    ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+
     @PostMapping("addProductToCart/{cartID}/{shoppingproductdetailsID}")
-	public int addProductToCart(
-    @PathVariable("cartID") int cartID,
-    @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID
-    ){
-        return shoppingProductDetailsDAO.addToCart2(cartID,shoppingproductdetailsID);
-	}
+    public int addProductToCart(
+            @PathVariable("cartID") int cartID,
+            @PathVariable("shoppingproductdetailsID") int shoppingproductdetailsID) {
+        return shoppingProductDetailsDAO.addToCart2(cartID, shoppingproductdetailsID);
+    }
 
     @PostMapping("/finalizeShoppingProductDetails")
-	public int updateShoppingProductDetails(HttpServletRequest req) {
+    public int updateShoppingProductDetails(HttpServletRequest req) {
         ShoppingProductDetails spd = new ShoppingProductDetails();
         spd.setCostAfterApplyingCoupon(Integer.parseInt(req.getParameter("costAfterApplyingCoupon")));
         spd.setShoppingProductDetailsID(Integer.parseInt(req.getParameter("shoppingProductDetailsID")));
         spd.setShoppingCost(Integer.parseInt(req.getParameter("shoppingCost")));
-        
+
         return detailsDAO.finalizeShoppingProductDetail(spd);
     }
 }
