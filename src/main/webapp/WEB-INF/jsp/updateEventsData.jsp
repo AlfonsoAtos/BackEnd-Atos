@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +7,7 @@ prefix="c"%>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="
-        <c:url value="/resources/css/main.css" />
-        " rel="stylesheet">
+        <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
         <title>Coupon Details</title>
     </head>
     <body>
@@ -35,8 +31,11 @@ prefix="c"%>
                                     clip-rule="evenodd"
                                 ></path>
                             </svg>
-                            My Profile
+                            <p id="admin-name">My Profile</p>
                         </a>
+                    </li>
+                    <li>
+                        <button type="button" class="logout-button" onclick="logout()">Log out</button>
                     </li>
                 </div>
             </ul>
@@ -187,5 +186,10 @@ prefix="c"%>
                 </div>
             </div>
         </footer> -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+        <script type="text/javascript">
+            checkSessionAdmin();
+        </script>
     </body>
 </html>

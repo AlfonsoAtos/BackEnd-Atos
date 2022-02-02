@@ -26,11 +26,8 @@ public class ShoppingProductDetailsDAO {
 
     @Autowired
     private ProductDAO productDAO;
-
-    public int addToCart(int pID) {
-        // Fixed value for testing
-        int userID = 1;
-
+    
+    public int addToCart(int pID, int userID) {
         ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
         if (inSessionCart == null) {
             shoppingCartDAO.createNewCart(userID);
@@ -64,9 +61,7 @@ public class ShoppingProductDetailsDAO {
         return list;
     }
 
-    public int getNumProductsInCart() {
-        //Fixed value for testing
-        int userID = 1;
+    public int getNumProductsInCart(int userID) {
         ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
         if(inSessionCart != null) {
             int inSessionCartId = inSessionCart.getShoppingCartID();
