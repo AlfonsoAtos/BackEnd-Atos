@@ -23,6 +23,7 @@ public class ShoppingCartManager {
     }
 
     public int createNewCart(int userID){
+        System.out.println("Hello manager");
         return dao.createNewCart(userID);
     }
 
