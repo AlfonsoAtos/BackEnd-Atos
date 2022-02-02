@@ -30,13 +30,6 @@ public class UserController {
 	public String SignUp() {
 		return "sign_up";
 	}
-	
-	@RequestMapping("/list")
-	public String UsersList(Model model) {
-//		List<UserModel> users = serviceUsers.list();
-//		model.addAttribute("users", users);
-		return "user_list";
-	}
 
 	@PostMapping("/api/signup")
 	@ResponseBody
