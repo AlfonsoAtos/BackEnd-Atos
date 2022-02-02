@@ -10,6 +10,21 @@ public class Coupons {
     int promotionEventId;
     int productCategoryId;
 
+    public Coupons() {
+
+    }
+
+    public Coupons(int couponId, String couponName, String couponCode, String couponType, int couponDiscount,
+            int promotionEventId, int productCategoryId) {
+        this.couponId = couponId;
+        this.couponName = couponName;
+        this.couponCode = couponCode;
+        this.couponType = couponType;
+        this.couponDiscount = couponDiscount;
+        this.promotionEventId = promotionEventId;
+        this.productCategoryId = productCategoryId;
+    }
+
     public int getCouponId() {
         return couponId;
     }
