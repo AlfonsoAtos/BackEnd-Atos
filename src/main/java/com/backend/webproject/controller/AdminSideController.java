@@ -28,7 +28,7 @@ public class AdminSideController {
     @RequestMapping("/")
     public String showAdminPage() {
 
-        return adminSideManager.showAdminPage();
+        return "admin";
     }
 
     // Shows all couponsjose
