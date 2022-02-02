@@ -15,9 +15,11 @@
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <div class="logo-bg">
-                        <img src="../../resources/img/logo.png" />
-                    </div>
+                    <a href="/admin-side/">
+                        <div class="logo-bg">
+                            <img src="../../resources/img/logo.png" />
+                        </div>
+                    </a>
                 </div>
                 <div class="items-nav">
                     <li>
