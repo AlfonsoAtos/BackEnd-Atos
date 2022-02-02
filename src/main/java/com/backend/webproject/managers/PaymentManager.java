@@ -8,8 +8,8 @@ import com.backend.webproject.entity.Payment;
 
 @Component
 public class PaymentManager {
-	@Autowired
-	private PaymentDAO dao;
+  @Autowired
+  private PaymentDAO dao;
 
   public int processPayment(int openCoupon, int shoppingFinalAmount, String paymentStatus, int shoppingCartID){
     Payment payment = new Payment();
