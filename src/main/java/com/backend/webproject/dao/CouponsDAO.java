@@ -31,7 +31,7 @@ public class CouponsDAO {
     // Get the entire data from Coupon table
     public List<Coupons> getNewCoupons() {
         List<Coupons> newCoupons = jdbcTemplate.query(
-                "SELECT * FROM (SELECT * FROM Coupon ORDER BY couponId DESC) WHERE ROWNUM <= 5", couponsMapper);
+                "SELECT * FROM Coupon ORDER BY couponId DESC", couponsMapper);
         return newCoupons;
     }
 
