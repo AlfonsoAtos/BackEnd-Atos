@@ -96,6 +96,7 @@
 .carousel-main {
   -webkit-filter: blur(8px);
           filter: blur(8px);
+  height: 400px;
 }
 
 .bg-text {
@@ -156,4 +157,38 @@
 .nav-btn:hover {
   color: #ffffff;
 }
+
+#short-desc-container {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#short-desc-txt {
+  font-size: 13px;
+}
+
+.price-in-modal {
+  font-size: 25px;
+}
+
+#cartBtn {
+  text-decoration: none;
+}
+
+#cartCounter {
+  color: orange;
+}
+
+#banner-title {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#noGamesFoundMsg {
+  height: 70vh;
+  color: #a1a0a0;
+}
+
 /*# sourceMappingURL=style.css.map */

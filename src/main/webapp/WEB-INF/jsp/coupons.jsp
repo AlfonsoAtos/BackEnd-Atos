@@ -19,7 +19,9 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo.jpg" />
+                    <a href="/admin-side/">
+                        <img src="../../resources/img/logo-w.png" />
+                    </a>
                 </div>
                 <div class="items-nav">
                     <li>
@@ -147,23 +149,16 @@ prefix="c"%>
                                                 id=""
                                                 required
                                             >
-                                                <option
-                                                    value="none"
-                                                    selected
-                                                    disabled
-                                                    hidden
+                                                <c:forEach
+                                                    var="events"
+                                                    items="${newEvents}"
                                                 >
-                                                    Select an Option
-                                                </option>
-                                                <option value="1">
-                                                    Black Friday
-                                                </option>
-                                                <option value="2">
-                                                    Halloween
-                                                </option>
-                                                <option value="3">
-                                                    Christmas
-                                                </option>
+                                                    <option
+                                                        value="${events.getEventsId()}"
+                                                    >
+                                                        ${events.getEventsName()}
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="item-form">
@@ -334,12 +329,12 @@ prefix="c"%>
             </div>
         </div>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </body>
 </html>

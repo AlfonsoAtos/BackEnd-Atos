@@ -19,7 +19,9 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo.jpg" />
+                    <a href="/admin-side/">
+                        <img src="../../resources/img/logo-w.png" />
+                    </a>
                 </div>
                 <div class="items-nav">
                     <li>
@@ -304,12 +306,12 @@ prefix="c"%>
             </div>
         </div>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </body>
 </html>

@@ -2,19 +2,25 @@ function login(email, password) {
   let data = { email, password };
 
   let settings = {
-    url: '/api/user/login/',
+    url: '/user/api/login/',
     method: 'POST',
     dataType: 'JSON',
-    data: data,
-    async: false,
-    cache: false,
+    contentType: 'application/JSON',
+    data: JSON.stringify(data),
     success: (res) => {
       localStorage.setItem('session', JSON.stringify({
-        username: res.username,
-        password: res.password
+        id: res.id,
+        name: res.fullname,
+        email: res.email,
+        password: res.password,
+        role: res.role
       }));
       // console.log(JSON.parse(localStorage.getItem('session')));
-      window.location.href = '/'
+      if (res.role == 10) {
+        window.location.href = '/admin-side/'
+      } else {
+        window.location.href = '/'
+      }
     },
     error: (err) => {
       console.log('error', err);

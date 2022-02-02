@@ -13,14 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventsDAO {
 
-    JdbcTemplate temp;
-
-    public EventsDAO(JdbcTemplate temp) {
-        this.temp = temp;
-    }
-
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    JdbcTemplate temp;
 
     @Autowired
     private EventsMapper eventsMapper;
@@ -29,42 +23,40 @@ public class EventsDAO {
     public List<Events> getNewEvents() {
 
         String sql = "SELECT * FROM (SELECT * FROM promotionevent ORDER BY promotioneventid DESC) WHERE ROWNUM <= 5";
-        List<Events> newEvents = jdbcTemplate.query(sql, eventsMapper);
+        List<Events> newEvents = temp.query(sql, eventsMapper);
         return newEvents;
     }
 
     /* GET By ID */
     public Events searchEventsById(int eventsId) {
-        String sql = "SELECT * FROM promotionevent WHERE promotioneventid = :eventsId";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("eventsId", eventsId);
-        Events eventsData = (Events) jdbcTemplate.query(sql, paramMap, eventsMapper).get(0);
+        String sql = "SELECT * FROM promotionevent WHERE promotioneventid = ?";
+        Events eventsData = (Events) temp.query(sql,  new Object[] {eventsId}, eventsMapper).get(0);
         return eventsData;
     }
 
     /* POST */
-    public void insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
-            String eventsEndDate, String eventsStatus, int eventsAdminId) {
+    public int insertNewEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+        String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "INSERT INTO promotionevent VALUES(?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?,?)";
-        temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+        return temp.update(sql, new Object[] { eventsId, eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId });
     }
 
     /* PUT */
-    public void updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
-            String eventsEndDate, String eventsStatus, int eventsAdminId) {
+    public int updateEvents(int eventsId, String eventsName, String eventsDescription, String eventsStartDate,
+        String eventsEndDate, String eventsStatus, int eventsAdminId) {
 
         String sql = "UPDATE promotionevent SET promotioneventname = ?, promotioneventdescription = ?, promotioneventstartdate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventenddate = TO_DATE(?, 'YYYY-MM-DD'), promotioneventstatus = ?, adminid = ? WHERE promotioneventid = ?";
-        temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,
+        return temp.update(sql, new Object[] { eventsName, eventsDescription, eventsStartDate, eventsEndDate,
                 eventsStatus, eventsAdminId, eventsId });
     }
 
     /* DELETE */
-    public void deleteEvents(int eventsId) {
+    public int deleteEvents(int eventsId) {
 
         String sql = "DELETE FROM promotionevent WHERE promotioneventid = ?";
-        temp.update(sql, new Object[] { eventsId });
+        return temp.update(sql, new Object[] { eventsId });
     }
 
     /* AUTO INCREMENT for ID */

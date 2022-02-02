@@ -1,24 +1,26 @@
 package com.backend.webproject.entity;
 
-public class UserData {
+public class User {
 	int id;
-	String username;
+	String email;
 	String password;
 	String fullname;
-	String number;
 	String address;
+	String number;
+	int role;
 	
-	public UserData() {
+	public User() {
 		this.address = "";
 	}
 	
-	public UserData(int id, String username, String password, String fullname, String number) {
+	public User(int id, String email, String password, String fullname, String number, int role) {
 		this.id = id;
-		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.fullname = fullname;
-		this.number = number;
 		this.address = "";
+		this.number = number;
+		this.role = role;	
 	}
 	
 	public String getAddress() {
@@ -41,8 +43,8 @@ public class UserData {
 		return password;
 	}
 	
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 	
 	public void setAddress(String address) {
@@ -65,7 +67,15 @@ public class UserData {
 		this.password = password;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public int getRole() {
+		return role;
+	}
+	
+	public void setRole(int role) {
+		this.role = role;
 	}
 }
