@@ -145,7 +145,7 @@ prefix="c"%>
                             <div class="item-form">
                                 <label>Image: </label>
                                 <input
-                                    type="text"
+                                    type="file"
                                     name="pImagePath"
                                     value="${productData.getPImagePath()}"
                                     maxlength="50"
