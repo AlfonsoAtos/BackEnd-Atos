@@ -20,7 +20,6 @@
     <meta name="theme-color" content="#7952b3">
 
     <!-- Custom styles -->
-    <%-- <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"> --%>
     <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/signup.css" />" rel="stylesheet">
     <link rel="stylesheet" href="../../resources/css/style.css">
