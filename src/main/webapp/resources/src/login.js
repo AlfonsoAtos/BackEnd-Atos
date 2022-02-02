@@ -24,6 +24,7 @@ function login(email, password) {
     },
     error: (err) => {
       console.log('error', err);
+      $('.error-message').removeClass('d-none');
     }
   };
 

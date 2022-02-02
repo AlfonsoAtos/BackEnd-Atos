@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,14 +23,19 @@ public class CustomerSideController {
 		return customerSideManager.showHomePage(model);
 	}
 
+	@PostMapping("numproductsincart/{uID}")
+	@ResponseBody
+	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
+		return customerSideManager.getNumProductsInCartService(uID, model);
+	}
+
 	@RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
 		return customerSideManager.searchProductsService(request, model);
 	}
 
-	@PostMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		return customerSideManager.addToCartService(pID);
+	@PostMapping("addtocart/{pID}/{uID}")
+	public String addToCartService(@PathVariable int pID, @PathVariable int uID) {
+		return customerSideManager.addToCartService(pID, uID);
 	}
-
 }

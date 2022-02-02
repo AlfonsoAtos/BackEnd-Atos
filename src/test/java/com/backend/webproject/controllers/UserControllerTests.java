@@ -37,16 +37,16 @@ class UserControllerTests {
 	@Test
 	public void controllerRoutingTest() throws Exception {
 		this.mockMvc.perform(get("/user/login"))
-	     .andExpect(status().isOk())
-	     .andExpect(forwardedUrl("/WEB-INF/jsp/login.jsp"));
+			.andExpect(status().isOk())
+			.andExpect(forwardedUrl("/WEB-INF/jsp/login.jsp"));
 		
 		this.mockMvc.perform(get("/user/sign_up"))
-	     .andExpect(status().isOk())
-	     .andExpect(forwardedUrl("/WEB-INF/jsp/sign_up.jsp"));
-		
-		this.mockMvc.perform(get("/user/list"))
-	     .andExpect(status().isOk())
-	     .andExpect(forwardedUrl("/WEB-INF/jsp/user_list.jsp"));
+			.andExpect(status().isOk())
+			.andExpect(forwardedUrl("/WEB-INF/jsp/sign_up.jsp"));
+
+		this.mockMvc.perform(get("/user/check/1"))
+			.andExpect(status().isOk())
+			.andExpect(forwardedUrl("/WEB-INF/jsp/checkout.jsp"));
 	}
 	
 	@Test
@@ -55,13 +55,8 @@ class UserControllerTests {
 		
 		given(userManager.loginUser("al@gmail.com", "pass123")).willReturn(user);
 		
-//		Gson gson = new Gson();
-		
 		String json = "{ \"email\": \"al@gmail.com\", \"password\": \"pass123\" }";
 		
-		System.out.println("json string: " + json);
-		
-//		String response = 
 		mockMvc.perform(
 			post("/user/api/login")
 			.content(json)
@@ -74,11 +69,6 @@ class UserControllerTests {
 			.andExpect(jsonPath("number", is(user.getNumber())))
 			.andExpect(jsonPath("id", is(user.getId())))
 			.andExpect(jsonPath("role", is(user.getRole())));
-//					.andReturn().getResponse().getContentAsString();
-		
-//		UserEntity userData = gson.fromJson(response, UserEntity.class);
-//		System.out.println("response string: " + response);
-//		System.out.println("response object: " + userData);
 	}
 	
 	@Test
@@ -89,10 +79,7 @@ class UserControllerTests {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(user);
-		
-		System.out.println("json string: " + json);
-		
-//		String response = 
+
 		mockMvc.perform(
 			post("/user/api/signup")
 			.content(json)
@@ -105,10 +92,5 @@ class UserControllerTests {
 			.andExpect(jsonPath("number", is(user.getNumber())))
 			.andExpect(jsonPath("id", is(user.getId())))
 			.andExpect(jsonPath("role", is(user.getRole())));
-//					.andReturn().getResponse().getContentAsString();
-		
-//		UserEntity userData = gson.fromJson(response, UserEntity.class);
-//		System.out.println("response string: " + response);
-//		System.out.println("response object: " + userData);
 	}
 }

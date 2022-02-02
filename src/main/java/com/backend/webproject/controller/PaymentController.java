@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/payments")
 @CrossOrigin(origins = "*")
 public class PaymentController {
 
-  	@Autowired
+	@Autowired
 	PaymentManager paymentManager;
-    
-  	@RequestMapping("/byID/{id}")
+
+	@RequestMapping("/byID/{id}")
 	public Payment searchByID(@PathVariable("id") int id) {
 		return paymentManager.searchByID(id);
 	}
@@ -37,5 +35,4 @@ public class PaymentController {
 		return paymentManager.processPayment(req);
 	}
 
-	
 }
