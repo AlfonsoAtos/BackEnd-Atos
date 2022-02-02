@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shoppingcart")
 @CrossOrigin(origins = "*")
 public class ShoppingCartController {
-    @Autowired
+
     private ShoppingCartManager manager;
     @Autowired
     private ProductDAO productsDAO;
