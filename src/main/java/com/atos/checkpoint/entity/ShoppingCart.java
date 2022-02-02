@@ -24,6 +24,15 @@ public class ShoppingCart {
     @Column(name = "userID")
     private int userID;
 
+    public ShoppingCart() {}
+
+    public ShoppingCart(int shoppingCartID, Date creationDate, String cartStatus, int userID) {
+        this.shoppingCartID = shoppingCartID;
+        this.creationDate = creationDate;
+        this.cartStatus = cartStatus;
+        this.userID = userID;
+    }
+
     public int getShoppingCartID() {
         return shoppingCartID;
     }

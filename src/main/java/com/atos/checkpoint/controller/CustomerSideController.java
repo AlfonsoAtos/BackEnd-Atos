@@ -6,8 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,51 +15,31 @@ import com.atos.checkpoint.dao.ProductDAO;
 import com.atos.checkpoint.dao.ShoppingProductDetailsDAO;
 import com.atos.checkpoint.entity.Product;
 import com.atos.checkpoint.entity.ProductCategory;
+import com.atos.checkpoint.managers.CustomerSideManager;
 
 @Controller
 public class CustomerSideController {
 	@Autowired
-	ProductDAO productDAO;
-	@Autowired
-	ProductCategoryDAO productCategoryDAO;
-	@Autowired
-	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+	CustomerSideManager customerSideManager;
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		List<Product> newProducts = productDAO.getNewProducts();
-		model.addAttribute("newProducts", newProducts);
-		return "home";
+		return customerSideManager.showHomePage(model);
 	}
 
-	@PostMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID){
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		String response = (productAdded == 1) ? "home" : "";
-		return response;
+	@PostMapping("numproductsincart/{uID}")
+	@ResponseBody
+	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
+		return customerSideManager.getNumProductsInCartService(uID, model);
 	}
 
-    @RequestMapping("search")
+	@RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart();
-		model.addAttribute("numProductsInCart", numProductsInCart);
-		List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
-		model.addAttribute("productCategories", productCategories);
-		String pName = request.getParameter("pname");
-		String pCategoryID = request.getParameter("pcatid");
-		List<Product> searchResult = productDAO.searchProducts(pName, pCategoryID);
-		model.addAttribute("searchResult", searchResult);
-		return "products";
+		return customerSideManager.searchProductsService(request, model);
 	}
 
-	/* @RequestMapping("addtocart/{pID}")
-	public String addToCartService(@PathVariable int pID) {
-		int productAdded = shoppingProductDetailsDAO.addToCart(pID);
-		return "redirect:/";
-	} */
-
+	@PostMapping("addtocart/{pID}/{uID}")
+	public String addToCartService(@PathVariable int pID, @PathVariable int uID) {
+		return customerSideManager.addToCartService(pID, uID);
+	}
 }

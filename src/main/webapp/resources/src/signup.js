@@ -1,5 +1,3 @@
-$('.error-message').hide()
-
 function registerUser(fullname, email, number, password) {
   let data = {
     fullname, email, number, password
@@ -24,6 +22,7 @@ function registerUser(fullname, email, number, password) {
     },
     error: (err) => {
       console.log('error', err);
+      $('#signup-error').removeClass('d-none')
     }
   };
 
@@ -38,12 +37,12 @@ $('#signup_form').on('submit', (e) => {
   let password = inputs[3].children[0].value;
   let confirmPassword = inputs[4].children[0].value;
   if(password && confirmPassword && password == confirmPassword) {
-    $('.error-message').hide()
+    $('#password-error').addClass('d-none')
     if(name && email && number) {
       registerUser(name, email, number, password);
     }
   } else {
-    $('.error-message').show()
+    $('#password-error').removeClass('d-none')
   }
   return false;
 })

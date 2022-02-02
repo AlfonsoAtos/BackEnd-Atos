@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 
 <!DOCTYPE html>
@@ -9,9 +7,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../../resources/src/addToCart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="../../resources/css/style.css">
@@ -36,26 +31,22 @@
                             <c:forEach var="pCategory" items="${productCategories}">
                                 <button class="nav-btn" type="submit" name="pcatid" value="${pCategory.pcID}">${pCategory.pcName}</button>
                             </c:forEach>
-                        </form> 
+                        </form>
                     </ul>
-                    <a id="cartBtn" href="#" class="ms-4">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cartCounter">${numProductsInCart}</span>
-                    </a>
-                    <a href="#" class="ms-4"><i class="fas fa-user"></i></a>
+                    <span>
+                        <span class="d-none" id="user-icons">
+                            <a id="cartBtn" href="#" class="ms-4">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="cartCounter"></span>
+                            </a>
+                            <a href="#"><i class="fas fa-user ms-3"></i></a>
+                            <button type="button" class="btn btn-danger ms-3" onclick="logout()">Log out</button>
+                        </span>
+                        <span class="d-none" id="login-button">
+                            <a href="/user/login/"><button type="button" class="btn btn-primary">Log in</button></a>
+                        </span>
+                    </span>
                 </div>
-                <!-- <a href="#">
-                    <span class="fa-stack cart-icon-group">
-                        <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fas fa-shopping-cart fa-sm fa-stack-1x icon"></i>
-                    </span>
-                </a>
-                <a href="#">
-                    <span class="fa-stack user-icon-group">
-                        <i id="user-icon-bg" class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fas fa-user fa-stack-1x icon"></i>
-                    </span>
-                </a> -->
             </div>
         </nav>
         <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -65,9 +56,6 @@
                 <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner carousel-main pb-2">
-                <!-- <div class="carousel-item active">
-                    <img src="../../resources/img/banner-img.png" class="d-block w-100" alt="...">
-                </div> -->
                 <c:forEach var="product" items="${newProducts}" varStatus="p">
                     <c:if test="${(p.index % 1 == 0)}"><div class="carousel-item ${(p.index == 0) ? 'active' : ''}"></c:if>
                         <img src="../../resources/img/${product.getPImagePath()}" class="d-block w-100" alt="">
@@ -76,7 +64,7 @@
             </div>
             <div class="bg-text px-5 py-auto">
                 <form action="search">
-                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h5 id="banner-title" class="display-5 fw-bold">Search for your next adventure!</h5>
                     <input name="pname" class="form-control mt-3" type="search" placeholder="Search Products" aria-label="Search">
                     <button class="btn btn-success mt-3" type="submit">Search</button>
                 </form>
@@ -128,7 +116,7 @@
 											</div>
 										</div>
 									</div>
-							</div>
+                            </div>  
 
                             <div id="modal${product.getPID()}" class="modal" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -168,26 +156,11 @@
                 </div>
             </div>
         </div>
-
-<!--         <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="card border-0">
-                        <img src="./img/splatoon.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Product Name</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="d-flex justify-content-between">
-                                <p class="card-text">$00.00</p>
-                                <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="../../resources/src/addToCart.js"></script>
     <script>
         document.querySelectorAll('.card').forEach(item => {
             item.addEventListener('mouseenter', e => {
@@ -201,6 +174,12 @@
                 cartIcon.style.visibility = "hidden";
             });
         });
+    </script>
+    <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/src/getNumProductsInCart.js" />" type="text/javascript"></script>
+    <script type="text/javascript">
+        checkSessionUser();
+        getNumProductsInCart();
     </script>
 </body>
 </html>

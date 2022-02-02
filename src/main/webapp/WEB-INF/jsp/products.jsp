@@ -10,13 +10,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../../resources/src/addToCart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="../../resources/css/style.css">
-    <title>Home</title>
+    <title>Products</title>
 </head>
 <body>
     <div class="container-fluid p-0">
@@ -39,11 +36,19 @@
                             </c:forEach>
                         </form> 
                     </ul>
-                    <a id="cartBtn" href="#" class="ms-4">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cartCounter">${numProductsInCart}</span>
-                    </a>
-                    <a href="#" class="ms-4"><i class="fas fa-user"></i></a>
+                    <span>
+                        <span class="d-none" id="user-icons">
+                            <a id="cartBtn" href="#" class="ms-4">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="cartCounter"></span>
+                            </a>
+                            <a href="#"><i class="fas fa-user ms-3"></i></a>
+                            <button type="button" class="btn btn-danger ms-3" onclick="logout()">Log out</button>
+                        </span>
+                        <span class="d-none" id="login-button">
+                            <a href="/user/login/"><button type="button" class="btn btn-primary">Log in</button></a>
+                        </span>
+                    </span>
                 </div>
             </div>
         </nav>
@@ -58,6 +63,11 @@
                 <input name="pname" class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <c:if test="${fn:length(searchResult) == 0}">
+                <div id="noGamesFoundMsg" class="d-flex align-items-center justify-content-center">
+                    <h5 class="display-5">No games found :(</h5>
+                </div>
+            </c:if>
 			<c:forEach var="product" items="${searchResult}" varStatus="p">
 				<c:if test="${(p.index % 4 == 0)}"><div class="row d-flex align-items-center mt-4 mb-4"></c:if>
 					<div class="col-3 d-flex justify-content-center">
@@ -100,7 +110,6 @@
                             </div>
                         </div>
                     </div>
-
 				<c:if test="${((p.index + 1) % 4 == 0)}"></div></c:if>
 			</c:forEach>
         </div>
@@ -117,27 +126,10 @@
                 </div>
             </div>
         </div>
-            
-
-        <!-- <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="card border-0">
-                        <img src="./img/splatoon.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Product Name</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="d-flex justify-content-between">
-                                <p class="card-text">$00.00</p>
-                                <button type="button" class="btn btn-success"><i class="fas fa-cart-plus"></i>  Add to cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="../../resources/src/addToCart.js"></script>
     <script>
         document.querySelectorAll('.card').forEach(item => {
             item.addEventListener('mouseenter', e => {
@@ -151,6 +143,12 @@
                 cartIcon.style.visibility = "hidden";
             });
         });
+    </script>
+    <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/src/getNumProductsInCart.js" />" type="text/javascript"></script>
+    <script type="text/javascript">
+        checkSessionUser();
+        getNumProductsInCart();
     </script>
 </body>
 </html>

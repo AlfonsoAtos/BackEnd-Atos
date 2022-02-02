@@ -19,7 +19,9 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo-w.png" />
+                    <a href="/admin-side/">
+                        <img src="../../resources/img/logo-w.png" />
+                    </a>
                 </div>
                 <div class="items-nav">
                     <li>
@@ -35,8 +37,11 @@ prefix="c"%>
                                     clip-rule="evenodd"
                                 ></path>
                             </svg>
-                            My Profile
+                            <p id="admin-name">My Profile</p>
                         </a>
+                    </li>
+                    <li>
+                        <button type="button" class="logout-button" onclick="logout()">Log out</button>
                     </li>
                 </div>
             </ul>
@@ -311,5 +316,10 @@ prefix="c"%>
                 </div>
             </div>
         </footer> -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
+        <script type="text/javascript">
+            checkSessionAdmin();
+        </script>
     </body>
 </html>

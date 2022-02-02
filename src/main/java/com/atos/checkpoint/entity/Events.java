@@ -12,6 +12,18 @@ public class Events {
     String eventsStatus;
     int eventsAdminId;
 
+    public Events() {}
+
+    public Events(int eventsId, String eventsName, String eventsDescription, Date eventsStartDate, Date eventsEndDate, String eventsStatus, int eventsAdminId) {
+        this.eventsId = eventsId;
+        this.eventsName = eventsName;
+        this.eventsDescription = eventsDescription;
+        this.eventsStartDate = eventsStartDate;
+        this.eventsEndDate = eventsEndDate;
+        this.eventsStatus = eventsStatus;
+        this.eventsAdminId = eventsAdminId;
+    }
+
     public int getEventsId() {
         return eventsId;
     }

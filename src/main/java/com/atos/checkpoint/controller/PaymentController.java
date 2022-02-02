@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.checkpoint.dao.PaymentDAO;
 import com.atos.checkpoint.entity.Payment;
+import com.atos.checkpoint.managers.PaymentManager;
 
 @RestController
 @RequestMapping("/payments")
 @CrossOrigin(origins = "*")
 public class PaymentController {
-
-  @Autowired
-	private PaymentDAO paymentJDBC;
+	@Autowired
+	private PaymentManager manager;
     
   @RequestMapping("/byID/{id}")
 	public Payment searchByID(
 		@PathVariable("id") int id
 		) {
-		Payment pay = paymentJDBC.searchPaymentByID(id);
+		Payment pay = manager.searchPaymentByID(id);
 		
 		return pay;
 	}
@@ -33,7 +33,7 @@ public class PaymentController {
 	public Payment searchByCartID(
 		@PathVariable("id") int id
 		) {
-		Payment pay = paymentJDBC.searchPaymentByCartID(id);
+		Payment pay = manager.searchPaymentByCartID(id);
 		
 		return pay;
 	}
@@ -45,7 +45,7 @@ public class PaymentController {
 		String paymentStatus = req.getParameter("paymentStatus");
 		int shoppingCartID = Integer.parseInt(req.getParameter("shoppingCartID"));
 		
-		if (paymentJDBC.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
+		if (manager.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
 			// Create shopping cart
 			return 1;
 		}
