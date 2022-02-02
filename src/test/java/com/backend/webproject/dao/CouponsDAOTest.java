@@ -30,7 +30,7 @@ public class CouponsDAOTest {
     private CouponsMapper couponsMapper;
 
     private Coupons createCoupon() {
-        return new Coupons(1, "Winter", "25418A6324", "Open", 40, 1, 1);
+        return new Coupons(1, "Winter", "1234567890", "Open", 40, 1, 1);
     }
 
     @Test
@@ -39,20 +39,20 @@ public class CouponsDAOTest {
         assertTrue(listCoupons.isEmpty());
     }
 
-    // @Test
-    // public void couponsTestSearch() {
-    // Coupons coupon = createCoupon();
-    // List<Coupons> couponsList = new ArrayList<Coupons>();
-    // couponsList.add(coupon);
-    // given(jdbcTemplate.query(
-    // "SELECT * FROM coupon WHERE couponId = ?",
-    // new Object[] { coupon.getCouponId() },
-    // couponsMapper))
-    // .willReturn(couponsList);
+    @Test
+    public void couponsTestSearch() {
+        Coupons coupon = createCoupon();
+        List<Coupons> couponsList = new ArrayList<Coupons>();
+        couponsList.add(coupon);
+        given(jdbcTemplate.query(
+                "SELECT * FROM coupon WHERE couponId = ?",
+                new Object[] { coupon.getCouponId() },
+                couponsMapper))
+                        .willReturn(couponsList);
 
-    // Coupons result = couponsDAO.searchCouponByID(coupon.getCouponId());
-    // assertEquals(coupon, result);
-    // }
+        Coupons result = couponsDAO.searchCouponByID(coupon.getCouponId());
+        assertEquals(coupon, result);
+    }
 
     @Test
     public void couponsTestInsert() {
@@ -131,6 +131,21 @@ public class CouponsDAOTest {
 
         int result = couponsDAO.getAutoCouponId();
         assertEquals(3, result);
+    }
+
+    @Test
+    public void couponsTestValidate() {
+        Coupons coupon = createCoupon();
+        List<Coupons> couponsList = new ArrayList<Coupons>();
+        couponsList.add(coupon);
+        given(jdbcTemplate.query(
+                "SELECT * FROM coupon WHERE couponCode = ?",
+                new Object[] { coupon.getCouponCode() },
+                couponsMapper))
+                        .willReturn(couponsList);
+
+        Coupons result = couponsDAO.validateCoupons(coupon.getCouponCode());
+        assertEquals(coupon, result);
     }
 
 }
