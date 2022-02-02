@@ -16,20 +16,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductDAO {
 
+    @Autowired
     JdbcTemplate temp;
 
-    public ProductDAO(JdbcTemplate temp) {
-        this.temp = temp;
-    }
-
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jtemp;
 
     @Autowired
     private ProductMapper ProductMapper;
     
     public List<Product> getNewProducts() {
-        List<Product> newProducts = jdbcTemplate.query("SELECT * FROM Product ORDER BY productID DESC", ProductMapper);
+        List<Product> newProducts = temp.query("SELECT * FROM Product ORDER BY productID DESC", ProductMapper);
         return newProducts;
 	}
 
@@ -45,18 +42,18 @@ public class ProductDAO {
         Map<String, Object> params = new HashMap<>();
         params.put("pName", pName);
         params.put("pCategoryID", pCategoryID);
-        List<Product> searchResult = jdbcTemplate.query(sql, params, ProductMapper);
+        List<Product> searchResult = jtemp.query(sql, params, ProductMapper);
 
         return searchResult;
     }
 
     public Product getProductById(int pID) {
-        Product product = jdbcTemplate.queryForObject("SELECT * FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}}, ProductMapper);
+        Product product = jtemp.queryForObject("SELECT * FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}}, ProductMapper);
         return product;
     }
 
     public List<Product> getAllProducts() {
-        List<Product> allProducts = jdbcTemplate.query(
+        List<Product> allProducts = temp.query(
                 "SELECT * FROM Product ORDER BY productID ASC", ProductMapper);
         return allProducts;
     }
