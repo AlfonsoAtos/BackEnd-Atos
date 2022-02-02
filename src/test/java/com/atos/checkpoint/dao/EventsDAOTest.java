@@ -1,4 +1,4 @@
-package com.backend.webproject.dao;
+package com.atos.checkpoint.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.backend.webproject.entity.Events;
-import com.backend.webproject.mappers.EventsMapper;
+import com.atos.checkpoint.entity.Events;
+import com.atos.checkpoint.mappers.EventsMapper;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

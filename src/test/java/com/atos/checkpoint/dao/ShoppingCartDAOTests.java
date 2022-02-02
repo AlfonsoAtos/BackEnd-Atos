@@ -1,4 +1,4 @@
-package com.backend.webproject.dao;
+package com.atos.checkpoint.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
@@ -13,8 +13,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.backend.webproject.entity.ShoppingCart;
-import com.backend.webproject.mappers.ShoppingCartMapper;
+import com.atos.checkpoint.entity.ShoppingCart;
+import com.atos.checkpoint.mappers.ShoppingCartMapper;
 
 @SpringBootTest
 class ShoppingCartDAOTests {

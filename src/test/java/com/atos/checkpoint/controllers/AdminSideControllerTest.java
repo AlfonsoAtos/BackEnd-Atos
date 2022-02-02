@@ -1,4 +1,4 @@
-package com.backend.webproject.controllers;
+package com.atos.checkpoint.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
