@@ -70,7 +70,7 @@ public class ProductDAO {
             }});
 	}
 	
-    public int updateProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID) {
+    public int updateProduct(int pID, String pName, String pCompany, float pPrice, String pDescription, String pImagePath, int pCategoryID) {
         return jtemp.update(
             "UPDATE Product SET productName = :pName, productCompany = :pCompany, productPrice = :pPrice, productDescription = :pDescription, productImagePath = :pImagePath, productCategoryId = :pCategoryID where productID  = :pID",
             new HashMap<String, Object>() {{
