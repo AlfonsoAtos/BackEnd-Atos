@@ -26,12 +26,11 @@
   <body class="text-center">
     <nav id="navbar" class="navbar navbar-expand-lg">
       <div class="container">
-          <div class="logo-nav">
-          <img src="../../resources/img/logo-g.jpg" />
+        <div class="logo-nav me-5">
+          <a href="/">    
+            <img src="../../resources/img/logo.png" class="p-0"/>
+          </a>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -40,12 +39,12 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav>      
 
     <main class="container-fluid form-signin p-4">
       <div class="row">
         <div class="col">
-          <img class="mb-4 img-fluid" src="../../resources/img/logo-g.jpg" alt="" width="450" height="auto">
+          <img class="mb-4 img-fluid" src="../../resources/img/logo.png" alt="" width="450" height="auto">
           <h1 class="h3 mb-3 fw-normal">Sign up</h1>
           <p id="signup-error" class="error-message d-none">Error signing up</p>
           <form id="signup_form" class="form-signin col">

@@ -16,8 +16,10 @@
     <div class="container-fluid p-0">
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
-                <div class="logo-nav">
-                    <img src="../../resources/img/logo-g.jpg" />
+                <div class="logo-nav me-5">
+                    <a href="/">    
+                        <img src="../../resources/img/logo.png" class="p-0"/>
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
