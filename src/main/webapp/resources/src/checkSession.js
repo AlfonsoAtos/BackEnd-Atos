@@ -10,6 +10,7 @@ function checkSession() {
 function checkSessionUser() {
   if (checkSession()) {
     $('#user-icons').removeClass('d-none');
+    $('#user-name').text(session.name);
   } else {
     $('#login-button').removeClass('d-none');
   }
