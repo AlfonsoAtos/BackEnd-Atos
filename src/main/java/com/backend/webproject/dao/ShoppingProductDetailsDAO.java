@@ -62,13 +62,13 @@ public class ShoppingProductDetailsDAO {
     }
 
     public int getNumProductsInCart(int userID) {
-        ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
-        if(inSessionCart != null) {
+        try {
+            ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
             int inSessionCartId = inSessionCart.getShoppingCartID();
             String sql = "SELECT SUM(quantity) FROM ShoppingProductDetails WHERE shoppingCartId = :inSessionCartId";
             int numProductsInCart = jdbcTemplate.queryForObject(sql, new HashMap<String, Object>() {{put("inSessionCartId", inSessionCartId);}}, Integer.class);
             return numProductsInCart;
-        } else {
+        } catch(Exception e) {
             return 0;
         }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,11 +49,14 @@ public class CustomerSideManager {
 	}
 
 	public List<ShoppingProductDetails> getProductsInCartService(int userID) {
-		List<ShoppingProductDetails> productsInCart;
-		ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
-		int inSessionCartID = inSessionCart.getShoppingCartID();
-		productsInCart = shoppingProductDetailsDAO.getAllDetailsFromCart(inSessionCartID);
-		return productsInCart;
+		try {
+			ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
+			int inSessionCartID = inSessionCart.getShoppingCartID();
+			List<ShoppingProductDetails> productsInCart = shoppingProductDetailsDAO.getAllDetailsFromCart(inSessionCartID);
+			return productsInCart;
+		} catch(Exception e) {
+			return new ArrayList<ShoppingProductDetails>();
+		}
 	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
