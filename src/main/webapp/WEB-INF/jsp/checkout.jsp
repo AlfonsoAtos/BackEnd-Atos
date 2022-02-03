@@ -62,7 +62,8 @@
                     <div id="payment">
                         <h2><b id="price"></b></h2><h6>All prices include VAT if applicable </h6>
                         <label for="ifGift">Is this a gift?</label>
-                        <input type="checkbox" name="isGift" value="gift">
+                        <input id="checkAGift" type="checkbox" name="isGift" value="gift">
+                            <input style="display: none;" id="emailGift" type="text" placeholder="@mail.com">
                         
                         <form id="payment_form">
                             <table>

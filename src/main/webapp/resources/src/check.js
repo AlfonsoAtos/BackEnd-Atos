@@ -6,7 +6,9 @@ function productN(id, img, name, description, price, amount, sum, pcat) {
             </td>
             <td style="padding-left:20px;">
                 <b>${name}</b>
-                <details><summary>Details</summary><p>${description}</p></details>
+                <p>${description.slice(0,80)}<span style="display:inline;" id="points-${id}"> ...</span><span style="display:none;" id="moreText-${id}">${description.slice(81,description.length-1)}</span>
+                <button style="display:inline; background:none; color:blue; border:none; padding:0; font:inherit; outline:inherit;" onclick="toggleText(${id})" id="textButton-${id}">Show More</button>
+                </p>
                 <span>
                     <svg id="btn-min-${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -26,6 +28,21 @@ function productN(id, img, name, description, price, amount, sum, pcat) {
         </tr>
             `
 }
+function toggleText(id){
+    var points = document.getElementById(`points-${id}`);
+    var moreText = document.getElementById(`moreText-${id}`);
+    var buttonText = document.getElementById(`textButton-${id}`);
+    if(points.style.display=="none"){
+        moreText.style.display= "none";
+        points.style.display="inline";
+        buttonText.innerHTML="Show More";
+    }else{
+        moreText.style.display= "inline";
+        points.style.display="none";
+        buttonText.innerHTML="Show Less";
+    }
+    
+}
 function product0(id, img, name, description, price, amount, sum, pcat) {
     return `
         <tr>
@@ -34,7 +51,9 @@ function product0(id, img, name, description, price, amount, sum, pcat) {
             </td>
             <td style="padding-left:20px;">
                 <b>${name}</b>
-                <details><summary>Details</summary><p>${description}</p></details>
+                <p>${description.slice(0,80)}<span style="display:inline;" id="points-${id}"> ...</span><span style="display:none;" id="moreText-${id}">${description.slice(81,description.length-1)}</span>
+                <button style="display:inline; background:none; color:blue; border:none; padding:0; font:inherit; outline:inherit;" onclick="toggleText(${id})" id="textButton-${id}">Show More</button>
+                </p>
                 <span>
                     <svg id="btn-min${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -55,7 +74,7 @@ function product0(id, img, name, description, price, amount, sum, pcat) {
             `
 }
 function cartTotal(tot) {
-    return `ORDER TOTAL: ${tot.toFixed(2)}`
+    return `ORDER TOTAL: $ ${tot.toFixed(2)}`
 }
 
 function fillProductsList(products) {
@@ -199,18 +218,46 @@ document.addEventListener("click",(e)=>{
         if(tcoupon!=''){
             applyCoupon(funArray[1],tcoupon,funArray[2])
         } else {
+            alert("empty coupon");
             console.log("empty coupon");
         }
     }
-    if(e.target.matches('input')){console.log("ES UN REGALO");}
+    if(e.target.matches('#checkAGift')){
+        var mail = document.getElementById('emailGift');
+        if(mail.style.display=="none"){
+            mail.style.display="inline";
+        }else{
+            mail.style.display="none";
+        }
+    }
     if(e.target.matches('#btn-payment')){
         let cnumber = document.getElementById('cnumber').value;
         let ccvv = document.getElementById('ccvv').value;
         let cdate = document.getElementById('cdate').value;
-        console.log(e.target.id,cnumber,ccvv,cdate);    
+        console.log(cnumber,ccvv,cdate);
+        if(cnumber==''||ccvv==''||cdate==''){
+            console.log("algun dato falta");
+        } else{            
+            let pathArray = window.location.pathname.split('/')
+            let cID = pathArray[3]    
+            let settings = {
+                url: `/shoppingcart/completeCart/${cID}`,
+                method: 'post',
+                dataType: 'JSON',
+                contentType: 'application/JSON',
+                success: (res) => {
+                    console.log(res);
+                    window.location.href="/";
+                },
+                error: (err) => {
+                console.log('error', err);
+                }
+            };
+            $.ajax(settings);
+        }
+    }
+    if(e.target.matches('#btn-payment')){
 
     }
 })
-
-
 
