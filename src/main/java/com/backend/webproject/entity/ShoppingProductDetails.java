@@ -20,6 +20,20 @@ public class ShoppingProductDetails {
     @Column(name = "shoppingCartID")
     private int shoppingCartID;
 
+    public ShoppingProductDetails() {
+
+    }
+
+    public ShoppingProductDetails(int shoppingProductDetailsID, int quantity, int shoppingCost,
+            int costAfterApplyingCoupon, int productID, int shoppingCartID) {
+        this.shoppingProductDetailsID = shoppingProductDetailsID;
+        this.quantity = quantity;
+        this.shoppingCost = shoppingCost;
+        this.costAfterApplyingCoupon = costAfterApplyingCoupon;
+        this.productID = productID;
+        this.shoppingCartID = shoppingCartID;
+    }
+
     public int getShoppingCartID() {
         return shoppingCartID;
     }

@@ -9,6 +9,8 @@ public class Coupons {
     int couponDiscount;
     int promotionEventId;
     int productCategoryId;
+    String promotionEventName;
+    String productCategoryName;
 
     public Coupons() {
 
@@ -79,6 +81,22 @@ public class Coupons {
 
     public void setProductCategoryId(int productCategoryId) {
         this.productCategoryId = productCategoryId;
+    }
+
+    public String getPromotionEventName() {
+        return promotionEventName;
+    }
+
+    public void setPromotionEventName(String promotionEventName) {
+        this.promotionEventName = promotionEventName;
+    }
+
+    public String getProductCategoryName() {
+        return productCategoryName;
+    }
+
+    public void setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName;
     }
 
 }

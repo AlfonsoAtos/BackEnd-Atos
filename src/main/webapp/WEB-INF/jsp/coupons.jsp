@@ -156,10 +156,10 @@ prefix="c"%>
 													Select an Option
 												</option>
 												<option value="1">Shooter</option>
-												<option value="2">VR</option>
-												<option value="3">Strategy</option>
-												<option value="4">Simulation</option>
-												<option value="5">RPG</option>
+												<option value="2">RPG</option>
+												<option value="3">Simulation</option>
+												<option value="4">VR</option>
+												<option value="5">Strategy</option>
 											</select>
 										</div>
 									</div>
@@ -218,8 +218,8 @@ prefix="c"%>
 								<td>Code</td>
 								<td>Type</td>
 								<td>Discount</td>
-								<td>Event ID</td>
-								<td>Category ID</td>
+								<td>Event Name</td>
+								<td>Category Name</td>
 								<td>Actions</td>
 							</tr>
 						</thead>
@@ -230,9 +230,9 @@ prefix="c"%>
 									<td>${coupon.getCouponName()}</td>
 									<td>${coupon.getCouponCode()}</td>
 									<td>${coupon.getCouponType()}</td>
-									<td>${coupon.getCouponDiscount()}</td>
-									<td>${coupon.getPromotionEventId()}</td>
-									<td>${coupon.getProductCategoryId()}</td>
+									<td>${coupon.getCouponDiscount()}%</td>
+									<td>${coupon.getPromotionEventName()}</td>
+									<td>${coupon.getProductCategoryName()}</td>
 									<td>
 										<a href="updateCoupon/${coupon.couponId}">
 											<svg

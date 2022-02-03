@@ -29,6 +29,13 @@ public class CouponsDAO {
         return newCoupons;
     }
 
+    public List<Coupons> getNewCouponsJoined() {
+        List<Coupons> newCoupons = temp.query(
+                "SELECT b.couponId, b.couponName, b.couponCode, b.couponType, b.couponDiscount, c.promotionEventName, a.categoryName FROM productcategory a, coupon b, promotionevent c WHERE a.productCategoryId = b.productCategoryId AND c.promotionEventId = b.promotionEventId ORDER BY couponId DESC",
+                couponsMapper);
+        return newCoupons;
+    }
+
     // Insert Query for Coupon table
     public int insertNewCoupon(int couponId, String couponName, String couponCode, String couponType,
             int couponDiscount, int promotionEventId, int productCategoryId) {

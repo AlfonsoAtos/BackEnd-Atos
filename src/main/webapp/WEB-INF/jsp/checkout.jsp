@@ -38,7 +38,8 @@
                     </ul>
                     <span>
                         <span class="d-none" id="user-icons">
-                            <a href="#"><i class="fas fa-user ms-3"></i></a>
+                            <span class="text-white" ><i class="fas fa-user ms-3"></i></span>
+                            <span class="text-white" id="user-name">Name</span>
                             <button type="button" class="btn btn-danger ms-3" onclick="logout()">Log out</button>
                         </span>
                     </span>
