@@ -18,6 +18,18 @@ public class Payment {
     @Column(name = "shoppingCartID")
     private int shoppingCartID;
 
+    public Payment() {
+
+    }
+
+    public Payment(int paymentID, int openCoupon, int shoppingFinalAmount, String paymentStatus, int shoppingCartID) {
+        this.paymentID = paymentID;
+        this.openCoupon = openCoupon;
+        this.shoppingFinalAmount = shoppingFinalAmount;
+        this.paymentStatus = paymentStatus;
+        this.shoppingCartID = shoppingCartID;
+    }
+
     public int getShoppingCartID() {
         return shoppingCartID;
     }
