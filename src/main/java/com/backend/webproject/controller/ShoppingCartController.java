@@ -30,11 +30,9 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingProductDetailsDAO detailsDAO;
 
-    @RequestMapping("completeCart/{cartID}/{userID}")
+    @RequestMapping("completeCart/{cartID}")
     public int completeCart(
-            @PathVariable("cartID") int cartID,
-            @PathVariable("userID") int userID) {
-        manager.createNewCart(userID);
+            @PathVariable("cartID") int cartID) {
         return manager.completeCart(cartID);
     }
 
@@ -113,4 +111,10 @@ public class ShoppingCartController {
 
         return detailsDAO.finalizeShoppingProductDetail(spd);
     }
+
+    @PostMapping("/savePriceAfterCoupon")
+    public int savePriceAfterCoupon(HttpServletRequest req){
+        return detailsDAO.savePriceAfterCoupon(Integer.parseInt(req.getParameter("shoppingCartID")), Integer.parseInt(req.getParameter("productID")), Integer.parseInt(req.getParameter("price")));
+    }
+
 }
