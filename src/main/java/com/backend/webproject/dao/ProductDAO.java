@@ -47,8 +47,10 @@ public class ProductDAO {
         return searchResult;
     }
 
+    //new HashMap<String, Object>() {{put("pID", pID);}}
+
     public Product getProductById(int pID) {
-        Product product = jtemp.queryForObject("SELECT * FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}}, ProductMapper);
+        Product product = temp.queryForObject("SELECT * FROM Product WHERE productID = ?", new Object[] {pID}, ProductMapper);
         return product;
     }
 
@@ -58,12 +60,12 @@ public class ProductDAO {
         return allProducts;
     }
 
-    public void insertNewProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID)
+    public void insertNewProduct(int pID, String pName, String pCompany, float pPrice, String pDescription, String pImagePath, int pCategoryID)
 	{
 		temp.update("INSERT INTO Product Values(?,?,?,?,?,?,?)", new Object[] {pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID});
 	}
 	
-    public void updateProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID) {
+    public void updateProduct(int pID, String pName, String pCompany, float pPrice, String pDescription, String pImagePath, int pCategoryID) {
         temp.update("UPDATE Product SET productName = ?, productCompany = ?, productPrice = ?, productDescription = ?, productImagePath = ?, productCategoryId = ? where productID=?",
                 new Object[] { pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID, pID });
     }
