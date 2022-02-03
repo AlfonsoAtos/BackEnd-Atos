@@ -20,6 +20,10 @@ public class PaymentManager {
         return dao.processPayment(payment);
     }
 
+    public int processPayment(Payment payment){
+        return dao.processPayment(payment);
+    }
+
     public Payment searchPaymentByID(int pid){
         return dao.searchPaymentByID(pid);
     }
