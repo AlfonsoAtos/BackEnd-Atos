@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.BDDMockito.given;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.ui.Model;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -33,13 +34,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class CustomerSideControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
-	@Mock
+	@MockBean
 	private CustomerSideManager customerSideManager;
-	@Mock
-	private Model model;
 	
     @Test
-	public void controllerRoutingTest() throws Exception {
+	public void controllerRoutingTest() throws Exception {	
 		this.mockMvc.perform(get("/"))
 			.andExpect(status().isOk())
 			.andExpect(forwardedUrl("/WEB-INF/jsp/home.jsp"));
@@ -51,15 +50,23 @@ public class CustomerSideControllerTests {
 
 	@Test
 	public void getNumProductsInCartServiceTest() throws Exception {
-		int uID = 1;
-		int numProductsInCart = 5;
-		given(customerSideManager.getNumProductsInCartService(uID, model)).willReturn(2);
+		given(customerSideManager.getNumProductsInCartService(1)).willReturn(2);
 		
-		mockMvc.perform(
-			post("/numproductsincart/" + uID))
-			.andDo(print());
+		MvcResult mvcResult = mockMvc.perform(
+			post("/numproductsincart/1"))
+//			.andDo(print())
+			.andExpect(status().isOk())
+			.andReturn();
+		
+		mvcResult.equals(2);
 	}
-
 	
-    
+	@Test
+	public void addToCartServiceTest() throws Exception {
+		given(customerSideManager.addToCartService(2, 4)).willReturn(1);
+		
+		this.mockMvc.perform(post("/addtocart/2/4"))
+			.andExpect(status().isOk())
+			.andExpect(forwardedUrl("/WEB-INF/jsp/home.jsp"));
+	}
 }
