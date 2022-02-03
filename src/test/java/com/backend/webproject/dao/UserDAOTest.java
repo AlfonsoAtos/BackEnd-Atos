@@ -17,66 +17,71 @@ import com.backend.webproject.mappers.UserMapper;
 
 @SpringBootTest
 class UserDAOTest {
-	
-	@InjectMocks
-	private UserDAO userDAO;
 
-	@Mock
-	private NamedParameterJdbcTemplate jdbcTemplate;
+    @InjectMocks
+    private UserDAO userDAO;
 
-	@Mock
-	private UserMapper userMapper;
+    @Mock
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
-	@Test
-	void getUserTest() {
-		User user = new User(1, "user@user.com", "pass123", "User", "8110", 1);
-		
-		List<User> userList = new ArrayList<User>();
-		userList.add(user);
-		given(jdbcTemplate.query(
-				"select * from RegisteredUser where userEmail = :email",
-				new HashMap<String, String>() {{
-					put("email", user.getEmail());
-				}},
-				userMapper))
-				.willReturn(userList);
+    @Mock
+    private UserMapper userMapper;
 
-		User userResult = userDAO.getUser("user@user.com");
-		assertEquals(user, userResult);
-	}
-	
-	@Test
-	void userNotFoundTest() {
+    @Test
+    void getUserTest() {
+        User user = new User(1, "user@user.com", "pass123", "User", "8110", 1);
 
-		List<User> userList = new ArrayList<User>();
-		given(jdbcTemplate.query(
-				"select * from RegisteredUser where userEmail = :email",
-				new HashMap<String, String>() {{
-					put("email", "user@user.com");
-				}},
-				userMapper))
-				.willReturn(userList);
+        List<User> userList = new ArrayList<User>();
+        userList.add(user);
+        given(jdbcTemplate.query(
+                "select * from RegisteredUser where userEmail = :email",
+                new HashMap<String, String>() {
+                    {
+                        put("email", user.getEmail());
+                    }
+                },
+                userMapper))
+                        .willReturn(userList);
 
-		User userResult = userDAO.getUser("user@user.com");
-		assertEquals(null, userResult);
-	}
-	
-	@Test
-	void registerUserTest() {
-		User user = new User(1, "user@user.com", "pass123", "User", "8110", 1);
+        User userResult = userDAO.getUser("user@user.com");
+        assertEquals(user, userResult);
+    }
 
-		given(jdbcTemplate.update(
-			"insert into RegisteredUser values((SELECT COALESCE(MAX(userID) + 1, 1) FROM RegisteredUser), :email, :pass, :name, :address, :number, 1)",
-			new HashMap<String, String>() {{
-				put("email", user.getEmail());
-				put("pass", user.getPassword());
-				put("name", user.getFullname());
-				put("number", user.getNumber());
-				put("address", "address");
-			}}
-		)).willReturn(1);
+    @Test
+    void userNotFoundTest() {
 
-		int result = userDAO.registerUser("user@user.com", "pass123", "User", "8110");
-		assertEquals(1, result);
-	}
+        List<User> userList = new ArrayList<User>();
+        given(jdbcTemplate.query(
+                "select * from RegisteredUser where userEmail = :email",
+                new HashMap<String, String>() {
+                    {
+                        put("email", "user@user.com");
+                    }
+                },
+                userMapper))
+                        .willReturn(userList);
+
+        User userResult = userDAO.getUser("user@user.com");
+        assertEquals(null, userResult);
+    }
+
+    @Test
+    void registerUserTest() {
+        User user = new User(1, "user@user.com", "pass123", "User", "8110", 1);
+
+        given(jdbcTemplate.update(
+                "insert into RegisteredUser values((SELECT COALESCE(MAX(userID) + 1, 1) FROM RegisteredUser), :email, :pass, :name, :address, :number, 1)",
+                new HashMap<String, String>() {
+                    {
+                        put("email", user.getEmail());
+                        put("pass", user.getPassword());
+                        put("name", user.getFullname());
+                        put("number", user.getNumber());
+                        put("address", "address");
+                    }
+                })).willReturn(1);
+
+        int result = userDAO.registerUser("user@user.com", "pass123", "User", "8110");
+        assertEquals(1, result);
+    }
 }

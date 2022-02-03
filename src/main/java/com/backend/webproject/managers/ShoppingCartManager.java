@@ -5,26 +5,29 @@ import java.util.List;
 import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.entity.ShoppingCart;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class ShoppingCartManager {
+    @Autowired
+    ShoppingCartDAO dao;
 
     public List<ShoppingCart> getAllCompletedCarts(int userID){
-        ShoppingCartDAO dao = new ShoppingCartDAO();
         return dao.getAllCompletedCarts(userID);
         
     }
 
     public ShoppingCart getInSessionCart(int userID){
-        ShoppingCartDAO dao = new ShoppingCartDAO();
         return dao.getInSessionCart(userID);
     }
 
     public int createNewCart(int userID){
-        ShoppingCartDAO dao = new ShoppingCartDAO();
+        System.out.println("Hello manager");
         return dao.createNewCart(userID);
     }
 
     public int completeCart(int cartID){
-        ShoppingCartDAO dao = new ShoppingCartDAO();
         return dao.completeCart(cartID);
     }
     

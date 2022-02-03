@@ -136,4 +136,13 @@ public class ShoppingProductDetailsDAO {
         return jdbcTemplate.update(query, params);
     }
 
+    public int savePriceAfterCoupon(int shoppingCartID, int productID, int price) {
+        String query = "UPDATE shoppingproductdetails SET costafterapplyingcoupon=:costafterapplyingcoupon WHERE shoppingCartID=:shoppingCartID AND productID=:productID";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("shoppingCartID", shoppingCartID);
+        params.put("productID", productID);
+        params.put("costafterapplyingcoupon", price);
+        return jdbcTemplate.update(query, params);
+    }
+
 }
