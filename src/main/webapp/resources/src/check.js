@@ -21,7 +21,6 @@ function productN(id, img, name, description, price, amount, sum, pcat) {
                     </svg>
                 </span>
                 x ${price} = ${sum}
-                
                 <p><a id="coupon-${id}-${pcat}" href="javascript:void(0)">Apply coupon</a></p>
             </td>
         </tr>
@@ -65,17 +64,15 @@ function fillProductsList(products) {
     let tot=0;
     products.forEach(p => {
         let validPrice = p.product.pformattedPrice;
-        if(p.product.costAfterApplyingCoupon!=null)
+        if(p.spd.costAfterApplyingCoupon>0)
         {
-            validPrice = p.product.costAfterApplyingCoupon;
+            validPrice = p.spd.costAfterApplyingCoupon;
         }
         let sum=validPrice* p.spd.quantity;
         tot=tot+sum;
         if(p.spd.quantity!=1) {
-            console.log("mas de uno" + p.spd.quantity);
             list.append(productN(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, p.product.pdescription, validPrice, p.spd.quantity, sum, p.product.pcategoryID));
         }else {
-            console.log("es uno" + p.spd.quantity);
             list.append(product0(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, p.product.pdescription, validPrice, p.spd.quantity, sum, p.product.pcategoryID));
         }
     })
@@ -137,11 +134,29 @@ function btnCoupon(id){
 }
 function validateCoupon(coupon,id,catp){
     //YZX12345
-    console.log("validateCoupon");
     let desc = coupon.couponDiscount;
+    
     let catc = coupon.productCategoryId;
+    let pathArray = window.location.pathname.split('/')
+    let cid = Number(pathArray[3]);
     if(catc==catp){
+        console.log();
+        let settingsc = {
+            url: `/shoppingcart/savePriceAfterCoupon/${cid}/${id}/${desc}`,
+            method: 'post',
+            dataType: 'JSON',
+            contentType: 'application/JSON',
+            success: (res) => {
+                console.log(res);
+            },
+            error: (err) => {
+              console.log('error', err);
+            }
+        };
+        
+        $.ajax(settingsc);
         //jsgs-- al ser de la misma categoria mandar llamar el api y calcular el precio
+        ///shoppingcart/savePriceAfterCoupon?shoppingCartID=1&productID=7&price=5
     }else {
         alert("Coupon not valid: Wrong category :c");
         document.getElementById("tcoupon").value="";

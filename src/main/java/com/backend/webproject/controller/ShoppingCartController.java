@@ -112,9 +112,14 @@ public class ShoppingCartController {
         return detailsDAO.finalizeShoppingProductDetail(spd);
     }
 
-    @PostMapping("/savePriceAfterCoupon")
-    public int savePriceAfterCoupon(HttpServletRequest req){
-        return detailsDAO.savePriceAfterCoupon(Integer.parseInt(req.getParameter("shoppingCartID")), Integer.parseInt(req.getParameter("productID")), Integer.parseInt(req.getParameter("price")));
+    @PostMapping("/savePriceAfterCoupon/{shoppingCartID}/{productID}/{price}")
+    public int savePriceAfterCoupon(
+        @PathVariable("productID") int productID,
+        @PathVariable("shoppingCartID") int shoppingCartID,
+        @PathVariable("price") int price
+        ){
+            float vprice=price;
+        return detailsDAO.savePriceAfterCoupon(shoppingCartID,productID,vprice);
     }
 
 }
