@@ -5,15 +5,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.dao.ProductCategoryDAO;
 import com.backend.webproject.dao.ProductDAO;
+import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductCategory;
+import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.entity.ShoppingProductDetails;
 
 @Component
 public class CustomerSideManager {
@@ -25,6 +29,9 @@ public class CustomerSideManager {
 
 	@Autowired
 	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+
+	@Autowired
+	ShoppingCartDAO shoppingCartDAO;
 
 	public void showHomePage(Model model) {
 		try {
@@ -39,6 +46,17 @@ public class CustomerSideManager {
 
 	public int getNumProductsInCartService(int uID) {
 		return shoppingProductDetailsDAO.getNumProductsInCart(uID);
+	}
+
+	public List<ShoppingProductDetails> getProductsInCartService(int userID) {
+		try {
+			ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
+			int inSessionCartID = inSessionCart.getShoppingCartID();
+			List<ShoppingProductDetails> productsInCart = shoppingProductDetailsDAO.getAllDetailsFromCart(inSessionCartID);
+			return productsInCart;
+		} catch(Exception e) {
+			return new ArrayList<ShoppingProductDetails>();
+		}
 	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
