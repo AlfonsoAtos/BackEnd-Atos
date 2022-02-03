@@ -114,7 +114,7 @@ prefix="c"%>
                                     <div class="first-half">
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotion Event Name:
+                                                >Name:
                                             </label>
                                             <input
                                                 type="text"
@@ -126,7 +126,7 @@ prefix="c"%>
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotion Event Description:
+                                                >Description:
                                             </label>
                                             <input
                                                 type="text"
@@ -138,7 +138,7 @@ prefix="c"%>
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotion Event Start Date:
+                                                >Start Date:
                                             </label>
                                             <input
                                                 type="date"
@@ -148,7 +148,7 @@ prefix="c"%>
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotion Event End Date:
+                                                >End Date:
                                             </label>
                                             <input
                                                 type="date"
@@ -160,7 +160,7 @@ prefix="c"%>
                                     <div class="second-half">
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotional Event Status:
+                                                >Status:
                                             </label>
                                             <select
                                                 name="eventsStatus"
@@ -179,7 +179,7 @@ prefix="c"%>
                                         </div>
                                         <div class="item-form">
                                             <label for=""
-                                                >Promotion Event Administrator
+                                                >Administrator
                                                 ID:
                                             </label>
                                             <input

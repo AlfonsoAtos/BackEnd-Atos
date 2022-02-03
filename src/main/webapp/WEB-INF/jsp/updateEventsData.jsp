@@ -101,11 +101,11 @@
                     <form action="../updateEventsData/${eventsData.eventsId}">
                         <div class="first-half">
                             <div class="item-form">
-                                <label>Promotion Event ID: </label>
+                                <label>ID: </label>
                                 <label>${eventsData.eventsId}</label>
                             </div>
                             <div class="item-form">
-                                <label>Promotion Event Name: </label>
+                                <label>Name: </label>
                                 <input
                                     type="text"
                                     name="eventsName"
@@ -116,7 +116,7 @@
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Promotion Event Description: </label>
+                                <label>Description: </label>
                                 <input
                                     type="text"
                                     name="eventsDescription"
@@ -127,7 +127,7 @@
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Promotion Event Start Date: </label>
+                                <label>Start Date: </label>
                                 <input
                                     type="date"
                                     name="eventsStartDate"
@@ -136,7 +136,7 @@
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Promotion Event End Date: </label>
+                                <label>End Date: </label>
                                 <input
                                     type="date"
                                     name="eventsEndDate"
@@ -147,7 +147,7 @@
                         </div>
                         <div class="second-half">
                             <div class="item-form">
-                                <label for="">Promotional Event Status: </label>
+                                <label for="">Status: </label>
                                 <select name="eventsStatus" required>
                                     <option value="none" disabled hidden>
                                         Select an Option
@@ -161,7 +161,7 @@
                             </div>
                             <div class="item-form">
                                 <label for=""
-                                    >Promotion Event Administrator ID:
+                                    >Administrator ID:
                                 </label>
                                 <input
                                     type="numeric"
