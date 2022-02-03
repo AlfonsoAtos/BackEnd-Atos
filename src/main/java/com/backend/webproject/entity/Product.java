@@ -11,7 +11,6 @@ public class Product {
     String pDescription;
     String pImagePath;
     int pCategoryID;
-    
     String pFormattedPrice;
 
     public Product() {}
@@ -24,6 +23,7 @@ public class Product {
         this.pDescription = pDescription;
         this.pImagePath = pImagePath;
         this.pCategoryID = pCategoryID;
+        this.pFormattedPrice = "";
     }
 
     public String formatPrice(float price) {

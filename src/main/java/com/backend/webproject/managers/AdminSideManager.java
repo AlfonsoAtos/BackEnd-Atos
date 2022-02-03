@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.dao.CouponsDAO;
 import com.backend.webproject.dao.EventsDAO;
+import com.backend.webproject.dao.ProductDAO;
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Events;
+import com.backend.webproject.entity.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +24,9 @@ public class AdminSideManager {
 
     @Autowired
     EventsDAO eventsDAO;
+
+    @Autowired
+    ProductDAO productDAO;
 
     // Shows all couponsjose
     public String showCouponsPage(Model model) {
@@ -185,4 +190,78 @@ public class AdminSideManager {
         }
         return "redirect:/admin-side/events";
     }
+
+    //-----------------------------------------------------------------------------------------------------------------------------
+
+    // Get all the products
+    public String showProductsPage(Model model) {
+        try {
+            List<Product> allProducts = productDAO.getAllProducts();
+            model.addAttribute("allProducts", allProducts);
+        } catch (Exception e) {
+            System.out.println("Can not get the product list, reason: '" + e + "'");
+        }
+        return "productsAdmin";
+    }
+
+    // Insert a new product
+    public String insertNewProductForm(HttpServletRequest request) {
+        try {
+            int pID = productDAO.getAutoProductId();
+            String pName = request.getParameter("pName");
+            String pCompany = request.getParameter("pCompany");
+            float pPrice = Float.parseFloat(request.getParameter("pPrice"));
+            String pDescription = request.getParameter("pDescription");
+            String pImagePath = request.getParameter("pImagePath");
+            int pCategoryId = Integer.parseInt(request.getParameter("pCategoryId"));
+
+            productDAO.insertNewProduct(pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryId);
+        } catch (Exception e) {
+            System.out.println("Can not insert the product, reason: '" + e + "'");
+        }
+        return "redirect:/admin-side/products";
+    }
+
+    // Update a product
+    public String updateProduct(int pID, Model model) {
+        try {
+            Product productData = productDAO.getProductById(pID);
+            model.addAttribute("productData", productData);
+        } catch (Exception e) {
+            System.out.println("Can not get product data, reason: '" + e + "'");
+        }
+        return "updateProductDataForm";
+    }
+
+    public String updateProduct(HttpServletRequest request, int pID) {
+
+        try {
+            String pName = request.getParameter("pName");
+            String pCompany = request.getParameter("pCompany");
+            float pPrice = Float.parseFloat(request.getParameter("pPrice"));
+            String pDescription = request.getParameter("pDescription");
+            String pImagePath = request.getParameter("pImagePath");
+            int pCategoryID = Integer.parseInt(request.getParameter("pCategoryID"));
+
+            productDAO.updateProduct(pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID);
+
+        } catch (Exception e) {
+            System.out.println("Can not update the product data, reason: '" + e + "'");
+        }
+
+        return "redirect:/admin-side/products";
+    }
+
+    // Delete a product
+    public String deleteProduct(int pID) {
+
+        try {
+            productDAO.deleteProduct(pID);
+        } catch (Exception e) {
+            System.out.println("Can not delete the product, reason: '" + e + "'");
+        }
+
+        return "redirect:/admin-side/products";
+    }
+
 }

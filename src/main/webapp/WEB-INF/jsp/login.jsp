@@ -14,51 +14,66 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
     <!-- Favicons -->
     <meta name="theme-color" content="#7952b3">
 
     <!-- Custom styles -->
-    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/signup.css" />" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/style.css">
   </head>
   <body class="text-center">
-    <div>
-		<!-- Navigation bar -->
-		<ul class="navbar">
-			<div class="logo-nav">
-				<span>Logo</span>
-			</div>
-		</ul>
-	</div>
-    
-    <div class="login-main">
-      <main class="form-signin">
-        <img class="mb-4" src="<c:url value="/resources/images/WIFI_icon.svg.png" />" alt="" width="72" height="auto">
-        <h1 class="h3 mb-3 fw-normal">Log in</h1>
-        <form id="login_form">
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+    <div class="p-0">
+      <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="logo-nav">
+            <img src="../../resources/img/logo-g.jpg" />
           </div>
-          <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="/" class="nav-link active" aria-current="page">Home</a>
+              </li>
+            </ul>
           </div>
-  
-          <%-- <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div> --%>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-        </form>
-        <div class="mt-4">
-          <p>
-            Do not have an account?
-            <a href="/user/sign_up"> Create one here. </a>
-          </p>
+        </div>
+      </nav>
+      
+      <main class="container-fluid form-signin p-4">
+        <div class="row">
+          <div class="col">
+            <img class="mb-4 img-fluid" src="../../resources/img/logo-g.jpg" alt="" width="450" height="auto">
+            <h1 class="h3 mb-3 fw-normal">Log in</h1>
+            <p class="error-message d-none">Error logging in</p>
+            <form id="login_form" class="form-signin col">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+              </div>
+      
+              <%-- <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me"> Remember me
+                </label>
+              </div> --%>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+            </form>
+            <div class="mt-4">
+              <p>
+                Do not have an account?
+                <a href="/user/sign_up"> Create one here. </a>
+              </p>
+            </div>
+          </div>
         </div>
       </main>
     </div>
