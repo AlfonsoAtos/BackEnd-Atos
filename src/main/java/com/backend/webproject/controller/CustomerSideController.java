@@ -19,22 +19,24 @@ public class CustomerSideController {
 
 	@RequestMapping("/")
 	public String showHomePage(Model model) {
-		return customerSideManager.showHomePage(model);
+		customerSideManager.showHomePage(model);
+		return "home";
 	}
 
 	@PostMapping("numproductsincart/{uID}")
 	@ResponseBody
 	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
-		return customerSideManager.getNumProductsInCartService(uID, model);
+		return customerSideManager.getNumProductsInCartService(uID);
 	}
 
 	@RequestMapping("search")
 	public String searchProductsService(HttpServletRequest request, Model model) {
-		return customerSideManager.searchProductsService(request, model);
+		customerSideManager.searchProductsService(request, model);
+		return "products";
 	}
 
 	@PostMapping("addtocart/{pID}/{uID}")
 	public String addToCartService(@PathVariable int pID, @PathVariable int uID) {
-		return customerSideManager.addToCartService(pID, uID);
+		return (customerSideManager.addToCartService(pID, uID) == 1) ? "home" : "";
 	}
 }
