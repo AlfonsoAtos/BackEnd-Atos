@@ -101,6 +101,7 @@ prefix="c"%>
             </ul>
             <!-- Main Content -->
             <div class="content">
+                <h1>Update Coupon</h1>
                 <div class="update-form">
                     <form action="../updateCouponData/${couponData.couponId}">
                         <div class="first-half">

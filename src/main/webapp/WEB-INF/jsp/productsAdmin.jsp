@@ -243,7 +243,7 @@ prefix="c"%>
                                     <td>${product.getPName()}</td>
                                     <td>${product.getPCompany()}</td>
                                     <td>${product.getPPrice()}</td>
-                                    <td>${product.getPDescription()}</td>
+                                    <td class="short-desc">${product.getPDescription()}</td>
                                     <td>${product.getPImagePath()}</td>
                                     <td>${product.getPCategoryID()}</td>
                                     <td>
