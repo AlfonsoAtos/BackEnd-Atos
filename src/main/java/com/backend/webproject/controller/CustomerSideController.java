@@ -17,6 +17,7 @@ import com.backend.webproject.managers.CustomerSideManager;
 
 @Controller
 public class CustomerSideController {
+	
 	@Autowired
 	CustomerSideManager customerSideManager;
 
