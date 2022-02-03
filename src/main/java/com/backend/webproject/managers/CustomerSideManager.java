@@ -38,8 +38,7 @@ public class CustomerSideManager {
 	}
 
 	public int getNumProductsInCartService(int uID) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
-		return numProductsInCart;
+		return shoppingProductDetailsDAO.getNumProductsInCart(uID);
 	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
