@@ -15,6 +15,15 @@ function addToCart(product) {
                 setTimeout(() => { 
                     $('#addToCartNotification').toast('hide');
                 }, 5000);
+                let pCardID = `#product${pID}Card`;
+                let pModalID = `#modal${pID}`;
+                let cardQuantityInCart = $(pCardID).find('.productQuantityInCart');
+                let quantityNum = cardQuantityInCart.text();
+                cardQuantityInCart.text(+quantityNum + 1);
+                cardQuantityInCart.parent().removeClass('d-none');
+                let modalQuantityInCart = $(pModalID).find('.productQuantityInCart');
+                modalQuantityInCart.text(+quantityNum + 1);
+                modalQuantityInCart.parent().removeClass('d-none');
                 let cartCounter =  $('#cartCounter');
                 let numProductsInCart = $('#cartCounter').text();
                 cartCounter.text(+numProductsInCart + 1);

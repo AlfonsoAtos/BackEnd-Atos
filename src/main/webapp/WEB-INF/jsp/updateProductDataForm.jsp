@@ -12,18 +12,14 @@ prefix="c"%>
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
-        <title>Coupon Details</title>
+        <title>Product Details</title>
     </head>
     <body>
         <div>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <a href="/admin-side/">
-                        <div class="logo-bg">
-                            <img src="../../resources/img/logo.png" />
-                        </div>
-                    </a>
+                    <img src="../../resources/img/logo.jpg" />
                 </div>
                 <div class="items-nav">
                     <li>
@@ -39,11 +35,8 @@ prefix="c"%>
                                     clip-rule="evenodd"
                                 ></path>
                             </svg>
-                            <p id="admin-name">My Profile</p>
+                            My Profile
                         </a>
-                    </li>
-                    <li>
-                        <button type="button" class="logout-button" onclick="logout()">Log out</button>
                     </li>
                 </div>
             </ul>
@@ -102,91 +95,75 @@ prefix="c"%>
             <!-- Main Content -->
             <div class="content">
                 <div class="update-form">
-                    <form action="../updateCouponData/${couponData.couponId}">
+                    <form action="../updateProductData/${productData.getPID()}" >
                         <div class="first-half">
                             <div class="item-form">
-                                <label>Coupon ID: </label>
-                                ${couponData.couponId}
+                                <label>Product ID: </label>
+                                ${productData.getPID()}
                             </div>
                             <div class="item-form">
-                                <label>Coupon Name: </label>
+                                <label>Product Name: </label>
                                 <input
                                     type="text"
-                                    name="couponName"
-                                    value="${couponData.couponName}"
-                                    maxlength="15"
+                                    name="pName"
+                                    value="${productData.getPName()}"
+                                    maxlength="20"
                                     required
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Coupon Code: </label>
+                                <label>Company Name: </label>
                                 <input
                                     type="text"
-                                    style="text-transform: uppercase"
-                                    name="couponCode"
-                                    value="${couponData.couponCode}"
-                                    minlength="10"
-                                    maxlength="10"
+                                    name="pCompany"
+                                    value="${productData.getPCompany()}"
+                                    maxlength="20"
                                     required
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Coupon Discount: </label>
+                                <label>Price: </label>
                                 <input
                                     type="number"
-                                    name="couponDiscount"
-                                    value="${couponData.couponDiscount}"
+                                    name="pPrice"
+                                    value="${productData.getPPrice()}"
                                     required
                                 />
                             </div>
                         </div>
                         <div class="second-half">
                             <div class="item-form">
-                                <label for="">Promotional Event: </label>
-                                <select name="promotionEventId" id="" required>
-                                    <c:forEach
-                                        var="events"
-                                        items="${newEvents}"
-                                    >
-                                        <option value="${events.getEventsId()}">
-                                            ${events.getEventsName()}
-                                        </option>
-                                    </c:forEach>
-                                </select>
+                                <label>Description: </label>
+                                <input
+                                    type="text"
+                                    name="pDescription"
+                                    value="${productData.getPDescription()}"
+                                    maxlength="30"
+                                    required
+                                />
+                            </div>
+                            <div class="item-form">
+                                <label>Image: </label>
+                                <input
+                                    type="file"
+                                    name="pImagePath"
+                                    value="${productData.getPImagePath()}"
+                                    maxlength="50"
+                                    required
+                                />
                             </div>
                             <div class="item-form">
                                 <label>Product Category: </label>
-                                <select name="productCategoryId" required>
+                                <select name="pCategoryID" required>
                                     <option value="none" disabled hidden>
                                         Select an Option
                                     </option>
                                     <option value="1" selected>Shooter</option>
-                                    <option value="2">RPG</option>
-									<option value="3">Simulation</option>
-									<option value="4">VR</option>
-									<option value="5">Strategy</option>
+                                    <option value="2">VR</option>
+                                    <option value="3">Strategy</option>
+                                    <option value="4">Simulation</option>
+                                    <option value="5">RPG</option>
                                 </select>
-                            </div>
-                            <div class="radio-form">
-                                <div class="radio-item">
-                                    <input
-                                        type="radio"
-                                        id="open"
-                                        name="couponType"
-                                        value="Open"
-                                        required
-                                    />
-                                    <label for="open">Open</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input
-                                        type="radio"
-                                        id="no_open"
-                                        name="couponType"
-                                        value="Not open"
-                                    />
-                                    <label for="no_open">No Open</label>
-                                </div>
                             </div>
                         </div>
                         <div class="button-form">
@@ -201,17 +178,12 @@ prefix="c"%>
             </div>
         </div>
         <!-- Footer -->
-        <!-- <footer>
+        <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer> -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
-        <script type="text/javascript">
-            checkSessionAdmin();
-        </script>
+        </footer>
     </body>
 </html>
