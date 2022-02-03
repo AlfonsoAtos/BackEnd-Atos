@@ -174,6 +174,7 @@ function validateCoupon(coupon,id,catp){
         };
         
         $.ajax(settingsc);
+        location.reload();
         //jsgs-- al ser de la misma categoria mandar llamar el api y calcular el precio
         ///shoppingcart/savePriceAfterCoupon?shoppingCartID=1&productID=7&price=5
     }else {
