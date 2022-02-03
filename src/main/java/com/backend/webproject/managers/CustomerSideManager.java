@@ -38,7 +38,7 @@ public class CustomerSideManager {
 		return "home";
 	}
 
-	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
+	public int getNumProductsInCartService(int uID, Model model) {
 		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
 		return numProductsInCart;
 	}
