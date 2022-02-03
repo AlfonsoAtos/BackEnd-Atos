@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +33,7 @@ public class AdminSideController {
     }
 
     @RequestMapping("/validateCoupon/{couponCode}")
+    @ResponseBody
     public Coupons searchByCartID(
             @PathVariable("couponCode") String couponCode) {
 
