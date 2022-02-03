@@ -97,6 +97,7 @@
             </ul>
             <!-- Main Content -->
             <div class="content">
+                <h1>Update Promotion Event</h1>
                 <div class="update-form">
                     <form action="../updateEventsData/${eventsData.eventsId}">
                         <div class="first-half">

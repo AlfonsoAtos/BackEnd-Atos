@@ -19,7 +19,11 @@ prefix="c"%>
             <!-- Navigation bar -->
             <ul class="navbar">
                 <div class="logo-nav">
-                    <img src="../../resources/img/logo.jpg" />
+                    <a href="/admin-side/">
+                        <div class="logo-bg">
+                            <img src="../../resources/img/logo.png" />
+                        </div>
+                    </a>
                 </div>
                 <div class="items-nav">
                     <li>
@@ -35,8 +39,17 @@ prefix="c"%>
                                     clip-rule="evenodd"
                                 ></path>
                             </svg>
-                            My Profile
+                            <p id="admin-name">My Profile</p>
                         </a>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="logout-button"
+                            onclick="logout()"
+                        >
+                            Log out
+                        </button>
                     </li>
                 </div>
             </ul>
@@ -94,8 +107,9 @@ prefix="c"%>
             </ul>
             <!-- Main Content -->
             <div class="content">
+                <h1>Update Product</h1>
                 <div class="update-form">
-                    <form action="../updateProductData/${productData.getPID()}" >
+                    <form action="../updateProductData/${productData.getPID()}">
                         <div class="first-half">
                             <div class="item-form">
                                 <label>Product ID: </label>
@@ -134,13 +148,15 @@ prefix="c"%>
                         <div class="second-half">
                             <div class="item-form">
                                 <label>Description: </label>
-                                <input
+                                <textarea
                                     type="text"
                                     name="pDescription"
-                                    value="${productData.getPDescription()}"
-                                    maxlength="30"
+                                    maxlength="500"
+                                    style="height: 5rem; padding: 0.3rem"
                                     required
-                                />
+                                >
+                                    ${productData.getPDescription()}
+                                </textarea>
                             </div>
                             <div class="item-form">
                                 <label>Image: </label>
@@ -178,12 +194,12 @@ prefix="c"%>
             </div>
         </div>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <div className="footer-component">
                 <div>
                     <span>Footer</span>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </body>
 </html>
