@@ -10,10 +10,21 @@ public class Product {
     float pPrice;
     String pDescription;
     String pImagePath;
-    int pCategoryID; 
-
-    
+    int pCategoryID;
     String pFormattedPrice;
+
+    public Product() {}
+
+    public Product(int pID, String pName, String pCompany, float pPrice, String pDescription, String pImagePath, int pCategoryID) {
+        this.pID = pID;
+        this.pName = pName;
+        this.pCompany = pCompany;
+        this.pPrice = pPrice;
+        this.pDescription = pDescription;
+        this.pImagePath = pImagePath;
+        this.pCategoryID = pCategoryID;
+        this.pFormattedPrice = "";
+    }
 
     public String formatPrice(float price) {
         NumberFormat priceFormatter = new DecimalFormat("#0.00");
