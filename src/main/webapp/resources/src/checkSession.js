@@ -22,7 +22,9 @@ function getCID() {
 function checkSession() {
   if (!session) {
     session = JSON.parse(localStorage.getItem('session'));
-    getCID();
+    if (session) {
+      getCID();
+    }
   }
   return session;
 }
