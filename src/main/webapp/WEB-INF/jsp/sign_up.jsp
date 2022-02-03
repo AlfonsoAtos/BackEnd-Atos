@@ -63,8 +63,15 @@
               <label for="floatingPhone">Phone Number</label>
             </div>
             <div class="form-floating">
-              <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+              <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
               <label for="floatingPassword">Password</label>
+            </div>
+            <div id="message" class="d-none">
+              <p> <b>Password must contain the following: </b></p>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">An <b>uppercase</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
             </div>
             <div class="form-floating">
               <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="ConfirmPassword" required>
@@ -82,6 +89,7 @@
               <a href="/user/login"> Log in here. </a>
             </p>
           </div>
+          
         </div>
       </div>
     </main>
