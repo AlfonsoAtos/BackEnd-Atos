@@ -1,69 +1,67 @@
-function productN(id, img, name,price,amount,sum) {
+function productN(id, img, name, description, price, amount, sum, pcat) {
     return `
-        <div class="product row" id=${id}>
-            <span width="60px">
-                <img src="../../resources/img/${img}" alt="${img}" height="100px">
-            </span>
-            <b>${name}</b>
-            <p>
-            <span>
-                <svg id="btn-min-${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                </svg>
-                
+        <tr>
+            <td width="80px">
+                    <img src="../../resources/img/${img}" alt="${img}" height="120px">
+            </td>
+            <td style="padding-left:20px;">
+                <b>${name}</b>
+                <details><summary>Details</summary><p>${description}</p></details>
+                <span>
+                    <svg id="btn-min-${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                    </svg>       
                 </span>
-                ${amount} x ${price} = ${sum}
+                ${amount}
                 <span>
                     <svg id="btn-plus-${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>
                 </span>
-            </p>
-
-            <p><a id="${id}" onclick="coupon" href="#">Apply coupon</a></p>
-
-            </div>
+                x ${price} = ${sum}
+                
+                <p><a id="coupon-${id}-${pcat}" href="javascript:void(0)">Apply coupon</a></p>
+            </td>
+        </tr>
             `
 }
-function product0(id, img, name,price,amount,sum) {
+function product0(id, img, name, description, price, amount, sum, pcat) {
     return `
-        <div class="product row" id=${id}>
-            <div width="60px">
-                <img src="../../resources/img/${img}" alt="${img}" height="100px">
-            </div>
-            <p>${name}</p>
-            <p>
+        <tr>
+            <td width="80px">
+                    <img src="../../resources/img/${img}" alt="${img}" height="120px">
+            </td>
+            <td style="padding-left:20px;">
+                <b>${name}</b>
+                <details><summary>Details</summary><p>${description}</p></details>
                 <span>
                     <svg id="btn-min${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </span>
-                ${amount} x ${price} = ${sum}
+                ${amount}
                 <span>
                     <svg id="btn-plus-${id}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>
-                </span>
-            </p>
-
-            <p><a id="${id}" href="#">Apply coupon</a></p>
-            
-            </div>
+                </span> 
+                x ${price} = ${sum}
+                <p><a id="coupon-${id}-${pcat}" href="javascript:void(0)">Apply coupon</a></p>
+            </td>
+        </tr>
             `
 }
 function cartTotal(tot) {
-    return `
-    <h6>All prices include VAT if applicable</h6> <b>ORDER TOTAL: ${tot}</b>
-            `
+    return `ORDER TOTAL: ${tot.toFixed(2)}`
 }
 
 function fillProductsList(products) {
     let list = $('#products-list');
-    let list2 = $('#last-element');
+    let payment = $('#price');
     let tot=0;
     products.forEach(p => {
         let validPrice = p.product.pformattedPrice;
@@ -75,13 +73,13 @@ function fillProductsList(products) {
         tot=tot+sum;
         if(p.spd.quantity!=1) {
             console.log("mas de uno" + p.spd.quantity);
-            list.append(productN(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, validPrice, p.spd.quantity, sum));
+            list.append(productN(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, p.product.pdescription, validPrice, p.spd.quantity, sum, p.product.pcategoryID));
         }else {
             console.log("es uno" + p.spd.quantity);
-            list.append(product0(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, validPrice, p.spd.quantity, sum));
+            list.append(product0(p.spd.shoppingProductDetailsID, p.product.pimagePath , p.product.pname, p.product.pdescription, validPrice, p.spd.quantity, sum, p.product.pcategoryID));
         }
     })
-    list2.append(cartTotal(tot));    
+    payment.append(cartTotal(tot));    
 }
 
 function getCart() {
@@ -137,7 +135,36 @@ function btnCoupon(id){
         
     }
 }
+function validateCoupon(coupon,id,catp){
+    //YZX12345
+    console.log("validateCoupon");
+    let desc = coupon.couponDiscount;
+    let catc = coupon.productCategoryId;
+    if(catc==catp){
+        //jsgs-- al ser de la misma categoria mandar llamar el api y calcular el precio
+    }else {
+        alert("Coupon not valid: Wrong category :c");
+        document.getElementById("tcoupon").value="";
+    }
+}
 
+function applyCoupon(id,coupon,catp){
+    let settings = {
+        url: `/admin-side/validateCoupon/${coupon}`,
+        method: 'GET',
+        dataType: 'JSON',
+        contentType: 'application/JSON',
+        success: (res) => {
+            console.log(res);
+            validateCoupon(res,id,catp);
+        },
+        error: (err) => {
+          console.log('error', err);
+        }
+    };
+    
+    $.ajax(settings);
+}
 document.addEventListener("click",(e)=>{
     if(e.target.matches('svg')){
     let funArray = e.target.id.split('-')
@@ -150,6 +177,23 @@ document.addEventListener("click",(e)=>{
             console.log("Click en span min ", funArray[2]);
             qminus(funArray[2])
         }
+    }
+    if(e.target.matches('a')){
+        let tcoupon = document.getElementById('tcoupon').value;
+        let funArray = e.target.id.split('-')    
+        if(tcoupon!=''){
+            applyCoupon(funArray[1],tcoupon,funArray[2])
+        } else {
+            console.log("empty coupon");
+        }
+    }
+    if(e.target.matches('input')){console.log("ES UN REGALO");}
+    if(e.target.matches('#btn-payment')){
+        let cnumber = document.getElementById('cnumber').value;
+        let ccvv = document.getElementById('ccvv').value;
+        let cdate = document.getElementById('cdate').value;
+        console.log(e.target.id,cnumber,ccvv,cdate);    
+
     }
 })
 
