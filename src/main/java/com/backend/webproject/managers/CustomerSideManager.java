@@ -26,7 +26,7 @@ public class CustomerSideManager {
 	@Autowired
 	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
 
-	public String showHomePage(Model model) {
+	public void showHomePage(Model model) {
 		try {
 			List<ProductCategory> productCategories = productCategoryDAO.getProductCategories();
 			model.addAttribute("productCategories", productCategories);
@@ -35,12 +35,10 @@ public class CustomerSideManager {
 		} catch(Exception e) {
 			System.out.println("Can not display homepage data, reason: '" + e + "'");
 		}
-		return "home";
 	}
 
-	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
-		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
-		return numProductsInCart;
+	public int getNumProductsInCartService(int uID) {
+		return shoppingProductDetailsDAO.getNumProductsInCart(uID);
 	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
@@ -57,14 +55,12 @@ public class CustomerSideManager {
 		return "products";
 	}
 
-	public String addToCartService(int pID, int uID) {
-		String response = "";
+	public int addToCartService(int pID, int uID) {
 		try {
-			int productAdded = shoppingProductDetailsDAO.addToCart(pID, uID);
-			response = (productAdded == 1) ? "home" : "";
+			return shoppingProductDetailsDAO.addToCart(pID, uID);
 		} catch (Exception e) {
 			System.out.println("Can not add to cart, reason: '" + e + "'");
 		}
-		return response;
+		return 0;
 	}
 }

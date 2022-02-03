@@ -5,6 +5,14 @@ public class ProductCategory {
     String pcName;
     String pcDescription;
 
+    public ProductCategory() {}
+
+    public ProductCategory(int pcID, String pcName, String pcDescription) {
+        this.pcID = pcID;
+        this.pcName = pcName;
+        this.pcDescription = pcDescription;
+    }
+
     public int getPcID() {
         return this.pcID;
     }

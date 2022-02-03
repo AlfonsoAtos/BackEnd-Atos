@@ -28,69 +28,69 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @AutoConfigureMockMvc
 class UserControllerTests {
 
-        @Autowired
-        private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-        @MockBean
-        private UserManager userManager;
+  @MockBean
+  private UserManager userManager;
 
-        @Test
-        public void controllerRoutingTest() throws Exception {
-                this.mockMvc.perform(get("/user/login"))
-                                .andExpect(status().isOk())
-                                .andExpect(forwardedUrl("/WEB-INF/jsp/login.jsp"));
+  @Test
+  public void controllerRoutingTest() throws Exception {
+    this.mockMvc.perform(get("/user/login"))
+      .andExpect(status().isOk())
+      .andExpect(forwardedUrl("/WEB-INF/jsp/login.jsp"));
 
-                this.mockMvc.perform(get("/user/sign_up"))
-                                .andExpect(status().isOk())
-                                .andExpect(forwardedUrl("/WEB-INF/jsp/sign_up.jsp"));
+    this.mockMvc.perform(get("/user/sign_up"))
+      .andExpect(status().isOk())
+      .andExpect(forwardedUrl("/WEB-INF/jsp/sign_up.jsp"));
 
-                this.mockMvc.perform(get("/user/check/1"))
-                                .andExpect(status().isOk())
-                                .andExpect(forwardedUrl("/WEB-INF/jsp/checkout.jsp"));
-        }
+    this.mockMvc.perform(get("/user/check/1"))
+      .andExpect(status().isOk())
+      .andExpect(forwardedUrl("/WEB-INF/jsp/checkout.jsp"));
+  }
 
-        @Test
-        public void loginUserAPITest() throws Exception {
-                User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
+  @Test
+  public void loginUserAPITest() throws Exception {
+    User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
 
-                given(userManager.loginUser("al@gmail.com", "pass123")).willReturn(user);
+    given(userManager.loginUser("al@gmail.com", "pass123")).willReturn(user);
 
-                String json = "{ \"email\": \"al@gmail.com\", \"password\": \"pass123\" }";
+    String json = "{ \"email\": \"al@gmail.com\", \"password\": \"pass123\" }";
 
-                mockMvc.perform(
-                                post("/user/api/login")
-                                                .content(json)
-                                                .accept(MediaType.APPLICATION_JSON)
-                                                .contentType(MediaType.APPLICATION_JSON))
-                                .andDo(print())
-                                .andExpect(jsonPath("email", is(user.getEmail())))
-                                .andExpect(jsonPath("password", is(user.getPassword())))
-                                .andExpect(jsonPath("fullname", is(user.getFullname())))
-                                .andExpect(jsonPath("number", is(user.getNumber())))
-                                .andExpect(jsonPath("id", is(user.getId())))
-                                .andExpect(jsonPath("role", is(user.getRole())));
-        }
+    mockMvc.perform(
+      post("/user/api/login")
+        .content(json)
+        .accept(MediaType.APPLICATION_JSON)
+        .contentType(MediaType.APPLICATION_JSON))
+      .andDo(print())
+      .andExpect(jsonPath("email", is(user.getEmail())))
+      .andExpect(jsonPath("password", is(user.getPassword())))
+      .andExpect(jsonPath("fullname", is(user.getFullname())))
+      .andExpect(jsonPath("number", is(user.getNumber())))
+      .andExpect(jsonPath("id", is(user.getId())))
+      .andExpect(jsonPath("role", is(user.getRole())));
+  }
 
-        @Test
-        public void signupUserAPITest() throws Exception {
-                User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
+  @Test
+  public void signupUserAPITest() throws Exception {
+    User user = new User(1, "al@gmail.com", "pass123", "Alberto", "8110", 1);
 
-                given(userManager.signupUser("al@gmail.com", "pass123", "Alberto", "8110")).willReturn(user);
+    given(userManager.signupUser("al@gmail.com", "pass123", "Alberto", "8110")).willReturn(user);
 
-                Gson gson = new Gson();
-                String json = gson.toJson(user);
+    Gson gson = new Gson();
+    String json = gson.toJson(user);
 
-                mockMvc.perform(
-                                post("/user/api/signup")
-                                                .content(json)
-                                                .accept(MediaType.APPLICATION_JSON)
-                                                .contentType(MediaType.APPLICATION_JSON))
-                                .andDo(print())
-                                .andExpect(jsonPath("email", is(user.getEmail())))
-                                .andExpect(jsonPath("password", is(user.getPassword())))
-                                .andExpect(jsonPath("fullname", is(user.getFullname())))
-                                .andExpect(jsonPath("number", is(user.getNumber())))
-                                .andExpect(jsonPath("id", is(user.getId())))
-                                .andExpect(jsonPath("role", is(user.getRole())));
-        }
+    mockMvc.perform(
+      post("/user/api/signup")
+        .content(json)
+        .accept(MediaType.APPLICATION_JSON)
+        .contentType(MediaType.APPLICATION_JSON))
+      .andDo(print())
+      .andExpect(jsonPath("email", is(user.getEmail())))
+      .andExpect(jsonPath("password", is(user.getPassword())))
+      .andExpect(jsonPath("fullname", is(user.getFullname())))
+      .andExpect(jsonPath("number", is(user.getNumber())))
+      .andExpect(jsonPath("id", is(user.getId())))
+      .andExpect(jsonPath("role", is(user.getRole())));
+  }
 }
