@@ -26,11 +26,14 @@ public class AdminSideManager {
     // Shows all couponsjose
     public String showCouponsPage(Model model) {
         try {
-            List<Coupons> newCoupons = couponsDAO.getNewCoupons();
-            model.addAttribute("newCoupons", newCoupons);
+            List<Coupons> newCouponsTable = couponsDAO.getNewCoupons();
+            model.addAttribute("newCouponsTable", newCouponsTable);
 
             List<Events> newEvents = eventsDAO.getNewEvents();
             model.addAttribute("newEvents", newEvents);
+
+            List<Coupons> newCoupons = couponsDAO.getNewCouponsJoined();
+            model.addAttribute("newCoupons", newCoupons);
         } catch (Exception e) {
             System.out.println("Can not get the coupon list, reason: '" + e + "'");
         }
