@@ -1,9 +1,12 @@
 package com.backend.webproject.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.backend.webproject.entity.Payment;
+import com.backend.webproject.mappers.PaymentMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -12,19 +15,27 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @SpringBootTest
 public class PaymentDAOTest {
 
     @InjectMocks
-    private PaymentDAO paymentDAO;
+    PaymentDAO paymentDAO;
 
     @Mock
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+
+    @Mock
+    private PaymentMapper paymentMapper;
+
+    private Payment createPayment() {
+        return new Payment(1, 1, 1, "InNegotiation", 1);
+    }
 
     @Test
-    void processPaymentTest(){
+    void processPaymentTest() {
         Payment payment = new Payment();
         payment.setOpenCoupon(1);
         payment.setPaymentStatus("Completed");
@@ -42,16 +53,33 @@ public class PaymentDAOTest {
     }
 
     @Test
-    void searchPaymentByIDTest(){
-        Payment pay = paymentDAO.searchPaymentByID(1);
-        assertEquals(pay.getPaymentID(), 1);
+    public void searchPaymentByIDTest() {
+        Payment payment = createPayment();
+        List<Payment> paymentList = new ArrayList<Payment>();
+        paymentList.add(payment);
+        given(jdbcTemplate.query(
+                "select * from payment where paymentID = ?",
+                new Object[] { payment.getPaymentID() },
+                paymentMapper))
+                        .willReturn(paymentList);
+
+        Payment result = paymentDAO.searchPaymentByID(payment.getPaymentID());
+        assertEquals(payment, result);
     }
 
     @Test
-    void noPaymentOfShoppingCartTest(){
-        Payment pay = null;
-        Payment pay2 = paymentDAO.searchPaymentByCartID(100);
-        assertEquals(pay, pay2);
+    void noPaymentOfShoppingCartTest() {
+        Payment payment = createPayment();
+        List<Payment> paymentList = new ArrayList<Payment>();
+        paymentList.add(payment);
+        given(jdbcTemplate.query(
+                "select * from payment where shoppingCartID = ?",
+                new Object[] { payment.getShoppingCartID() },
+                paymentMapper))
+                        .willReturn(paymentList);
+
+        Payment result = paymentDAO.searchPaymentByCartID(payment.getShoppingCartID());
+        assertEquals(payment, result);
     }
-    
+
 }
