@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.dao.ProductCategoryDAO;
 import com.backend.webproject.dao.ProductDAO;
+import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.dao.ShoppingProductDetailsDAO;
 import com.backend.webproject.entity.Product;
 import com.backend.webproject.entity.ProductCategory;
+import com.backend.webproject.entity.ShoppingCart;
+import com.backend.webproject.entity.ShoppingProductDetails;
 
 @Component
 public class CustomerSideManager {
@@ -25,6 +28,9 @@ public class CustomerSideManager {
 
 	@Autowired
 	ShoppingProductDetailsDAO shoppingProductDetailsDAO;
+
+	@Autowired
+	ShoppingCartDAO shoppingCartDAO;
 
 	public String showHomePage(Model model) {
 		try {
@@ -41,6 +47,14 @@ public class CustomerSideManager {
 	public int getNumProductsInCartService(@PathVariable int uID, Model model) {
 		int numProductsInCart = shoppingProductDetailsDAO.getNumProductsInCart(uID);
 		return numProductsInCart;
+	}
+
+	public List<ShoppingProductDetails> getProductsInCartService(int userID) {
+		List<ShoppingProductDetails> productsInCart;
+		ShoppingCart inSessionCart = shoppingCartDAO.getInSessionCart(userID);
+		int inSessionCartID = inSessionCart.getShoppingCartID();
+		productsInCart = shoppingProductDetailsDAO.getAllDetailsFromCart(inSessionCartID);
+		return productsInCart;
 	}
 
 	public String searchProductsService(HttpServletRequest request, Model model) {
