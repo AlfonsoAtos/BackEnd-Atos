@@ -155,11 +155,11 @@ prefix="c"%>
 												<option value="none" selected disabled hidden>
 													Select an Option
 												</option>
-												<option value="1">Shooter</option>
-												<option value="2">RPG</option>
-												<option value="3">Simulation</option>
-												<option value="4">VR</option>
-												<option value="5">Strategy</option>
+												<c:forEach var="prodCat" items="${productCat}">
+													<option value="${prodCat.getPcID()}">
+														${prodCat.getPcName()}
+													</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>

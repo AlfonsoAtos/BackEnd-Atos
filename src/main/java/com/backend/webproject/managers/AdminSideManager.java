@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.backend.webproject.dao.CouponsDAO;
 import com.backend.webproject.dao.EventsDAO;
+import com.backend.webproject.dao.ProductCategoryDAO;
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Events;
+import com.backend.webproject.entity.ProductCategory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,9 @@ public class AdminSideManager {
     @Autowired
     EventsDAO eventsDAO;
 
+    @Autowired
+    ProductCategoryDAO productCategoryDAO;
+
     // Shows all couponsjose
     public String showCouponsPage(Model model) {
         try {
@@ -31,6 +36,9 @@ public class AdminSideManager {
 
             List<Events> newEvents = eventsDAO.getNewEvents();
             model.addAttribute("newEvents", newEvents);
+
+            List<ProductCategory> productCat = productCategoryDAO.getProductCategories();
+            model.addAttribute("productCat", productCat);
 
             List<Coupons> newCoupons = couponsDAO.getNewCouponsJoined();
             model.addAttribute("newCoupons", newCoupons);
