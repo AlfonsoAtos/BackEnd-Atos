@@ -19,8 +19,8 @@ public class CouponsMapper implements RowMapper<Coupons> {
         obj.setCouponCode(result.getString(3));
         obj.setCouponType(result.getString(4));
         obj.setCouponDiscount(result.getInt(5));
-        obj.setPromotionEventId(result.getInt(6));
-        obj.setProductCategoryId(result.getInt(7));
+        obj.setPromotionEventName(result.getString(6));
+        obj.setProductCategoryName(result.getString(7));
         return obj;
     }
 

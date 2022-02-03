@@ -1,6 +1,7 @@
 package com.backend.webproject.controller;
 
 import com.backend.webproject.entity.Coupons;
+import com.backend.webproject.entity.Events;
 import com.backend.webproject.managers.AdminSideManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class AdminSideController {
 
     @RequestMapping("/")
     public String showAdminPage() {
+
         return "admin";
     }
 
@@ -32,7 +34,9 @@ public class AdminSideController {
 
     @RequestMapping("/validateCoupon/{couponCode}")
     @ResponseBody
-    public Coupons searchByCartID(@PathVariable("couponCode") String couponCode) {
+    public Coupons searchByCartID(
+            @PathVariable("couponCode") String couponCode) {
+
         return adminSideManager.searchByCartID(couponCode);
     }
 
