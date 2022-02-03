@@ -9,16 +9,13 @@ import com.backend.webproject.entity.Product;
 import com.backend.webproject.mappers.ProductMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDAO {
-
-    @Autowired
-    JdbcTemplate temp;
-
     @Autowired
     private NamedParameterJdbcTemplate jtemp;
 
@@ -26,7 +23,7 @@ public class ProductDAO {
     private ProductMapper ProductMapper;
     
     public List<Product> getNewProducts() {
-        List<Product> newProducts = temp.query("SELECT * FROM Product ORDER BY productID DESC", ProductMapper);
+        List<Product> newProducts = jtemp.query("SELECT * FROM Product ORDER BY productID DESC", ProductMapper);
         return newProducts;
 	}
 
@@ -53,28 +50,51 @@ public class ProductDAO {
     }
 
     public List<Product> getAllProducts() {
-        List<Product> allProducts = temp.query(
-                "SELECT * FROM Product ORDER BY productID ASC", ProductMapper);
+        List<Product> allProducts = jtemp.query(
+            "SELECT * FROM Product ORDER BY productID ASC", ProductMapper);
         return allProducts;
     }
 
-    public void insertNewProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID)
+    public int insertNewProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID)
 	{
-		temp.update("INSERT INTO Product Values(?,?,?,?,?,?,?)", new Object[] {pID, pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID});
+        return jtemp.update(
+            "INSERT INTO Product Values(:pID, :pName, :pCompany, :pPrice, :pDescription, :pImagePath, :pCategoryID)",
+            new HashMap<String, Object>() {{
+                put("pID", pID);
+                put("pName", pName);
+                put("pCompany", pCompany);
+                put("pPrice", pPrice);
+                put("pDescription", pDescription);
+                put("pImagePath", pImagePath);
+                put("pCategoryID", pCategoryID);
+            }});
 	}
 	
-    public void updateProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID) {
-        temp.update("UPDATE Product SET productName = ?, productCompany = ?, productPrice = ?, productDescription = ?, productImagePath = ?, productCategoryId = ? where productID=?",
-                new Object[] { pName, pCompany, pPrice, pDescription, pImagePath, pCategoryID, pID });
+    public int updateProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID) {
+        return jtemp.update(
+            "UPDATE Product SET productName = :pName, productCompany = :pCompany, productPrice = :pPrice, productDescription = :pDescription, productImagePath = :pImagePath, productCategoryId = :pCategoryID where productID  = :pID",
+            new HashMap<String, Object>() {{
+                put("pID", pID);
+                put("pName", pName);
+                put("pCompany", pCompany);
+                put("pPrice", pPrice);
+                put("pDescription", pDescription);
+                put("pImagePath", pImagePath);
+                put("pCategoryID", pCategoryID);
+            }});
     }
 
-	public void deleteProduct(int pID)
+	public int deleteProduct(int pID)
 	{
-		temp.update("DELETE FROM Product WHERE productID = ?", new Object[] {pID});
+        return jtemp.update("DELETE FROM Product WHERE productID = :pID", new HashMap<String, Object>() {{put("pID", pID);}});
 	}
 
     public int getAutoProductId() {
-        int newProductId = temp.queryForObject("SELECT MAX(productID) + 1 FROM Product", Integer.class);
-        return newProductId;
+    	try {    		
+    		return jtemp.getJdbcTemplate().queryForObject("select COALESCE(MAX(productID) + 1, 1) FROM Product", Integer.class);
+    	} catch (DataAccessException err) {
+    		System.out.println("Error getting Product ID, reason: '" + err + "'");
+		}
+    	return 0;
     }
 }
