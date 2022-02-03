@@ -210,7 +210,7 @@ public class AdminSideManager {
             int pID = productDAO.getAutoProductId();
             String pName = request.getParameter("pName");
             String pCompany = request.getParameter("pCompany");
-            int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+            float pPrice = Float.parseFloat(request.getParameter("pPrice"));
             String pDescription = request.getParameter("pDescription");
             String pImagePath = request.getParameter("pImagePath");
             int pCategoryId = Integer.parseInt(request.getParameter("pCategoryId"));
@@ -238,7 +238,7 @@ public class AdminSideManager {
         try {
             String pName = request.getParameter("pName");
             String pCompany = request.getParameter("pCompany");
-            int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+            float pPrice = Float.parseFloat(request.getParameter("pPrice"));
             String pDescription = request.getParameter("pDescription");
             String pImagePath = request.getParameter("pImagePath");
             int pCategoryID = Integer.parseInt(request.getParameter("pCategoryID"));

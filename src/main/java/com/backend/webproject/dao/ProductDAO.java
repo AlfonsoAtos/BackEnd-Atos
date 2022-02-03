@@ -55,7 +55,7 @@ public class ProductDAO {
         return allProducts;
     }
 
-    public int insertNewProduct(int pID, String pName, String pCompany, int pPrice, String pDescription, String pImagePath, int pCategoryID)
+    public int insertNewProduct(int pID, String pName, String pCompany, float pPrice, String pDescription, String pImagePath, int pCategoryID)
 	{
         return jtemp.update(
             "INSERT INTO Product Values(:pID, :pName, :pCompany, :pPrice, :pDescription, :pImagePath, :pCategoryID)",
