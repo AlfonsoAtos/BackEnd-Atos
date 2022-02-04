@@ -69,8 +69,8 @@ create table Payment(
     shoppingCartID numeric references ShoppingCart(shoppingCartID) not null
 );
 
-insert into RegisteredUser values(1, 'admin@admin.com', 'pass123', 'admin', 'adress', '1234567890', 10);
-insert into RegisteredUser values(2, 'user@user.com', 'pass123', 'user', 'adress', '1234567890', 1);
+insert into RegisteredUser values(1, 'admin@admin.com', 'pass123', 'John', 'adress', '1234567890', 10);
+insert into RegisteredUser values(2, 'alberto@gmail.com', 'pass123', 'Alberto Garcia', 'adress', '1234567890', 1);
 
 insert into productCategory values (1, 'Shooter', 'Shooter video games.');
 insert into productCategory values (2, 'RPG', 'RPG video games.');
@@ -93,7 +93,7 @@ insert into Product values (12, 'Apex Legends', 'Respawn', 10, 'Apex Legends is 
 insert into Product values (13, 'Halo Infinite', '343 Industries', 60, 'The legendary Halo series returns with the most expansive Master Chief campaign yet and a ground-breaking free to play multiplayer experience.', 'halo infinite.jpg', 1);
 insert into Product values (14, 'Titanfall 2', 'Respawn', 15, 'Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign and multiplayer experience. Combine and conquer with new titans and pilots, deadlier weapons, and customization and progression systems that help you and your titan flow as one unstoppable killing force.', 'titanfall 2.jpg', 1);
 insert into Product values (15, 'Into the Breach', 'Subset Games', 5, 'Control powerful mechs from the future to defeat an alien threat. Each attempt to save the world presents a new randomly generated challenge in this turn-based strategy game.', 'into the breach.jpg', 5);
-insert into Product values (16, 'Total War: WARHAMMER 2', 'Creative Assembly', 5, 'The cataclysmic conclusion to the Total War: WARHAMMER trilogy is coming. Rally your forces and step into the Realm of Chaos, a dimension of mind-bending horror where the very fate of the world will be decided. Will you conquer your Daemons¦ or command them?', 'warhammer 2.jpg', 5);
+insert into Product values (16, 'Total War: WARHAMMER 2', 'Creative Assembly', 5, 'The cataclysmic conclusion to the Total War: WARHAMMER trilogy is coming. Rally your forces and step into the Realm of Chaos, a dimension of mind-bending horror where the very fate of the world will be decided. Will you conquer your Daemonsï¿½ or command them?', 'warhammer 2.jpg', 5);
 insert into Product values (17, 'XCOM 2', '2k', 5, 'XCOM 2 is the sequel to XCOM: Enemy Unknown, the 2012 award-winning strategy game of the year. Earth has changed and is now under alien rule. Facing impossible odds you must rebuild XCOM, and ignite a global resistance to reclaim our world and save humanity.', 'xcom 2.jpg', 5);
 insert into Product values (18, 'Transistor', 'Supergiant', 15, 'Transistor is a sci-fi themed action RPG that invites you to wield an extraordinary weapon of unknown origin as you fight through a stunning futuristic city. Transistor seamlessly integrates thoughtful strategic planning into a fast-paced action experience, melding responsive gameplay and rich atmospheric storytelling. During the course of the adventure, you will piece together the Transistor"s mysteries as you pursue its former owners.', 'transistor.jpg', 5);
 insert into Product values (19, 'Pyre', 'Supergiant', 15, 'Pyre is a party-based RPG from the creators of Bastion and Transistor. Lead your band of exiles to freedom through a series of mystical competitions in the Campaign, or challenge a friend to a fast-paced ritual showdown in the head-to-head Versus Mode.', 'pyre.jpg', 2);
