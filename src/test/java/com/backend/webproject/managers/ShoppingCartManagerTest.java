@@ -2,9 +2,7 @@ package com.backend.webproject.managers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.backend.webproject.dao.ShoppingCartDAO;
 import com.backend.webproject.entity.ShoppingCart;
@@ -36,10 +34,23 @@ public class ShoppingCartManagerTest {
     @Test
     void searchInSessionCartTest(){
         ShoppingCart cart = getShoppingCart();
-        List<ShoppingCart> list = new ArrayList<ShoppingCart>();
-        list.add(cart);
         given(dao.getInSessionCart(cart.getUserID())).willReturn(cart);
         ShoppingCart result = manager.getInSessionCart(cart.getUserID());
         assertEquals(cart, result);
     }
+
+    @Test
+    void completeCartTest(){
+        given(dao.completeCart(2)).willReturn(1);
+        int result = manager.completeCart(2);
+        assertEquals(1, result);
+    }
+
+    @Test
+    void createNewCartTest(){
+        given(dao.createNewCart(2)).willReturn(1);
+        int result = manager.createNewCart(2);
+        assertEquals(1, result);
+    }
+
 }
