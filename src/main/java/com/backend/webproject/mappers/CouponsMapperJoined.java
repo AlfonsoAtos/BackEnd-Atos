@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CouponsMapper implements RowMapper<Coupons> {
+public class CouponsMapperJoined implements RowMapper<Coupons> {
 
     @Override
     public Coupons mapRow(ResultSet result, int arg1) throws SQLException {
@@ -20,9 +20,7 @@ public class CouponsMapper implements RowMapper<Coupons> {
         obj.setCouponType(result.getString(4));
         obj.setCouponDiscount(result.getInt(5));
         obj.setPromotionEventName(result.getString(6));
-        obj.setPromotionEventId(result.getInt(6));
         obj.setProductCategoryName(result.getString(7));
-        obj.setProductCategoryId(result.getInt(7));
         return obj;
     }
 

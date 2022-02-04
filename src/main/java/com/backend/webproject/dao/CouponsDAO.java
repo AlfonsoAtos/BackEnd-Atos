@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.mappers.CouponsMapper;
+import com.backend.webproject.mappers.CouponsMapperJoined;
 
 //import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class CouponsDAO {
     @Autowired
     private CouponsMapper couponsMapper;
 
+    @Autowired
+    private CouponsMapperJoined couponsMapperJoined;
+
     // Get the entire data from Coupon table
     public List<Coupons> getNewCoupons() {
         List<Coupons> newCoupons = temp.query(
@@ -32,7 +36,7 @@ public class CouponsDAO {
     public List<Coupons> getNewCouponsJoined() {
         List<Coupons> newCoupons = temp.query(
                 "SELECT b.couponId, b.couponName, b.couponCode, b.couponType, b.couponDiscount, c.promotionEventName, a.categoryName FROM productcategory a, coupon b, promotionevent c WHERE a.productCategoryId = b.productCategoryId AND c.promotionEventId = b.promotionEventId ORDER BY couponId DESC",
-                couponsMapper);
+                couponsMapperJoined);
         return newCoupons;
     }
 
