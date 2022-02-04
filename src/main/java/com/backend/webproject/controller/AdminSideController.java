@@ -1,7 +1,6 @@
 package com.backend.webproject.controller;
 
 import com.backend.webproject.entity.Coupons;
-import com.backend.webproject.entity.Events;
 import com.backend.webproject.managers.AdminSideManager;
 
 import org.springframework.beans.factory.annotation.Autowired;

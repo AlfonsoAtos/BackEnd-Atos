@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.backend.webproject.entity.Coupons;
