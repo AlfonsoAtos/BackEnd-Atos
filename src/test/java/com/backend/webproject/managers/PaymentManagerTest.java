@@ -62,8 +62,6 @@ public class PaymentManagerTest {
     @Test
     void searchPaymentByCartIDTest(){
         Payment payment = createPayment();
-        List<Payment> paymentList = new ArrayList<Payment>();
-        paymentList.add(payment);
         given(dao.searchPaymentByCartID(payment.getShoppingCartID())).willReturn(payment);
         Payment resultPayment = paymentManager.searchPaymentByCartID(payment.getShoppingCartID());
         assertEquals(payment, resultPayment);

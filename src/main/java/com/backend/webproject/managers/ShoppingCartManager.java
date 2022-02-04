@@ -15,7 +15,6 @@ public class ShoppingCartManager {
 
     public List<ShoppingCart> getAllCompletedCarts(int userID){
         return dao.getAllCompletedCarts(userID);
-        
     }
 
     public ShoppingCart getInSessionCart(int userID){

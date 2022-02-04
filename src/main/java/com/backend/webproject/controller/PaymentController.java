@@ -36,8 +36,12 @@ public class PaymentController {
 		int shoppingAmount = Integer.parseInt(req.getParameter("shoppingAmount"));
 		String paymentStatus = req.getParameter("paymentStatus");
 		int shoppingCartID = Integer.parseInt(req.getParameter("shoppingCartID"));
-		
-		if (manager.processPayment(openCoupon, shoppingAmount, paymentStatus, shoppingCartID)==1) {
+		Payment payment = new Payment();
+        payment.setOpenCoupon(openCoupon);
+        payment.setShoppingFinalAmount(shoppingAmount);
+        payment.setPaymentStatus(paymentStatus);
+        payment.setShoppingCartID(shoppingCartID);
+		if (manager.processPayment(payment)==1) {
 			// Create shopping cart
 			return 1;
 		}

@@ -11,15 +11,6 @@ public class PaymentManager {
     @Autowired
     PaymentDAO dao;
 
-    public int processPayment(int openCoupon, int shoppingFinalAmount, String paymentStatus, int shoppingCartID){
-        Payment payment = new Payment();
-        payment.setOpenCoupon(openCoupon);
-        payment.setShoppingFinalAmount(shoppingFinalAmount);
-        payment.setPaymentStatus(paymentStatus);
-        payment.setShoppingCartID(shoppingCartID);
-        return dao.processPayment(payment);
-    }
-
     public int processPayment(Payment payment){
         return dao.processPayment(payment);
     }
