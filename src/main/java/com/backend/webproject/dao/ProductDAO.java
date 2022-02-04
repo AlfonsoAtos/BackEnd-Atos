@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import com.backend.webproject.entity.Coupons;
 import com.backend.webproject.entity.Product;
+import com.backend.webproject.mappers.ProductJoinMapper;
 import com.backend.webproject.mappers.ProductMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ProductDAO {
 
     @Autowired
     private ProductMapper ProductMapper;
+    
+    @Autowired
+    private ProductJoinMapper productJoinMapper;
     
     public List<Product> getNewProducts() {
         List<Product> newProducts = jtemp.query("SELECT * FROM Product ORDER BY productID DESC", ProductMapper);
@@ -96,5 +101,12 @@ public class ProductDAO {
     		System.out.println("Error getting Product ID, reason: '" + err + "'");
 		}
     	return 0;
+    }
+    
+    public List<Product> getNewCouponsJoined() {
+        List<Product> newCoupons = jtemp.query(
+            "SELECT p.productID, p.productName, p.productCompany, p.productPrice, p.productDescription, p.productImagePath, pc.categoryName FROM productcategory pc, product p WHERE pc.productCategoryID = p.productCategoryID ORDER BY productID DESC",
+            productJoinMapper);
+        return newCoupons;
     }
 }

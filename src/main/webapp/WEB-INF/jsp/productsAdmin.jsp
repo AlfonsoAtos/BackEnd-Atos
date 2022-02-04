@@ -244,8 +244,8 @@ prefix="c"%>
                                     <td>${product.getPCompany()}</td>
                                     <td>${product.getPPrice()}</td>
                                     <td class="short-desc">${product.getPDescription()}</td>
-                                    <td>${product.getPImagePath()}</td>
-                                    <td>${product.getPCategoryID()}</td>
+                                    <td>${product.getPFormattedPrice()}</td>
+                                    <td>${product.getpCategoryName()}</td>
                                     <td>
                                         <a
                                             href="updateProduct/${product.getPID()}"
