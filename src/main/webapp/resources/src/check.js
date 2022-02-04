@@ -145,12 +145,6 @@ function qplus(id){
     .then(response=>console.log('Success:', response));
     location.reload();    
 }
-function btnCoupon(id){
-    if(ibtn){
-        ibtn=!ibtn;
-        
-    }
-}
 function validateCoupon(coupon,id,catp){
     //YZX12345
     let desc = coupon.couponDiscount;

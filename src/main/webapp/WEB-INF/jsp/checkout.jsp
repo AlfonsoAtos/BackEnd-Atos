@@ -12,8 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../../resources/css/style.css">
     <link rel="stylesheet" href="../../resources/css/check.css">
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <title>Checkout</title>
 </head>
     <body>
@@ -51,11 +51,12 @@
                 </div>
             </div>
         </nav>
-
+        
+        <main class="container-fluid form-signin p-4">
             <br>
-            <div id="continent">
+            <div id="continent" class="row">
                 <!-- Checkout elements -->
-                <div id="order-shop" class="col-8">
+                <div class="col-8">
                     <!-- Change to call checkout -->
                     <table id="products-list">
                     </table>
@@ -64,12 +65,29 @@
                 </div>
                 <div id="right-side" class="col-4">
                     <br>
+                    <form id="payment-method">
+                        <label for="vThru">If you have a coupon code insert </label>
+                        <input id="tcoupon" type="text" name="vDate" form="payment_form" placeholder="________" style="width: 80px;">
+                        <br>
+                        <sub>If you have a coupon code insert in that space and select the product</sub>
+                    </form>
+
+                    <br>
+
+                    <hr>
+                    <hr>
+                    <hr>
+                    
+                    <br>
+
                     <div id="payment">
                         <h2><b id="price"></b></h2><h6>All prices include VAT if applicable </h6>
                         <label for="ifGift">Is this a gift?</label>
                         <input id="checkAGift" type="checkbox" name="isGift" value="gift">
-                            <input style="display: none;" id="emailGift" type="text" placeholder="@mail.com">
-                        
+                        <input style="display: none;" id="emailGift" type="text" placeholder="@mail.com">
+                        <br>
+                        <hr>
+                        <hr>
                         <form id="payment_form">
                             <table>
                                 <tr>
@@ -77,30 +95,28 @@
                                         <label for="card">Card Number</label>
                                     </td>
                                     <td>
-                                        <input id="cnumber" type="text" name="card" form="payment_form" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                                        <input id="cnumber" type="text"  name="card" form="payment_form" placeholder="XXXX-XXXX-XXXX-XXXX" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label for="cvv">CVV</label>
-                                        <input id="ccvv" type="text" name="cvv" form="payment_form" placeholder="XXX" style="width: 50px;" required>
+                                        <input id="ccvv" type="text" name="cvv" form="payment_form" placeholder="XXX" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                     </td>
                                     <td style="float: right;">
                                         <label for="vThru">Valid Thru</label>
-                                        <input id="cdate" type="text" name="vDate" form="payment_form" placeholder="XX/XX" style="width: 80px;" required>
+                                        <input id="cdate" type="text" name="vDate" form="payment_form" placeholder="XX/XX" style="width: 80px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                     </td>
                                 </tr>
                             </table>
                         </form>
-                    <button id="btn-payment" type="button" class="btn btn-success">Pay for your order now</button>
-                    <form>
-                        <label for="vThru">Insert coupon code</label>
-                        <input id="tcoupon" type="text" name="vDate" form="payment_form" placeholder="________" style="width: 80px;">
-                    </form>
+                    <button id="btn-payment" type="button" class="btn btn-success" style="background-color: #660e62; border: 660e62;">Pay for your order now</button>
+                    <hr >
                     </div>
                 </div>
+                
             </div>
-
+        </main>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="<c:url value='../../resources/src/check.js' />" type="text/javascript"></script>
         <script src="<c:url value='/resources/src/checkSession.js' />" type="text/javascript"></script>

@@ -4,24 +4,23 @@
  */
  /* *{background-color: #eaeaec;} */
 
-#right-side, #order-shop, .payment-method, main {
-    background-color: #eaeaec;
-}
 
 #right-side {
-    position: relative;
-    width: fit-content;
-    float: right;
+    border: 3px;
+    border-style: solid;
+    border-color: #660e62;
+    height: max-content;
+    width: max-content;
 }
 
 #order-shop {
-    display: inline-block;
-    position: relative;
-    width: fit-content; 
+    border: 3px;
+    border-style: solid;
+    border-color: #660e62;
 }
 
-.payment-method {
-    border: 1px;
+#payment-method {
+    /*border: 3px;
     border-style: solid;
-    border-color: coral;
+    border-color: #660e62;*/
 }
