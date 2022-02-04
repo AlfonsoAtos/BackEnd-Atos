@@ -8,11 +8,11 @@ prefix="c"%>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <link href="
         <c:url value="/resources/css/main.css" />
         " rel="stylesheet">
-        <title>Promotion Event Details</title>
+        <title>Product Details</title>
     </head>
     <body>
         <div>
@@ -53,7 +53,7 @@ prefix="c"%>
             <!-- Side bar -->
             <ul class="sidebar">
                 <div class="items-side">
-                    <li>
+                    <li style="background: #00abfd">
                         <a href="/admin-side/products">
                             <svg
                                 fill="white"
@@ -69,7 +69,7 @@ prefix="c"%>
                             Products
                         </a>
                     </li>
-                    <li style="background: #00abfd">
+                    <li>
                         <a href="/admin-side/events">
                             <svg
                                 fill="white"
@@ -103,96 +103,99 @@ prefix="c"%>
             <div class="content">
                 <div class="new-coupon-btn">
                     <!-- Modal Window Button for adding coupons -->
-                    <a href="#insertEvents">New Promotion Event</a>
+                    <a href="#miModal">New Product</a>
                     <!-- Modal Window -->
-                    <div id="insertEvents" class="modal">
-                        <div class="modal-contenido-event">
+
+                    <div id="miModal" class="modal">
+                        <div class="modal-contenido">
                             <a class="close-modal" href="#">X</a>
-                            <h2>New Promotion Event</h2>
+                            <h2>New Product</h2>
                             <div class="coupon-form">
-                                <form action="insertEvent">
+                                <form action="insertProduct">
                                     <div class="first-half">
                                         <div class="item-form">
-                                            <label for=""
-                                                >Name:
-                                            </label>
+                                            <label>Product Name: </label>
                                             <input
                                                 type="text"
-                                                name="eventsName"
-                                                minlength="5"
-                                                maxlength="15"
+                                                name="pName"
+                                                maxlength="20"
                                                 required
                                             />
                                         </div>
                                         <div class="item-form">
-                                            <label for=""
-                                                >Description:
-                                            </label>
+                                            <label>Company Name: </label>
                                             <input
                                                 type="text"
-                                                name="eventsDescription"
-                                                minlength="10"
-                                                maxlength="30"
+                                                name="pCompany"
+                                                maxlength="20"
                                                 required
                                             />
                                         </div>
                                         <div class="item-form">
-                                            <label for=""
-                                                >Start Date:
-                                            </label>
+                                            <label>Price: </label>
                                             <input
-                                                type="date"
-                                                name="eventsStartDate"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="item-form">
-                                            <label for=""
-                                                >End Date:
-                                            </label>
-                                            <input
-                                                type="date"
-                                                name="eventsEndDate"
+                                                type="number"
+                                                name="pPrice"
                                                 required
                                             />
                                         </div>
                                     </div>
                                     <div class="second-half">
                                         <div class="item-form">
-                                            <label for=""
-                                                >Status:
-                                            </label>
-                                            <select
-                                                name="eventsStatus"
-                                                required
-                                            >
-                                                <option value="Valid" selected>
-                                                    Valid
-                                                </option>
-                                                <option value="Expired">
-                                                    Expired
-                                                </option>
-                                                <option value="Cancelled">
-                                                    Cancelled
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="item-form">
-                                            <label for=""
-                                                >Administrator
-                                                ID:
-                                            </label>
+                                            <label>Description: </label>
                                             <input
-                                                type="number"
-                                                name="eventsAdminId"
+                                                type="text"
+                                                name="pDescription"
+                                                maxlength="30"
                                                 required
                                             />
                                         </div>
+                                        <div class="item-form">
+                                            <label>Image: </label>
+                                            <input
+                                                type="file"
+                                                name="pImagePath"
+                                                maxlength="50"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="item-form">
+                                            <label>Product Category: </label>
+                                            <select
+                                                name="pCategoryId"
+                                                id=""
+                                                required
+                                            >
+                                                <option
+                                                    value="none"
+                                                    selected
+                                                    disabled
+                                                    hidden
+                                                >
+                                                    Select an Option
+                                                </option>
+                                                <option value="1">
+                                                    Shooter
+                                                </option>
+                                                <option value="2">
+                                                    VR
+                                                </option>
+                                                <option value="3">
+                                                    Strategy
+                                                </option>
+                                                <option value="4">
+                                                    Simulation
+                                                </option>
+                                                <option value="5">
+                                                    RPG
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="button-form">
-                                        <a class="cancel-button" href="#">
-                                            Cancel
-                                        </a>
+                                        <a class="cancel-button" href="#"
+                                            >Cancel</a
+                                        >
                                         <input
                                             class="accept-button"
                                             type="submit"
@@ -207,51 +210,47 @@ prefix="c"%>
                 <!-- Main window for managing coupons -->
                 <div class="coupon-table">
                     <!-- <div class="search-table">
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd"
-                            ></path>
-                        </svg>
-                        <input
-                            type="text"
-                            class="search-table"
-                            placeholder="Search..."
-                        />
-                    </div> -->
+						<svg
+							class="w-6 h-6"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+						<input type="text" class="search-table" placeholder="Search..." />
+					</div> -->
                     <table class="table" id="couponsTable">
                         <thead>
                             <tr>
                                 <td>ID</td>
                                 <td>Name</td>
+                                <td>Company</td>
+                                <td>Price</td>
                                 <td>Description</td>
-                                <td>Start Date</td>
-                                <td>End Date</td>
-                                <td>Status</td>
-                                <td>Administrator ID</td>
-                                <td>Actions</td>
+                                <td>Image</td>
+                                <td>Category ID</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="events" items="${newEvents}">
+                            <c:forEach var="product" items="${allProducts}">
                                 <tr>
-                                    <td>${events.getEventsId()}</td>
-                                    <td>${events.getEventsName()}</td>
-                                    <td>${events.getEventsDescription()}</td>
-                                    <td>${events.getEventsStartDate()}</td>
-                                    <td>${events.getEventsEndDate()}</td>
-                                    <td>${events.getEventsStatus()}</td>
-                                    <td>${events.getEventsAdminId()}</td>
+                                    <td>${product.getPID()}</td>
+                                    <td>${product.getPName()}</td>
+                                    <td>${product.getPCompany()}</td>
+                                    <td>${product.getPPrice()}</td>
+                                    <td class="short-desc">${product.getPDescription()}</td>
+                                    <td>${product.getPImagePath()}</td>
+                                    <td>${product.getPCategoryID()}</td>
                                     <td>
                                         <a
-                                            href="updateEvents/${events.getEventsId()}"
-                                            ><svg
+                                            href="updateProduct/${product.getPID()}"
+                                        >
+                                            <svg
                                                 fill="blue"
                                                 viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +265,7 @@ prefix="c"%>
                                                 ></path>
                                             </svg>
                                         </a>
-                                        <a href="#deleteItem">
+                                        <a href="deleteProduct/${product.getPID()}">
                                             <svg
                                                 fill="red"
                                                 viewBox="0 0 20 20"
@@ -278,7 +277,6 @@ prefix="c"%>
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
-
                                             <div id="deleteItem" class="modal">
                                                 <div
                                                     class="modal-contenido-delete"
@@ -294,7 +292,7 @@ prefix="c"%>
                                                             >No</a
                                                         >
                                                         <a
-                                                            href="events/deleteEvents/${events.getEventsId()}"
+                                                            href="deleteProduct/${product.getPID()}"
                                                             class="accept-button"
                                                             >Yes</a
                                                         >

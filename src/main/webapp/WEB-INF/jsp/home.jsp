@@ -16,8 +16,10 @@
     <div class="container-fluid p-0">
         <nav id="navbar" class="navbar navbar-expand-lg">
             <div class="container">
-                <div class="logo-nav">
-                    <img src="../../resources/img/logo-g.jpg" />
+                <div class="logo-nav me-5">
+                    <a href="/">    
+                        <img src="../../resources/img/logo.png" class="p-0"/>
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +41,8 @@
                                 <i class="fas fa-shopping-cart"></i>
                                 <span id="cartCounter"></span>
                             </a>
-                            <a href="#"><i class="fas fa-user ms-3"></i></a>
+                            <span class="text-white" ><i class="fas fa-user ms-3"></i></span>
+                            <span class="text-white" id="user-name">Name</span>
                             <button type="button" class="btn btn-danger ms-3" onclick="logout()">Log out</button>
                         </span>
                         <span class="d-none" id="login-button">
@@ -99,7 +102,7 @@
 						<c:if test="${(p.index % 4 == 0)}"><div class="carousel-item ${(p.index == 0) ? 'active' : ''}"><div class="row d-flex align-items-center"></c:if>
 							<div class="col-3 d-flex justify-content-center">
 								<a data-bs-toggle="modal" data-bs-target="#modal${product.getPID()}">
-									<div class="card border-0 product-card">
+									<div id="product${product.getPID()}Card" class="card border-0 product-card">
 										<img src="../../resources/img/${product.getPImagePath()}" class="card-img-top" alt="">
 										<div class="card-body">
 											<h5 class="card-title">${product.getPName()}</h5>
@@ -108,11 +111,12 @@
                                             </div>
                                 </a>
 											<div class="d-flex align-items-center mt-2">
-                                                <span class="fa-stack cart-icon-group me-auto visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
+                                                <span class="fa-stack cart-icon-group visible" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                                     <i id="cart-icon-bg" class="fas fa-circle fa-stack-2x"></i>
                                                     <i class="fas fa-cart-plus fa-sm fa-stack-1x icon"></i>
                                                 </span>
-												<p class="card-text text-end">$${product.getPFormattedPrice()}</p>
+                                                <span class="d-none fst-italic text-muted"><span class="productQuantityInCart">0</span>x in cart</span>
+												<p class="card-text ms-auto">$${product.getPFormattedPrice()}</p>
 											</div>
 										</div>
 									</div>
@@ -126,11 +130,12 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">${product.getPName()}</h5>
                                                 <p class="card-text">${product.getPDescription()}</p>
-                                                <div class="d-flex justify-content-between align-items-end">
-                                                    <button type="button" class="btn btn-success" data-pID="${product.getPID()}" onclick="addToCart(this)">
+                                                <div class="d-flex align-items-center">
+                                                    <button type="button" class="btn btn-success me-2" data-pID="${product.getPID()}" onclick="addToCart(this)">
                                                         <i class="fas fa-cart-plus"></i>  Add to cart
                                                     </button>
-                                                    <p class="card-text price-in-modal">$${product.getPFormattedPrice()}</p>
+                                                    <span class="d-none fst-italic fs-6 text-muted"><span class="productQuantityInCart fs-6">0</span>x in cart</span>
+                                                    <p class="card-text price-in-modal ms-auto">$${product.getPFormattedPrice()}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -177,9 +182,11 @@
     </script>
     <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/src/getNumProductsInCart.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/src/getProductsInCart.js" />" type="text/javascript"></script>
     <script type="text/javascript">
         checkSessionUser();
         getNumProductsInCart();
+        getProductsInCart();
     </script>
 </body>
 </html>

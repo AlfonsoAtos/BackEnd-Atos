@@ -54,3 +54,32 @@ body {
 .error-message {
   color: red;
 }
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  background: #ffffff;
+  color: #000;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 1px #ced4da solid;
+  padding: 5px 0;
+}
+
+#message p {
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}

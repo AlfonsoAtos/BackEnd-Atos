@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +8,11 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
-        <title>Coupon Details</title>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <link href="
+        <c:url value="/resources/css/main.css" />
+        " rel="stylesheet">
+        <title>Product Details</title>
     </head>
     <body>
         <div>
@@ -39,7 +43,13 @@
                         </a>
                     </li>
                     <li>
-                        <button type="button" class="logout-button" onclick="logout()">Log out</button>
+                        <button
+                            type="button"
+                            class="logout-button"
+                            onclick="logout()"
+                        >
+                            Log out
+                        </button>
                     </li>
                 </div>
             </ul>
@@ -97,79 +107,79 @@
             </ul>
             <!-- Main Content -->
             <div class="content">
-                <h1>Update Promotion Event</h1>
+                <h1>Update Product</h1>
                 <div class="update-form">
-                    <form action="../updateEventsData/${eventsData.eventsId}">
+                    <form action="../updateProductData/${productData.getPID()}">
                         <div class="first-half">
                             <div class="item-form">
-                                <label>ID: </label>
-                                <label>${eventsData.eventsId}</label>
+                                <label>Product ID: </label>
+                                ${productData.getPID()}
                             </div>
                             <div class="item-form">
-                                <label>Name: </label>
+                                <label>Product Name: </label>
                                 <input
                                     type="text"
-                                    name="eventsName"
-                                    value="${eventsData.eventsName}"
-                                    minlength="5"
-                                    maxlength="15"
+                                    name="pName"
+                                    value="${productData.getPName()}"
+                                    maxlength="20"
                                     required
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Description: </label>
+                                <label>Company Name: </label>
                                 <input
                                     type="text"
-                                    name="eventsDescription"
-                                    value="${eventsData.eventsDescription}"
-                                    minlength="10"
-                                    maxlength="30"
+                                    name="pCompany"
+                                    value="${productData.getPCompany()}"
+                                    maxlength="20"
                                     required
                                 />
                             </div>
                             <div class="item-form">
-                                <label>Start Date: </label>
+                                <label>Price: </label>
                                 <input
-                                    type="date"
-                                    name="eventsStartDate"
-                                    value="${eventsData.eventsStartDate}"
-                                    required
-                                />
-                            </div>
-                            <div class="item-form">
-                                <label>End Date: </label>
-                                <input
-                                    type="date"
-                                    name="eventsEndDate"
-                                    value="${eventsData.eventsEndDate}"
+                                    type="number"
+                                    name="pPrice"
+                                    value="${productData.getPPrice()}"
                                     required
                                 />
                             </div>
                         </div>
                         <div class="second-half">
                             <div class="item-form">
-                                <label for="">Status: </label>
-                                <select name="eventsStatus" required>
+                                <label>Description: </label>
+                                <textarea
+                                    type="text"
+                                    name="pDescription"
+                                    maxlength="500"
+                                    style="height: 5rem; padding: 0.3rem"
+                                    required
+                                >
+                                    ${productData.getPDescription()}
+                                </textarea>
+                            </div>
+                            <div class="item-form">
+                                <label>Image: </label>
+                                <input
+                                    type="file"
+                                    name="pImagePath"
+                                    value="${productData.getPImagePath()}"
+                                    maxlength="50"
+                                    required
+                                />
+                            </div>
+                            <div class="item-form">
+                                <label>Product Category: </label>
+                                <select name="pCategoryID" required>
                                     <option value="none" disabled hidden>
                                         Select an Option
                                     </option>
-                                    <option value="Valid" selected>
-                                        Valid
-                                    </option>
-                                    <option value="Expired">Expired</option>
-                                    <option value="Cancelled">Cancelled</option>
+                                    <option value="1" selected>Shooter</option>
+                                    <option value="2">VR</option>
+                                    <option value="3">Strategy</option>
+                                    <option value="4">Simulation</option>
+                                    <option value="5">RPG</option>
                                 </select>
-                            </div>
-                            <div class="item-form">
-                                <label for=""
-                                    >Administrator ID:
-                                </label>
-                                <input
-                                    type="numeric"
-                                    name="eventsAdminId"
-                                    value="${eventsData.eventsAdminId}"
-                                    required
-                                />
                             </div>
                         </div>
                         <div class="button-form">
@@ -191,10 +201,5 @@
                 </div>
             </div>
         </footer> -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="<c:url value="/resources/src/checkSession.js" />" type="text/javascript"></script>
-        <script type="text/javascript">
-            checkSessionAdmin();
-        </script>
     </body>
 </html>

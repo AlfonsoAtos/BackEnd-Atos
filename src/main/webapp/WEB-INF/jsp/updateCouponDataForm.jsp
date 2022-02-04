@@ -101,6 +101,7 @@ prefix="c"%>
             </ul>
             <!-- Main Content -->
             <div class="content">
+                <h1>Update Coupon</h1>
                 <div class="update-form">
                     <form action="../updateCouponData/${couponData.couponId}">
                         <div class="first-half">
@@ -161,10 +162,10 @@ prefix="c"%>
                                         Select an Option
                                     </option>
                                     <option value="1" selected>Shooter</option>
-                                    <option value="2">VR</option>
-                                    <option value="3">Strategy</option>
-                                    <option value="4">Simulation</option>
-                                    <option value="5">RPG</option>
+                                    <option value="2">RPG</option>
+									<option value="3">Simulation</option>
+									<option value="4">VR</option>
+									<option value="5">Strategy</option>
                                 </select>
                             </div>
                             <div class="radio-form">
