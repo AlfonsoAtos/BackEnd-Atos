@@ -12,6 +12,7 @@ public class Product {
     String pImagePath;
     int pCategoryID;
     String pFormattedPrice;
+    String pCategoryName;
 
     public Product() {}
 
@@ -94,5 +95,13 @@ public class Product {
     public void setPFormattedPrice(String pFormattedPrice) {
         this.pFormattedPrice = pFormattedPrice;
     }
+    
+    public String getpCategoryName() {
+		return pCategoryName;
+	}
+    
+    public void setpCategoryName(String pCategoryName) {
+		this.pCategoryName = pCategoryName;
+	}
     
 }

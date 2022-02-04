@@ -199,7 +199,7 @@ public class AdminSideManager {
     // Get all the products
     public String showProductsPage(Model model) {
         try {
-            List<Product> allProducts = productDAO.getAllProducts();
+            List<Product> allProducts = productDAO.getNewCouponsJoined();
             model.addAttribute("allProducts", allProducts);
         } catch (Exception e) {
             System.out.println("Can not get the product list, reason: '" + e + "'");
