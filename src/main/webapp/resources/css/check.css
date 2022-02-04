@@ -9,15 +9,15 @@
 }
 
 #right-side {
-    /* position: relative;
+    position: relative;
     width: fit-content;
-    float: right; */
+    float: right;
 }
 
 #order-shop {
-    /* display: inline-block;
+    display: inline-block;
     position: relative;
-    width: fit-content; */
+    width: fit-content; 
 }
 
 .payment-method {

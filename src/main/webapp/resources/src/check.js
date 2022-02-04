@@ -155,7 +155,7 @@ function validateCoupon(coupon,id,catp){
     //YZX12345
     let desc = coupon.couponDiscount;
     
-    let catc = coupon.productCategoryId;
+    let catc = coupon.productCategoryName;
     let pathArray = window.location.pathname.split('/')
     let cid = Number(pathArray[3]);
     if(catc==catp){
@@ -178,7 +178,7 @@ function validateCoupon(coupon,id,catp){
         //jsgs-- al ser de la misma categoria mandar llamar el api y calcular el precio
         ///shoppingcart/savePriceAfterCoupon?shoppingCartID=1&productID=7&price=5
     }else {
-        alert("Coupon not valid: Wrong category :c");
+        console.log(catc,catp);
         document.getElementById("tcoupon").value="";
     }
 }
